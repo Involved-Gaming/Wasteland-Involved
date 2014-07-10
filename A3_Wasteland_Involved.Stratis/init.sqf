@@ -39,7 +39,7 @@ if (!isDedicated) then
 	[] spawn
 	{
 		9999 cutText ["Bienvenue sur Wasteland Involved. Patientez Merci", "BLACK", 0.01];
-		
+
 		waitUntil {!isNull player};
 		removeAllWeapons player;
 		client_initEH = player addEventHandler ["Respawn", { removeAllWeapons (_this select 0) }];
@@ -63,8 +63,6 @@ if (isServer) then
 [] execVM "addons\proving_Ground\init.sqf";
 [] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 [] execVM "addons\JumpMF\init.sqf";
-<<<<<<< HEAD
-=======
 
 /*
 	Involved part
@@ -77,4 +75,3 @@ call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
 
 //Admin tools
 [] execVM "admintools\activate.sqf";
->>>>>>> origin/master
