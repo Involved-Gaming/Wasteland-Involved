@@ -13,6 +13,7 @@ player createDiaryRecord ["changelog",
 "Version : 0.1 Involved 10/07/2014",
 "
 <br/> [Added] - Marqueur d'escouade
+<br/> [Added] - Parachute automatique (option parajump + perte de sac et largage de smoke)
 <br/> [Added] - Image d'intro
 <br/> [Added] - Droit modo/admin
 <br/> [Added] - Suppression Side et Global canal
@@ -76,7 +77,7 @@ player createDiaryRecord ["changelog",
 [
 "0.9b",
 "
-<br/> [Initial release] - Bienvenu sur Stratis Involved !
+<br/> [Initial release] - Bienvenue sur Stratis Involved !
 "
 ]];
 
@@ -146,27 +147,23 @@ player createDiaryRecord ["credits",
 
 player createDiaryRecord ["infos",
 [
-"Hints and Tips",
+"Trucs & Astuces",
 "
 <br/><font size='18'>A3Wasteland</font>
 <br/>
-<br/>* At the start of the game, spread out and find supplies before worrying about where to establish a meeting place or a base, supplies are important and very valuable.
+<br/>* Au début de la partie, éparpissez-vous et trouvez du materiel avant de vous occuper d'un point de rencontre ou d'une base. Le materiel que vous trouverez peut-être important et peut avoir beaucoup de valeur. 
 <br/>
-<br/>* When picking a base location, it is best advised to pick a place that is out of the way and not so obvious such as airports, cities, map-bound bases, etc. remember, players randomly spawn in and around towns and could even spawn inside your base should you set it up in a town.
+<br/>* Quand vous etablissez votre camp de base, il est conseillé de le placer dans un lieu isolé; évitez les aéroports, les villes, les bases, etc. Les joueurs peuvent apparaitre à l'interieur et à l'exterieur des bases et pourrait même apparaitre dans votre base si vous vous êtes placés en ville.
 <br/>
-<br/>* If you spawn in an area with no vehicles or supplies in the immediate area, DO NOT just click respawn from the pause menu, chances are if you search an area of a few hundred meters, you will find something.
+<br/>* Si vous apparaissez dans une ville à priori vide NE réapparaissez PAS immédiatement. Vous avez de fortes chances de trouver des fournitures dans un rayon de 100 mètre autour de là où vous vous trouvez.
 <br/>
-<br/>* Always be on the lookout for nightvision. they are located in the ammo crates, and there are pairs scattered throughout vehicles. You can also purchase them from the gunstores. Nighttime without them SUCKS, and if you have them, you can conduct stealth raids on enemy bases under the cover of complete darkness.
-<br/>
-<br/>* When you set up a base, never leave your supplies unguarded, one guard will suffice, but it is recommended you have at least 2, maybe 3 guards at base at all times.
-<br/>
-<br/>* There are very aggressive AI characters that spawn with most missions and will protect the mission objectives with deadly force, be aware of them.
+<br/>* Soyez toujours à la recherche de Jumelles de Vision Nocturne
 "
 ]];
 
 player createDiaryRecord ["infos",
 [
-"About Wasteland",
+"F.A.Q Wasteland",
 "
 <br/>Wasteland c'est tout l'inverse de Altis Life, no rules juste fun and no rp just RIP.
 <br/>
@@ -192,5 +189,11 @@ player createDiaryRecord ["infos",
 <br/>
 <br/>Q. Si je vois quelqu'un enfriendre une règles je fais quoi ?
 <br/>R. Très simple vous appeler un administrateur ou modérateur, ou alors vous filmer et vous allez sur forum.involved-gaming.com
+<br/>
+<br/>Q. Comment faire pour sauter ?
+<br/>R. En appuiant sur la touche "v"
+<br/>
+<br/>Q. Comment faire pour sauter en parachute ?
+<br/>R. Dans tous les hélicoptères, aller au dessus des 200m et ralantiser, choisisez l'option Jump en parachute. N'oubliez pas de récupéré votre sac en bas.
 "
 ]];
