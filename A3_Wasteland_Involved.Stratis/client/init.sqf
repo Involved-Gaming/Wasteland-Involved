@@ -75,7 +75,7 @@ if (["A3W_playerSaving"] call isConfigOn) then
 
 	[] spawn
 	{
-		sleep 60;
+		sleep 20;
 		// Save player every 60s
 		while {true} do
 		{

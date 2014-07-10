@@ -34,7 +34,7 @@ FAR_HandleDamage_EH =
 		//TODO : Suppression automatique du stuff	--
 		[_unit,"fn_clearDatabaseUnconscious",true,false] spawn BIS_fnc_MP;
 
-		[_unit, _killer] spawn FAR_Player_Unconscious;
+		[[_unit], _killer] spawn FAR_Player_Unconscious;
 	};
 
 	_amountOfDamage
