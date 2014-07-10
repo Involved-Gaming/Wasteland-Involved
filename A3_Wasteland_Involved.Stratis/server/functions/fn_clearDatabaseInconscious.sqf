@@ -3,6 +3,8 @@
 //	@file Author: S.lambert
 //	@file Created:  10/07/2014
 
+if (!isServer) exitWith {};
+private ["_player"];
 
 diag_log "player is Inconscious, deleting all his data";
 _player = _this select 0;
