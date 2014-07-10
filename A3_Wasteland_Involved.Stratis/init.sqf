@@ -71,7 +71,3 @@ if (isServer) then
 //Far revive
 diag_log "FAR REVIVE Initializing !";
 call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
-
-
-//Admin tools
-[] execVM "admintools\activate.sqf";
