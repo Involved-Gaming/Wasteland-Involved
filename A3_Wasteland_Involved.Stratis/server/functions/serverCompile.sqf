@@ -84,6 +84,7 @@ setMissionSkill = [_path, "setMissionSkill.sqf"] call mf_compile;
 spawnStoreObject = [_path, "spawnStoreObject.sqf"] call mf_compile;
 vehicleRepair = [_path, "vehicleRepair.sqf"] call mf_compile;
 vehicleSetup = [_path, "vehicleSetup.sqf"] call mf_compile;
+
 fn_clearDatabaseInconscious = [_path, "fn_clearDataBaseIncouscious.sqf"] call mf_compile;
 
 //Player Management

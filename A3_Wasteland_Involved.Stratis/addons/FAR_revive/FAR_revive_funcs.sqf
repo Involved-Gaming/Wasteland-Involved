@@ -125,7 +125,7 @@ FAR_Player_Unconscious =
 		else
 		{
 			// Player got revived - Réanimation ---> on sauvegarde le stuff
-			spawn fn_savePlayerData;
+			//spawn fn_savePlayerData;
 
 			_unit setVariable ["FAR_isStabilized", 0, true];
 			sleep 6;
