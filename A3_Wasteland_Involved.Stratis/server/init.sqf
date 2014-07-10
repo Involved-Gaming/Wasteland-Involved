@@ -72,9 +72,9 @@ if (_playerSavingOn || {_serverSavingOn}) then
 {
 	// Our custom iniDB methods which fixes some issues with the current iniDB addon release
 	call compile preProcessFileLineNumbers "persistence\fn_inidb_custom.sqf";
-	
+
 	_verIniDB = call iniDB_version;
-	
+
 	if (_verIniDB == "") then
 	{
 		diag_log "[INFO] ### ERROR ### A3W NOT running with iniDB!";
@@ -96,7 +96,7 @@ if (_playerSavingOn || {_serverSavingOn}) then
 	{
 		execVM "persistence\world\oLoad.sqf";
 	};
-	
+
 	diag_log format ["[INFO] A3W player saving is %1", if (_playerSavingOn) then { "ENABLED" } else { "DISABLED" }];
 	diag_log format ["[INFO] A3W base saving is %1", if (_baseSavingOn) then { "ENABLED" } else { "DISABLED" }];
 	diag_log format ["[INFO] A3W box saving is %1", if (_boxSavingOn) then { "ENABLED" } else { "DISABLED" }];
@@ -120,10 +120,10 @@ if (!isNil "A3W_startHour" || !isNil "A3W_moonLight") then
 	setDate [2035, 6, _monthDay, _startHour, 0];
 };
 
-if (["A3W_buildingLoot"] call isConfigOn) then 
+if (["A3W_buildingLoot"] call isConfigOn) then
 {
 	diag_log "[INFO] A3W loot spawning is ENABLED";
-	fn_getBuildingstospawnLoot = "addons\Lootspawner\fn_LSgetBuildingstospawnLoot.sqf" call mf_compile; 
+	fn_getBuildingstospawnLoot = "addons\Lootspawner\fn_LSgetBuildingstospawnLoot.sqf" call mf_compile;
 	LSdeleter = "addons\Lootspawner\LSdeleter.sqf" call mf_compile;
 	execVM "addons\Lootspawner\Lootspawner.sqf";
 };
@@ -133,37 +133,37 @@ if (["A3W_buildingLoot"] call isConfigOn) then
 if (["A3W_serverSpawning"] call isConfigOn) then
 {
     diag_log "WASTELAND SERVER - Initializing Server Spawning";
-	
+
 	if (["A3W_heliSpawning"] call isConfigOn) then
 	{
 		_heliSpawn = [] execVM "server\functions\staticHeliSpawning.sqf";
 		waitUntil {sleep 0.1; scriptDone _heliSpawn};
 	};
-	
+
 	if (["A3W_vehicleSpawning"] call isConfigOn) then
 	{
 		_vehSpawn = [] execVM "server\functions\vehicleSpawning.sqf";
 		waitUntil {sleep 0.1; scriptDone _vehSpawn};
 	};
-	
+
 	if (["A3W_planeSpawning"] call isConfigOn) then
 	{
 		_planeSpawn = [] execVM "server\functions\planeSpawning.sqf";
 		waitUntil {sleep 0.1; scriptDone _planeSpawn};
 	};
-	
+
 	if (["A3W_boatSpawning"] call isConfigOn) then
 	{
 		_boatSpawn = [] execVM "server\functions\boatSpawning.sqf";
 		waitUntil {sleep 0.1; scriptDone _boatSpawn};
 	};
-	
+
 	if (["A3W_baseBuilding"] call isConfigOn) then
 	{
 		_objSpawn = [] execVM "server\functions\objectsSpawning.sqf";
 		waitUntil {sleep 0.1; scriptDone _objSpawn};
 	};
-	
+
 	if (["A3W_boxSpawning"] call isConfigOn) then
 	{
 		_boxSpawn = [] execVM "server\functions\boxSpawning.sqf";

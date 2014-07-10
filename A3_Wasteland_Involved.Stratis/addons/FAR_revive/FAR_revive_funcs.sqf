@@ -31,6 +31,9 @@ FAR_HandleDamage_EH =
 		_unit allowDamage false;
 		_amountOfDamage = 0;
 
+		//TODO : Suppression automatique du stuff	--
+		[_unit,"fn_clearDatabaseInconscious",true,false] spawn BIS_fnc_MP;
+
 		[_unit, _killer] spawn FAR_Player_Unconscious;
 	};
 
@@ -97,7 +100,7 @@ FAR_Player_Unconscious =
 
 		while { !isNull _unit && alive _unit && _unit getVariable "FAR_isUnconscious" == 1 && _unit getVariable "FAR_isStabilized" == 0 && (FAR_BleedOut <= 0 || time < _bleedOut) } do
 		{
-			hintSilent format["Bleedout in %1 seconds\n\n%2", round (_bleedOut - time), call FAR_CheckFriendlies];
+			hintSilent format["Mort dans %1 secondes\n\n%2", round (_bleedOut - time), call FAR_CheckFriendlies];
 
 			sleep 0.5;
 		};
@@ -108,20 +111,22 @@ FAR_Player_Unconscious =
 
 			while { !isNull _unit && alive _unit && _unit getVariable "FAR_isUnconscious" == 1 } do
 			{
-				hintSilent format["You have been stabilized\n\n%1", call FAR_CheckFriendlies];
+				hintSilent format["Vous avez été stabilisé\n\n%1", call FAR_CheckFriendlies];
 
 				sleep 0.5;
 			};
 		};
 
-		// Player bled out
+		// Player bled out -- Cas de la mort
 		if (FAR_BleedOut > 0 && {time > _bleedOut} && {_unit getVariable ["FAR_isStabilized",0] == 0}) then
 		{
 			_unit setDamage 1;
 		}
 		else
 		{
-			// Player got revived
+			// Player got revived - Réanimation ---> on sauvegarde le stuff
+			spawn fn_savePlayerData;
+
 			_unit setVariable ["FAR_isStabilized", 0, true];
 			sleep 6;
 
