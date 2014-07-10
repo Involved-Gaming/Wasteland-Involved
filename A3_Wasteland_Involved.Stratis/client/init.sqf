@@ -145,6 +145,7 @@ waituntil {!(IsNull (findDisplay 46))};
 [] execVM "client\functions\drawPlayerIcons.sqf";
 [] execVM "addons\fpsFix\vehicleManager.sqf";
 [] execVM "addons\Lootspawner\LSclientScan.sqf";
+[] execVM "monitor\info.sqf";
 
 
 // Synchronize score compensation
