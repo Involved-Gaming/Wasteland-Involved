@@ -29,5 +29,5 @@ if (BTC_active_fast_rope == 1) then
 		"I_Heli_Transport_02_F"
 
 	];
-	_rope = [] execVM "COMFA\Logistic\fast_roping\fast_roping_init.sqf";
+	_rope = [] execVM "addons\LogisticBTCEdited\fast_roping\fast_roping_init.sqf";
 };

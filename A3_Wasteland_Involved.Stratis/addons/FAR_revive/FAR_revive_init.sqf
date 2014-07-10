@@ -52,11 +52,11 @@ if (isDedicated) exitWith {};
 	{
 		[] spawn FAR_Mute_ACRE;
 
-		hintSilent format["Farooq's Revive %1 is initialized.%2", SCRIPT_VERSION, "\n\n Note: Unconscious units will not be able to use radio, hear other people or use proximity chat"];
+		//hintSilent format["Farooq's Revive %1 is initialized.%2", SCRIPT_VERSION, "\n\n Note: Unconscious units will not be able to use radio, hear other people or use proximity chat"];
 	}
 	else
 	{
-		hintSilent format["Farooq's Revive %1 is initialized.", SCRIPT_VERSION];
+		//hintSilent format["Farooq's Revive %1 is initialized.", SCRIPT_VERSION];
 	};
 
 	// Event Handlers
