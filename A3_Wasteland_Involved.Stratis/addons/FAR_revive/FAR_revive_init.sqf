@@ -24,7 +24,7 @@ FAR_ReviveMode = 1;
 
 //------------------------------------------//
 
-call compile preprocessFile "FAR_revive\FAR_revive_funcs.sqf";
+call compile preprocessFile "addons\FAR_revive\FAR_revive_funcs.sqf";
 
 #define SCRIPT_VERSION "1.5"
 
