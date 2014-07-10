@@ -4,7 +4,7 @@ if (!hasInterface) exitWith {};
 
 waitUntil {!isNull player};
 
-player createDiarySubject ["infos", "Infos and Help"];
+player createDiarySubject ["infos", "Infos & aide"];
 player createDiarySubject ["changelog", "Changelog"];
 player createDiarySubject ["credits", "Credits"];
 
@@ -12,8 +12,12 @@ player createDiaryRecord ["changelog",
 [
 "Version : 0.1 Involved 10/07/2014",
 "
-<br/> [Added] - Vehicle stores
-<br/> [Changed] - Added grenadier to side mission NPCs
+<br/> [Added] - Marqueur d'escouade
+<br/> [Added] - Image d'intro
+<br/> [Added] - Droit modo/admin
+<br/> [Added] - Suppression Side et Global canal
+<br/> [Added] - Rez coéquipier
+<br/> [Changed] - Traduction
 <br/> [Fixed] - Error messages in various menus
 
 "
