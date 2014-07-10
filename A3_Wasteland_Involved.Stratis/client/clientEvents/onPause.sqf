@@ -23,13 +23,13 @@ with missionNamespace do
 		{
 			_abortDelay = ["A3W_combatAbortDelay", 0] call _getPublicVar;
 
-			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
-
+			_list = (position player) nearEntities ["Man", 50];	//cherche les joueurs à proximite
 			while{ count _list != 1 } do
 			{
-				_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+				_list = (position player) nearEntities ["Man", 50];	//cherche les joueurs à proximite
+				hint count _list;
 				{
-					if (group _x == group player || !(isPlayer _x)) then //Si la personne est dans le groupe, ça compte pas !
+					if (group _x == group player || !(isPlayer _x) && !(alive _x)) then //Si la personne est dans le groupe, morte ou est une IA, ça ne compte pas !
 					{
 						_list = _list - [_x];
 					}
