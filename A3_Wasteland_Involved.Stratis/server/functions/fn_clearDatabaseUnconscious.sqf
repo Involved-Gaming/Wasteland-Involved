@@ -1,5 +1,5 @@
 //	@file Version: 1.0
-//	@file Name: fn_clearDatabaseUnconscious.sqf
+//	@file Name: fn_clearDatabaseInconscious.sqf
 //	@file Author: S.lambert
 //	@file Created:  10/07/2014
 

@@ -56,7 +56,7 @@ if (_packetName == "BIS_fnc_MP_packet") then
 		"BIS_fnc_tridentHandleDamage",
 		"BIS_fnc_tridentHandleDamage_server",
 		"JTS_FNC_SENT", // PM Compact by JTS
-		"fn_clearDatabaseInconscious"
+		"fn_clearDatabaseUnconscious"
 	];
 
 	if (_allowedFile || _allowedFunction) then

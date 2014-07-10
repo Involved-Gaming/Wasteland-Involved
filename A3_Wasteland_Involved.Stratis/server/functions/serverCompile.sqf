@@ -85,7 +85,7 @@ spawnStoreObject = [_path, "spawnStoreObject.sqf"] call mf_compile;
 vehicleRepair = [_path, "vehicleRepair.sqf"] call mf_compile;
 vehicleSetup = [_path, "vehicleSetup.sqf"] call mf_compile;
 
-fn_clearDatabaseInconscious = [_path, "fn_clearDatabaseIncouscious.sqf"] call mf_compile;
+fn_clearDatabaseUnconscious = [_path, "fn_clearDatabaseUnconscious.sqf"] call mf_compile;
 
 //Player Management
 server_playerDied = [_path, "serverPlayerDied.sqf"] call mf_compile;
