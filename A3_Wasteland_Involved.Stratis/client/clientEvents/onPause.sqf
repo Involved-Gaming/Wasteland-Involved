@@ -23,7 +23,24 @@ with missionNamespace do
 		{
 			_abortDelay = ["A3W_combatAbortDelay", 0] call _getPublicVar;
 
-			if (_abortDelay > 0) then
+			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+
+			while{ count _list != 0 } do
+			{
+
+				cutText [format ["\nUn joueur est à proximité, vous ne pouvez pas deconnecter !"], "PLAIN DOWN"];
+				_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+				{
+					if (group _x == group player || !isPlayer _x) //Si la personne est dans le groupe, ça compte pas !
+					{
+						_list = _list - [_x];
+					}
+				}forEach _list;			//parcours la liste
+				sleep 1;
+
+			};
+
+			if (_abortDelay > 0) then			//Delay avant réapparition
 			{
 				_preventAbort =
 				{

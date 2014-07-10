@@ -365,7 +365,7 @@ class w_RscButton
     text = "";
     colorText[] = {1,1,1,.9};
     colorDisabled[] = {0,0,0,1};
-    colorBackground[] = {0.25,0.51,0.96,0.8};
+    colorBackground[] = {0.969,0.431,0.027,1};
     colorBackgroundDisabled[] = {0.3,0.3,0.3,1};
     colorBackgroundActive[] = {0.25,0.51,0.96,1};
     colorFocused[] = {0.25,0.51,0.96,0.5};
