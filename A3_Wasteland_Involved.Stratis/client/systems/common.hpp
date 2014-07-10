@@ -142,7 +142,7 @@ class w_RscStructuredTextLeft
 class w_RscBackground
 {
 
-    colorBackground[] = {0.21, 0.103, 0.40, 0.8};
+    colorBackground[] = {0.14, 0.18, 0.13, 0.8};
     text              = "";
     type              = CT_STATIC;
     idc               = -1;

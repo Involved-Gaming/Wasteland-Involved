@@ -97,12 +97,12 @@ if (_playerSavingOn || {_serverSavingOn}) then
 		execVM "persistence\world\oLoad.sqf";
 	};
 	
-	diag_log format ["[INFO] A3WInvolved player saving is %1", if (_playerSavingOn) then { "ENABLED" } else { "DISABLED" }];
-	diag_log format ["[INFO] A3WInvolved base saving is %1", if (_baseSavingOn) then { "ENABLED" } else { "DISABLED" }];
-	diag_log format ["[INFO] A3WInvolved box saving is %1", if (_boxSavingOn) then { "ENABLED" } else { "DISABLED" }];
-	diag_log format ["[INFO] A3WInvolved warchest saving is %1", if (_warchestSavingOn) then { "ENABLED" } else { "DISABLED" }];
-	diag_log format ["[INFO] A3WInvolved warchest money saving is %1", if (_warchestMoneySavingOn) then { "ENABLED" } else { "DISABLED" }];
-	diag_log format ["[INFO] A3WInvolved spawn beacon saving is %1", if (_beaconSavingOn) then { "ENABLED" } else { "DISABLED" }];
+	diag_log format ["[INFO] A3W player saving is %1", if (_playerSavingOn) then { "ENABLED" } else { "DISABLED" }];
+	diag_log format ["[INFO] A3W base saving is %1", if (_baseSavingOn) then { "ENABLED" } else { "DISABLED" }];
+	diag_log format ["[INFO] A3W box saving is %1", if (_boxSavingOn) then { "ENABLED" } else { "DISABLED" }];
+	diag_log format ["[INFO] A3W warchest saving is %1", if (_warchestSavingOn) then { "ENABLED" } else { "DISABLED" }];
+	diag_log format ["[INFO] A3W warchest money saving is %1", if (_warchestMoneySavingOn) then { "ENABLED" } else { "DISABLED" }];
+	diag_log format ["[INFO] A3W spawn beacon saving is %1", if (_beaconSavingOn) then { "ENABLED" } else { "DISABLED" }];
 };
 
 _setupPlayerDB spawn

@@ -19,7 +19,7 @@ class Header
 	maxPlayers=84;
 };
 author="Team Wasteland involved - involved-gaming.com";
-onLoadName = "A3Wasteland Involved v0.1 Stratis";
+onLoadName = "A3Wasteland Involved Stratis";
 onLoadMission = "Wasteland est un deathmatch survival par équipe (genre dayz sans zombie)";
 overviewText = "Wasteland est un deathmatch survival par équipe (genre dayz sans zombie)";
 overviewTextLocked = "Wasteland est un deathmatch survival par équipe (2 équipes différentes + des indépédants)";
@@ -54,5 +54,4 @@ class RscTitles
 	#include "addons\proving_ground\PG_rsctitles.hpp"
  	#include "client\systems\hud\dialog\hud.hpp"
 	#include "client\systems\playerMenu\dialog\welcome.hpp"
-	#include "monitor\info.hpp" //modification involved
 };
