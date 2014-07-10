@@ -37,6 +37,7 @@ playerSetupStart = "client\functions\playerSetupStart.sqf" call mf_compile;
 playerSetupGear = "client\functions\playerSetupGear.sqf" call mf_compile;
 playerSetupEnd = "client\functions\playerSetupEnd.sqf" call mf_compile;
 spawnAction = "client\functions\spawnAction.sqf" call mf_compile;
+groupMarkers = "client\functions\groupMarkers.sqf" call mf_compile;
 // placeSpawnBeacon = "client\systems\playerMenu\placeSpawnBeacon.sqf" call mf_compile;
 // refuelVehicle = "client\systems\playerMenu\refuel.sqf" call mf_compile;
 // repairVehicle = "client\systems\playerMenu\repair.sqf" call mf_compile;
@@ -60,7 +61,7 @@ loadGunStore = "client\systems\gunStore\loadGunStore.sqf" call mf_compile;
 gearProperties = "client\functions\gearProperties.sqf" call mf_compile;
 getCapacity = "client\functions\getCapacity.sqf" call mf_compile;
 getItemInfo = "client\functions\getItemInfo.sqf" call mf_compile;
-requestStoreObject = "client\functions\requestStoreObject.sqf" call mf_compile; 
+requestStoreObject = "client\functions\requestStoreObject.sqf" call mf_compile;
 
 // Custom paint/textures on vehicles
 applyVehicleTexture = "client\systems\vehicleStore\applyVehicleTexture.sqf" call mf_compile;

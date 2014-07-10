@@ -123,6 +123,10 @@ waituntil {!(IsNull (findDisplay 46))};
 [] call updateMissionsMarkers;
 // [] call updateRadarMarkers;
 
+/*
+	Involved-added scripts
+*/
+
 [] spawn
 {
 	call compile preprocessFileLineNumbers "client\functions\createTownMarkers.sqf"; // wait until town markers are placed before adding others
@@ -137,10 +141,6 @@ waituntil {!(IsNull (findDisplay 46))};
 [] execVM "addons\fpsFix\vehicleManager.sqf";
 [] execVM "addons\Lootspawner\LSclientScan.sqf";
 
-/*
-	Involved-added scripts
-*/
-[] execVM "client\functions\groupMarkers.sqf";				//Draw markers onto the map
 
 // Synchronize score compensation
 {

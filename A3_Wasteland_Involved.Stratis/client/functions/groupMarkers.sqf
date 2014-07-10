@@ -1,6 +1,6 @@
 /*
-	File: fn_copMarkers.sqf
-	Author: Bryan "Tonic" Boardwine
+	File: groupMarkers.sqf
+	Author: Bryan "Tonic" Boardwine, modified by Involved-Gaming
 
 	Description:
 	Marks groupMembers on the map for other groupMembers. Only initializes when the actual map is open.
@@ -11,7 +11,7 @@ _groupMembers = [];
 
 sleep 0.5;
 if(visibleMap) then {
-	{if((side _x == side player) && group _x == group player ) then {_groupMembers set[count _groupMembers,_x];}} foreach playableUnits; //Fetch list of groupMembers / blufor
+	{if((side _x == side player) && group _x == group player ) then {_groupMembers set[count _groupMembers,_x];}} foreach playableUnits; //Fetch list of groupMembers
 
 	//Create markers
 	{
