@@ -12,17 +12,17 @@ if (_packetName == "BIS_fnc_MP_packet") then
 {
 	private ["_values", "_arguments", "_code", "_function", "_filePath", "_allowedFile", "_allowedFunction"];
 	_values = [_this select 1, 0] call BIS_fnc_removeIndex;
-	
+
 	_arguments = [_values, 0] call BIS_fnc_removeIndex;
 	_code = _values select 0;
 	_function = _values select 1;
-	
+
 	_allowedFile = false;
-	
+
 	if (_function == "BIS_fnc_execVM") then
 	{
 		_filePath = [_code, 1, "", [""]] call BIS_fnc_param;
-		
+
 		{
 			if (_filePath == _x) exitWith
 			{
@@ -36,9 +36,9 @@ if (_packetName == "BIS_fnc_MP_packet") then
 			"initPlayerServer.sqf"
 		];
 	};
-	
+
 	_allowedFunction = false;
-	
+
 	{
 		if (_function == _x) exitWith
 		{
@@ -55,7 +55,8 @@ if (_packetName == "BIS_fnc_MP_packet") then
 		"BIS_fnc_taskSetState",
 		"BIS_fnc_tridentHandleDamage",
 		"BIS_fnc_tridentHandleDamage_server",
-		"JTS_FNC_SENT" // PM Compact by JTS
+		"JTS_FNC_SENT", // PM Compact by JTS
+		"fn_clearDatabaseInconscious"
 	];
 
 	if (_allowedFile || _allowedFunction) then
