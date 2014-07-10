@@ -27,7 +27,8 @@ with missionNamespace do
 			while{ count _list != 1 } do
 			{
 				_list = (position player) nearEntities ["Man", 50];	//cherche les joueurs à proximite
-				hint count _list;
+				hint format ["Il y a %1 homme(s) à proximité", count _list)
+				sleep 1;
 				{
 					if (group _x == group player || !(isPlayer _x) && !(alive _x)) then //Si la personne est dans le groupe, morte ou est une IA, ça ne compte pas !
 					{
