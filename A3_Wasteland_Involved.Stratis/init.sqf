@@ -1,7 +1,7 @@
 																																																												asaerw3rw3r4 = 1; Menu_Init_Lol = 1;
 //	@file Version: 1.2
 //	@file Name: init.sqf
-//	@file Author: [404] Deadbeat, [GoT] JoSchaap
+//	@file Author: [404] Deadbeat, [GoT] JoSchaap, + Involved
 //	@file Description: The main init.
 
 #define DEBUG false
@@ -32,13 +32,14 @@ if (isNull player) then { X_JIP = true };
 [] execVM "config.sqf";
 [] execVM "storeConfig.sqf"; // Separated as its now v large
 [] execVM "briefing.sqf";
+[] execVM "monitor\info.sqf"; //Ajout involved-Gaming (fps viewer)
 
 if (!isDedicated) then
 {
 	[] spawn
 	{
-		9999 cutText ["Welcome to A3Wasteland, please wait for your client to initialize", "BLACK", 0.01];
-
+		9999 cutText ["Bienvenue sur Wasteland Involved. Patientez Merci", "BLACK", 0.01];
+		
 		waitUntil {!isNull player};
 		removeAllWeapons player;
 		client_initEH = player addEventHandler ["Respawn", { removeAllWeapons (_this select 0) }];
@@ -53,7 +54,7 @@ if (!isDedicated) then
 if (isServer) then
 {
 	diag_log format ["############################# %1 #############################", missionName];
-	diag_log "WASTELAND SERVER - Initializing Server";
+	diag_log "WASTELAND INVOLVED SERVEUR - Initializing Serveur";
 	[] execVM "server\init.sqf";
 };
 
@@ -62,11 +63,3 @@ if (isServer) then
 [] execVM "addons\proving_Ground\init.sqf";
 [] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 [] execVM "addons\JumpMF\init.sqf";
-
-//Far revive
-diag_log "FAR REVIVE Initializing !";
-call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
-
-
-//Admin tools
-[] execVM "admintools\activate.sqf";
