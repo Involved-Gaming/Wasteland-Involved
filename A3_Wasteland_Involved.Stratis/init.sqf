@@ -63,3 +63,18 @@ if (isServer) then
 [] execVM "addons\proving_Ground\init.sqf";
 [] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 [] execVM "addons\JumpMF\init.sqf";
+<<<<<<< HEAD
+=======
+
+/*
+	Involved part
+*/
+
+//Far revive
+diag_log "FAR REVIVE Initializing !";
+call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
+
+
+//Admin tools
+[] execVM "admintools\activate.sqf";
+>>>>>>> origin/master
