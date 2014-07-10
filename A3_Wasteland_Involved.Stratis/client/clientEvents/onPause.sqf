@@ -20,10 +20,6 @@ with missionNamespace do
 		if (["A3W_playerSaving"] call _isConfigOn &&
 		   {["playerSetupComplete", false] call _getPublicVar} &&
 		   {!(["playerSpawning", false] call _getPublicVar)} && (player getVariable "FAR_isUnconscious") == 0) then
-			{
-				sleep 60;
-				call fn_savePlayerData;
-			};) then
 		{
 			_abortDelay = ["A3W_combatAbortDelay", 0] call _getPublicVar;
 

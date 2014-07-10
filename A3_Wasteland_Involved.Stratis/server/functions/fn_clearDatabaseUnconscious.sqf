@@ -8,5 +8,5 @@ private ["_player"];
 
 diag_log "player is Unconscious, deleting all his data";
 _player = _this select 0;
-[_player] spawn server_PlayerDied;
-//((getPlayerUID _player) call PDB_databaseNameCompiler) call iniDB_delete;
+//[_player] spawn server_PlayerDied;
+((getPlayerUID _player) call PDB_databaseNameCompiler) call iniDB_delete;
