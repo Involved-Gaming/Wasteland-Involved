@@ -75,11 +75,16 @@ if (["A3W_playerSaving"] call isConfigOn) then
 
 	[] spawn
 	{
+		sleep 60;
 		// Save player every 60s
 		while {true} do
 		{
-			sleep 60;
-			call fn_savePlayerData;
+			if ((_unit getVariable "FAR_isUnconscious") == 0) then			// save only if the player is not unconscious
+			{
+				sleep 60;
+				call fn_savePlayerData;
+			};
+
 		};
 	};
 };
