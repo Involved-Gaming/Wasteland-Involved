@@ -165,20 +165,20 @@
 			<French>Independent</French>
 		</Key>
 		<Key ID="STR_WL_Gen_Warning">
-			<French>! Warning !</French>
+			<French>! Avertissement !</French>
 		</Key>
 	</Package>
 	<Package name="Loading">
 		<Key ID="STR_WL_Loading_Teamkiller">
-			<French>You are considered team-killer and therefore not allowed in BLUFOR or OPFOR teams. You will shortly be kicked back to the lobby where you can only join Independent and killing anyone is allowed.</French>
+			<French>Le Team-Kill est interdit, vous n'êtes plus autorisés à intégrer les équipes BLUFOR et OPFOR. Vous allez bientôt être redirigés dans le lobby où vous ne pourrez rejoindre que les "INDEPENDANT".</French>
 		</Key>
 		<Key ID="STR_WL_Loading_Teamswitched">
-			<French>You have played as %1 for too long and cannot switch to the other team. You can still play as Independent. (or if online, ask an admin to unlock you)</French>
+			<French>Vous avez joué dans la même équipe trop longtemps et ne pouvez plus changer d'équipe. Mais comme on est gentil on vous autorise à jouer en tant qu'indépendant. (sinon demandez à un admin)</French>
 		</Key>
 	</Package>
 	<Package name="Gameplay">
 		<Key ID="STR_WL_Action_Refuel_DriverSeat">
-			<French>Please enter driver seat before attempting to refuel the vehicle.</French>
+			<French>Si il vous plait placez-vous en tant que conducteur avant de faire le plein du véhicule.</French>
 		</Key>
 	</Package>
 	<Package name="WelcomeMessage">
@@ -186,109 +186,109 @@
 			<French>&lt;t color='#FF8000' size='2.5' &gt;A3Wasteland Stratis v0.9g &lt;/t&gt;</French>
 		</Key>
 		<Key ID="STR_WL_YouAreInTeam">
-			<French>&lt;t color='#FFFFFF' size='1.5' &gt;* You are in &lt;img size="1.5" image="%1"/&gt; &lt;t color="%2"&gt;%3&lt;/t&gt; team.&lt;br/&gt;* Attacking or stealing from other %4 players is &lt;t color="#FF1111"&gt;FORBIDDEN&lt;/t&gt;&lt;br/&gt;* &lt;t color="#FF1111"&gt;NO VOICE IN GLOBAL&lt;/t&gt;&lt;br/&gt;* You can find the Server Rules in the map menu.&lt;br/&gt;* Server restarts are done at the admin's discretion.&lt;br/&gt;* You will be locked to your team after 3 minutes.&lt;/t&gt;</French>
+			<French>&lt;t color='#FFFFFF' size='1.5' &gt;* Vous êtes en &lt;img size="1.5" image="%1"/&gt; &lt;t color="%2"&gt;%3&lt;/t&gt; équipe.&lt;br/&gt;* attaquer ou voler un joueur %4 est &lt;t color="#FF1111"&gt;INTERDIT&lt;/t&gt;&lt;br/&gt;* &lt;t color="#FF1111"&gt;&lt;/t&gt;&lt;br/&gt;* Uniquement les modérateurs sont responsable du redemarrage du serveur.&lt;br/&gt;* Vous ne pourrez plus bouger de votre équipe dans 3 minutes&lt;/t&gt;</French>
 		</Key>
 		<Key ID="STR_WL_YouAreInFFA">
-			<French>&lt;t color='#FFFFFF' size='1.5' &gt;* You are in &lt;img size="1.5" image="%1"/&gt; &lt;t color="%2"&gt;%3&lt;/t&gt; team.&lt;br/&gt;* You are &lt;t color="#00aa00"&gt;FREE TO ATTACK ANYONE&lt;/t&gt;&lt;br/&gt;* &lt;t color="#FF1111"&gt;NO VOICE IN GLOBAL&lt;/t&gt;&lt;br/&gt;* You can find the Server Rules in the map menu.&lt;br/&gt;* Server restarts are done at the admin's discretion.&lt;/t&gt;</French>
+			<French>&lt;t color='#FFFFFF' size='1.5' &gt;* Vous êtes en &lt;img size="1.5" image="%1"/&gt; &lt;t color="%2"&gt;%3&lt;/t&gt; équipe.&lt;br/&gt;* Vous êtes libre&lt;t color="#00aa00"&gt;D'ATTAQUER N'IMPORTE QUI&lt;/t&gt;&lt;br/&gt;* &lt;t color="#FF1111"&gt;&lt;/t&gt;&lt;br/&gt;* Vous pouvez trouver les règles du serveur dans le menu de la MAP.&lt;br/&gt;*Uniquement les modérateurs sont responsable du redemarrage du serveur.&lt;/t&gt;</French>
 		</Key>
 		<Key ID="STR_WL_MapMoreInfo">
-			<French>&lt;t color='#FFFFFF' size='1.5' &gt;Report bugs and suggestions at http://forums.a3wasteland.com/ &lt;br/&gt;Server restarts are done at the admin's discretion.&lt;br/&gt;For more info please see the map&lt;br/&gt;&lt;br/&gt;&lt;/t&gt;&lt;t size='1.3'&gt;[Hotfix 6]&lt;/t&gt;&lt;br/&gt;</French>
+			<French>&lt;t color='#FFFFFF' size='1.5' &gt;Des BUGS ou des SUGGESTIONS rendez vous sur  http://forum.involved-gaming.com/viewtopic.php?f=25&t=366 &lt;br/&gt;Les modérateurs peuvent rédemarrer les serveurs si cela est nécessaire, merci de rester patient et de les respecter.&lt;br/&gt;Pour plus d'info, allez voir la MAP.&lt;br/&gt;&lt;br/&gt;&lt;/t&gt;&lt;t size='1.3'&gt;[Hotfix 6]&lt;/t&gt;&lt;br/&gt;</French>
 			<!-- &lt;br/&gt;&lt;/t&gt;&lt;t size='1.3'&gt;[Hotfix X]&lt;/t&gt;&lt;br/&gt; -->
 		</Key>
 	</Package>
 	<Package name="TeamKillWarningMessage">
 		<Key ID="STR_TK_MESSAGE">
-			<French>&lt;t size='2' color='#ff0000'&gt;Team killing is against the rules!&lt;/t&gt;&lt;br/&gt;If this was a mistake then you must explain yourself and say sorry, otherwise they will mark you as team-killer and you will get kicked.</French>
+			<French>&lt;t size='2' color='#ff0000'&gt;Le Team-Kill est INTERDIT !!!!!&lt;/t&gt;&lt;br/&gt;Si c'est une erreur, ravalez votre fierté et excusez vous (vous pouvez même allez faire un bisous à votre victime si le coeur vous en dit), sachez que vous pouvez être marqué "TEAM-KILLER" et être kické de votre équipe.</French>
 		</Key>
 	</Package>
 	<Package name="Diary">
 		<Key ID="STR_WL_Diary_RulesContent">
-			<French>&lt;br/&gt;    1. Keep bad language to a minimum. If you have a problem with another player, take it to direct.&lt;br/&gt;    2. NO VOIP IN GLOBAL. Use the channels or Teamspeak!.&lt;br/&gt;    3. Team killing when you are in BLUFOR or OPFOR is forbidden and punishable. Play as Independent if you want to be free for all.&lt;br/&gt;    4. Revealing information about your (ex)team to other teams is lame and not appreciated&lt;br/&gt;    5. Do not exploit R3F or any other add-ons or you will be banned.&lt;br/&gt;    6. Using or spamming with loud\long custom sound commands will cause punishment up to permanent ban</French>
+			<French>&lt;br/&gt;    1. Parlez avec un minimum de respect. Si vous avez un problème avec un autre joueur... laissez passer ou reglez le problème avec CALME !.&lt;br/&gt;    2. Utilisez le TEAMSPEAK pour parler avec vos alliés.&lt;br/&gt;    3. Le team-kill en BLUFOR ou en OPFOR est STRICTEMENT INTERDIT. En indépendant vous pourrez faire autant de massacres que vous désirez.&lt;br/&gt;    4. Réveler les informations de votre (ancienne) équipe et mal vu; c'est de l'anti-jeu et c'est pas bien !&lt;br/&gt;    5. N'utilisez pas d'autres add-ons sous peine d'être banni.&lt;br/&gt;    6.Le flood et le spam avec les commandes vocales est puniscible... définitivement.</French>
 		</Key>
 	</Package>
 	<Package name="Shop">
 		<Key ID="STR_WL_Shop_Marker_GunStore">
-			<French>GUN-SHOP</French>
+			<French>Marchand d'Armes</French>
 		</Key>
 		<Key ID="STR_WL_Shop_Marker_GenStore">
-			<French>General store</French>
+			<French>Magasin d'alimentation général</French>
 		</Key>
 		<Key ID="STR_WL_Shop_Marker_Empty">
-			<French>Unoccupied</French>
+			<French>Innocupé</French>
 		</Key>
 		<Key ID="STR_WL_Shop_Marker_Enemy">
-			<French>Enemy players here</French>
+			<French>Joueurs adverses dans la zone !</French>
 		</Key>
 		<Key ID="STR_WL_Shop_Marker_Friendly">
-			<French>Friendly players</French>
+			<French>Joueurs alliés</French>
 		</Key>
 		<Key ID="STR_WL_Shop_Marker_Mixed">
-			<French>Enemy and friendly players</French>
+			<French>Joueurs alliés et ennemies</French>
 		</Key>
 		<Key ID="STR_WL_Shop_Message_EnemyApproaching">
-			<French>OMG! Enemy player just entered the area</French>
+			<French>OMG ! Des ennemies viennent de pénetrer dans la zone.</French>
 		</Key>
 	</Package>
 	<Package name="ShopDescriptions">
 		<Key ID="STR_WL_ShopDescriptions_Water">
-			<French>Greece is a hot place! Drink plenty!</French>
+			<French>hmmm... il fait tellement chaud ici... pense à boire un coup.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_Camo">
-			<French>An improvised roof, 4 sticks and a blanket!</French>
+			<French>Un toit improvisé : 4 battons et une toile.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_CanFood">
-			<French>The Greek wastelands may get you hungry!</French>
+			<French>Les terres dévastés de Grêce vous donneront faim.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_RepairKit">
-			<French>With this kit, you won't need an engineer!</French>
+			<French>Avec ce Kit, pas besoins d'être un ingénieur.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_MedKit">
-			<French>With this kit, you won't need a medic!</French>
+			<French>Avec ce Kit, pas besoins d'être médecin.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_fuelFull">
-			<French>25 litres of pure unleaded fuel!</French>
+			<French>25 litres de pur Super sans plomb.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_fuelEmpty">
-			<French>Empty fuel can. You can refill it!</French>
+			<French>C'est vide, mais tu peux toujours le remplir.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_spawnBeacon">
-			<French>Choose your spawn location. Disclaimer: This product does not guarantee safe delivery of goods.</French>
+			<French>Choisis l'endroit ou tu veux apparaître  clause de non-responsabilité :  l'équipe Involved-gaming se dégage de toute responsabilité en cas de mort violente.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_SyphonHose">
-			<French>Go forth and steal fuel from vehicles!</French>
+			<French>Soyez un vrai mec, syphonez les véhicules.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_Energy_Drink">
-			<French>Allows you to sprint continuously for 5 minutes.</French>
+			<French>Vous permet de courir sans vous arrêter pendant 5 min : sans produits chimiques.</French>
 		</Key>
 		<Key ID="STR_WL_ShopDescriptions_Warchest">
-			<French>A safe to store your team's money.</French>
+			<French>Un endroit sur pour protéger le butin de votre équipe.</French>
 		</Key>
 	</Package>
 	<Package name="Dialogs">
 		<Key ID="STR_WL_dialog_TeamkillText">
-			<French>You got team-killed by %2 player %1.&lt;br/&gt;&lt;br/&gt;If this was an accident then forgive them, otherwise they should explain their actions.&lt;br/&gt;&lt;br/&gt;If the player does not explain why then select Punish or Announce.</French>
+			<French>Vous avez été team-kill par %2 player %1.&lt;br/&gt;&lt;br/&gt;si c'était un accident soyez cool, sinon laissez le s'expliquer.&lt;br/&gt;&lt;br/&gt;Si il n'explique pas son acte vous pouvez le punir.</French>
 		</Key>
 	</Package>
 	<Package name="Actions">
 		<Key ID="STR_WL_Acts_PlayerMenu">
-			<French>Player Settings/Inventory [~]</French>
+			<French>Réglages / Inventaire du joueur[~]</French>
 		</Key>
 	</Package>
 	<Package name="Errors">
 		<Key ID="STR_WL_Errors_InProgress">
-			<French>You are already performing another action!</French>
+			<French>Vous faites déjà quelque chose d'autre.</French>
 		</Key>
 		<Key ID="STR_WL_Errors_InVehicle">
-			<French>You are currently busy!</French>
+			<French>Vous êtes occupés.</French>
 		</Key>
 		<Key ID="STR_WL_Errors_BeaconActive">
-			<French>You already have an active spawn beacon!</French>
+			<French>Vous avez déjà une balise d'apparition activée.</French>
 		</Key>
 		<Key ID="STR_WL_Errors_BeaconInVehicle">
-			<French>You cannot enter a vehicle while placing a spawn beacon!</French>
+			<French>Vous ne pouvez pas rentrer dans un véhicule quand vous posez une balise de réapparition.</French>
 		</Key>		
 		<Key ID="STR_WL_Errors_BeaconTooMany">
-			<French>You cannot take more spawn beacons!</French>
+			<French>Vous ne pouvez pas prendre plus de balises de réapparition.</French>
 		</Key>								
 	</Package>
 </Project>
