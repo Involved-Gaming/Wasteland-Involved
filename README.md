@@ -11,6 +11,9 @@ TODO list :
 - Hud plus sympa ( Couleur en orange )
 - Modifier & ajouter slot donnateur
 - Coûts armes-véhicules
+- Ajouter la possibiliter d'achever les gens d'un balle dans la tête.
+- Mapping de carte (ajoute base rebelle)
+- Ajout de panneaux pubilicitaire involved-Gaming
 - Ajouter des textures fun
 - Bogue de mort instantané
 - Parachuter des véhicules depuis le drop hélico
