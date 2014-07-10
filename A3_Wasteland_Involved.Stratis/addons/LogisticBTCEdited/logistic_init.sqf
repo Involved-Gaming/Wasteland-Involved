@@ -11,6 +11,8 @@ BTC_active_lift      = 0;
 BTC_active_fast_rope = 1;
 BTC_active_cargo     = 0;
 
+BTC_dir_action = "addons\LogisticBTCEdited\addAction.sqf";
+BTC_l_placement_area = 20;
 
 if (BTC_active_fast_rope == 1) then
 {
