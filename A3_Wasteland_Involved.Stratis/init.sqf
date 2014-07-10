@@ -70,4 +70,8 @@ if (isServer) then
 
 //Far revive
 diag_log "FAR REVIVE Initializing !";
-call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
+call compileFinal preprocessFileLineNumbers "addons\FAR_revive\FAR_revive_init.sqf";
+
+//Btc Logistic ( fast roping + parajump)
+diag_log "BTC Logistic Initializing !";
+[] execVM "addons\LogisticBTCEdited\logistic_init.sqf";
