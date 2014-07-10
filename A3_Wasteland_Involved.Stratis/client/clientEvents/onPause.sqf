@@ -25,15 +25,18 @@ with missionNamespace do
 
 			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
 
-			while{ count _list != 0 } do
+			while{ count _list != 1 } do
 			{
-				cutText [format ["\nUn joueur est à proximité, vous ne pouvez pas deconnecter !"], "PLAIN DOWN"];
 				_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
 				{
 					if (group _x == group player || !(isPlayer _x)) then //Si la personne est dans le groupe, ça compte pas !
 					{
 						_list = _list - [_x];
+					}
+					else{
+						cutText [format ["\nUn joueur est à proximité, vous ne pouvez pas deconnecter !"], "PLAIN DOWN"];
 					};
+
 				}forEach (_list);			//parcours la liste
 				sleep 1;
 			};
@@ -73,7 +76,7 @@ with missionNamespace do
 							_secs = _remaining - (_mins * 60);
 							_time = format ["%1:%2%3", _mins, if (_secs < 10) then { "0" } else { "" }, _secs];
 
-							cutText [format ["\nCannot pussy out during combat! (%1)", _time], "PLAIN DOWN"];
+							cutText [format ["\nImpossible de quitter du jeu pendant un combat (%1)", _time], "PLAIN DOWN"];
 							sleep 1;
 						};
 
