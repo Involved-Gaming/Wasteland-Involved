@@ -63,6 +63,10 @@ if (isServer) then
 [] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 [] execVM "addons\JumpMF\init.sqf";
 
+/*
+	Involved part
+*/
+
 //Far revive
 diag_log "FAR REVIVE Initializing !";
 call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
