@@ -25,14 +25,15 @@ En cours de dev:
 - Rez co équipier
 	- Ajouter un traitement pour rajouter du temps de rez.
 	- Faire en sorte que ce soit que entre gang.
-	- Supprimer le stuff lors de la deco quand au sol
-	
+	- Supprimer le stuff lors de la deco quand au sol		-- FAIT
+
+- Parachutes automatique	-- mettre le sac sur le ventre
 
 
 Fait : 
 
 - image de chargement
-- Parachutes automatique
+
 - Bourse sur la droite -> traduction de l'ancien
 - Side supp globale
 - Mettre son équipe en temps réel sur la carte ( quand la MAp s'ouvre )
