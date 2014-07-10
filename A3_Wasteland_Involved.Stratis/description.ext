@@ -1,6 +1,7 @@
 respawn="BASE";
 respawnDelay=15;
 disabledAI=1;
+disableChannels[]={0,1};
 disableChannels[] = {}; // {0} to disable global
 joinUnassigned = 0;
 enableItemsDropping = 0;
@@ -18,9 +19,9 @@ class Header
 	minPlayers=1;
 	maxPlayers=84;
 };
-author="Team Wasteland - A3Wasteland.com";
+author="Team Wasteland involved - involved-gaming.com";
 onLoadName = "A3Wasteland Stratis";
-onLoadMission = "Wasteland is a harsh survival sandbox where two teams and independent players fight for survival.";
+onLoadMission = "Wasteland est un deathmatch par équipe survival (genre dayz sans zombie)";
 overviewText = "Wasteland is a harsh survival sandbox where two teams and independent players fight for survival.";
 overviewTextLocked = "Wasteland is a harsh survival sandbox where two teams and independent players fight for survival.";
 overviewPicture = "Loading.jpg";
