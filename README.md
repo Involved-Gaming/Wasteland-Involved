@@ -27,7 +27,7 @@ En cours de dev:
 	- Faire en sorte que ce soit que entre gang.
 	- Supprimer le stuff lors de la deco quand au sol		-- FAIT
 
-[AJOUT] Parachutes automatique	-- mettre le sac sur le ventre
+[AJOUT] Parachutes automatique	-- mettre le sac sur le ventre FSF 
 [AJOUT] Empecher la deconnexion si personnel à proximité ( fait sauf pour les véhicules )
 
 

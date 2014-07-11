@@ -33,11 +33,25 @@ with missionNamespace do
 
 			false call _enableButtons;			//Désactive les boutons par defaut
 			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+			_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
+			{
+				{
+					_list = _list + [_x];
+				}forEach crew _x
+			}forEach (_list);
 			while{ count _list != 0 } do
 			{
 				scopename "whileLoop";
 
 				_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+
+				_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
+				{
+					{
+						_list = _list + [_x];
+					}forEach crew _x
+				}forEach (_list);
+
 				//hint format ["Il y a %1 homme(s) à proximité", count _list];
 				//sleep 1;
 				{
