@@ -37,8 +37,9 @@ with missionNamespace do
 			{
 				{
 					_list = _list + [_x];
-				}forEach crew _x
-			}forEach (_list);
+				}forEach crew _x;
+			}forEach (_listVehicles);
+
 			while{ count _list != 0 } do
 			{
 				scopename "whileLoop";
