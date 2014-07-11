@@ -52,7 +52,8 @@ with missionNamespace do
 						{
 							diag_log format["iter crew : %1",_iterCrew] ;
 							_oneCrew = _listCrew select _iterCrew;
-							_list = _list + [_oneCrew];
+							_list = _list + [_oneCrew];+
+							diag_log format["Taille list: %1", count _list] ;
 						};
 					};
 				};
@@ -82,22 +83,24 @@ with missionNamespace do
 								diag_log format["iter crew : %1",_iterCrew] ;
 								_oneCrew = _listCrew select _iterCrew;
 								_list = _list + [_oneCrew];
+								diag_log format["Taille list: %1", count _list] ;
 							};
 						};
 					};
 				};
 
-				//hint format ["Il y a %1 homme(s) à proximité", count _list];
+				diag_log format ["Il y a %1 homme(s) à proximité", count _list];
 				//sleep 1;
 				{
 					if (group _x == group player || !(isPlayer _x) || !(alive _x) || _x == player || { side _x == side player &&  side player != resistance } ) then //Si la personne est dans le groupe, morte ou est une IA, ou si ils sont dans le même camp et pas independant ! ça ne compte pas !
 					{
 						_list = _list - [_x];
+						diag_log format["iter crew : %1",_iterCrew] ;
 					}
 					else{
 						cutText [format ["\nUn joueur ennemi est à proximité, vous ne pouvez pas deconnecter !"], "PLAIN DOWN"];
 					};
-					//hint format ["Il reste %1 homme(s) à proximité", count _list];
+					diag_log format ["Il reste %1 homme(s) à proximité", count _list];
 					//sleep 0.5
 				}forEach (_list);			//parcours la liste
 
@@ -108,6 +111,8 @@ with missionNamespace do
 					true call _enableButtons;
 					breakOut "whileLoop" ;
 				};
+				cutText [format ["\nUn joueur ennemi est à proximité, vous ne pouvez pas deconnecter !"], "PLAIN DOWN"];
+				sleep 1;
 			};
 			if (count _list == 0) then			// S'il n'y a plus d'ennemis à proximite
 			{
