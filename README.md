@@ -21,21 +21,20 @@ TODO list :
 
 En cours de dev:
 
-- Intro involved (Altis)
-- Rez co équipier
+[AJOUT] Intro involved (Altis)	
+[AJOUT]- Rez co équipier
 	- Ajouter un traitement pour rajouter du temps de rez.
 	- Faire en sorte que ce soit que entre gang.
 	- Supprimer le stuff lors de la deco quand au sol		-- FAIT
 
-- Parachutes automatique	-- mettre le sac sur le ventre
-- Empecher la deconnexion si personnel à proximité ( fait sauf pour les véhicules )
+[AJOUT] Parachutes automatique	-- mettre le sac sur le ventre
+[AJOUT] Empecher la deconnexion si personnel à proximité ( fait sauf pour les véhicules )
 
 
 Fait : 
 
-- image de chargement
-
-- Bourse sur la droite -> traduction de l'ancien
-- Side supp globale
-- Mettre son équipe en temps réel sur la carte ( quand la MAp s'ouvre )
-- Droits admin
+[AJOUT] Image de chargement
+[FIX] Bourse sur la droite -> traduction de l'ancien
+[FIX]- Side supp globale
+[AJOUT] Mettre son équipe en temps réel sur la carte ( quand la MAp s'ouvre )
+[FIX] Droits admin
