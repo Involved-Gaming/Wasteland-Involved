@@ -35,7 +35,7 @@ class PlayersMenu
 			idc = -1;
 			colorText[] = {1, 1, 1, 1};
 			colorBackground[] = {0,0,0,0};
-			text = "#(argb,8,8,3)color(0.969,0.431,0.027,1)";
+			text = "#(argb,8,8,3)color(0.824,0.404,0.157,1)";
 
 			x = 0.1875 * safezoneW + safezoneX;
 			y = 0.15 * safezoneH + safezoneY;
