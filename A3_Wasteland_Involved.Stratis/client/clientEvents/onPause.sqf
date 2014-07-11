@@ -37,11 +37,13 @@ with missionNamespace do
 			_list = (position player) nearEntities ["Man", 50];	//cherche les joueurs à proximite
 			while{ count _list != 0 } do
 			{
+				scopename "whileLoop";
+
 				_list = (position player) nearEntities ["Man", 50];	//cherche les joueurs à proximite
 				//hint format ["Il y a %1 homme(s) à proximité", count _list];
 				sleep 1;
 				{
-					if (group _x == group player || !(isPlayer _x) || !(alive _x) || _x == player || { side _x == side player &&  side player != "GUER" } ) then //Si la personne est dans le groupe, morte ou est une IA, ou si ils sont dans le même camp et pas independant ! ça ne compte pas !
+					if (group _x == group player || !(isPlayer _x) || !(alive _x) || _x == player || { side _x == side player &&  side player != resistance } ) then //Si la personne est dans le groupe, morte ou est une IA, ou si ils sont dans le même camp et pas independant ! ça ne compte pas !
 					{
 						_list = _list - [_x];
 					}
@@ -51,16 +53,17 @@ with missionNamespace do
 					//hint format ["Il reste %1 homme(s) à proximité", count _list];
 					sleep 0.5
 				}forEach (_list);			//parcours la liste
+
+				//On continu sauf si l'écran échap n'est plus affiché
+				if (!isNull findDisplay 49) then
+				{
+					cutText [format ["\nBREAKOUT"], "PLAIN DOWN"];
+					breakOut "whileLoop" ;
+				};
 				sleep 1;
 
-				if (!isNull findDisplay 49) then			//On continu sauf si l'écran échap n'est plus affiché
-				{
-					cutText [format ["\nUn joueur ennemi est à proximité, vous ne pouvez pas deconnecter ! BREAK"], "PLAIN DOWN"];
-					break;
-				};
-
 			};
-			if (count _list ==0) then			// S'il n'y a plus d'ennemis à proximite
+			if (count _list == 0) then			// S'il n'y a plus d'ennemis à proximite
 			{
 
 				_abortDelay = ["A3W_combatAbortDelay", 0] call _getPublicVar;
