@@ -13,7 +13,7 @@ class AdminMenu
 		{
 			idc=-1;
 			colorText[] = {1, 1, 1, 1};
-			colorBackground[] = {0,0,0,0};
+			colorBackground[] = {0.212,0.216,0.243,0.8};
 			text = "#(argb,8,8,3)color(0,0,0,0.6)";
 			x=0.28;
 			y=0.10;
