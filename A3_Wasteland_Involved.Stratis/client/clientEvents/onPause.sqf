@@ -46,8 +46,8 @@ with missionNamespace do
 					if ( _nbCrew > 0 ) then
 					{
 						for "_iterCrew" from 0 to _nbCrew do
-						{
-							_oneCrew = ((crew ) select _iterCrew);
+
+							_oneCrew = (crew _veh) select _iterCrew;
 							_list = _list + [_oneCrew];
 						};
 					};
@@ -72,8 +72,8 @@ with missionNamespace do
 						if ( _nbCrew > 0 ) then
 						{
 							for "_iterCrew" from 0 to _nbCrew do
-							{
-								_oneCrew = ((crew ) select _iterCrew);
+
+								_oneCrew = (crew _veh) select _iterCrew;
 								_list = _list + [_oneCrew];
 							};
 						};
