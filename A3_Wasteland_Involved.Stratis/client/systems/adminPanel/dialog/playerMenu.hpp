@@ -22,7 +22,7 @@ class PlayersMenu
 		{
 			idc = -1;
 			colorText[] = {1, 1, 1, 1};
-			colorBackground[] = {0,0,0,0};
+			colorBackground[] = {0.212,0.216,0.243,0.8};
 			text = "#(argb,8,8,3)color(0,0,0,0.6)";
 			x = 0.1875 * safezoneW + safezoneX;
 			y = 0.15 * safezoneH + safezoneY;
@@ -34,7 +34,7 @@ class PlayersMenu
 		{
 			idc = -1;
 			colorText[] = {1, 1, 1, 1};
-			colorBackground[] = {0,0,0,0};
+			colorBackground[] = {0.824,0.404,0.157,1};
 			text = "#(argb,8,8,3)color(0.824,0.404,0.157,1)";
 
 			x = 0.1875 * safezoneW + safezoneX;

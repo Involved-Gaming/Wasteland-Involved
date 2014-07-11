@@ -363,11 +363,11 @@ class w_RscButton
    access = 0;
     type = CT_BUTTON;
     text = "";
-    colorText[] = {0.824,0.404,0.157,1}; //orange
+    colorText[] = {0.969,0.969,0.969,1}; //orange 0.824,0.404,0.157,1
     colorDisabled[] = {0,0,0,1};
-    colorBackground[] = {0.969,0.969,0.969,1}; //Blanc
+    colorBackground[] = {0.824,0.404,0.157,1}; //Blanc 0.969,0.969,0.969,1
     colorBackgroundDisabled[] = {0.3,0.3,0.3,1}; 
-    colorBackgroundActive[] = {0.212,0.216,0.243,1}; //Gris foncer
+    colorBackgroundActive[] = {0.212,0.216,0.243,1}; //Gris foncer 0.212,0.216,0.243,1
     colorFocused[] = {0.25,0.51,0.96,0.5};
     colorShadow[] = {0.023529,0,0.0313725,1};
     colorBorder[] = {0.023529,0,0.0313725,1};
