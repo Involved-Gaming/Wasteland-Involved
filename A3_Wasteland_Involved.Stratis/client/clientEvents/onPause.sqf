@@ -95,7 +95,6 @@ with missionNamespace do
 					if (group _x == group player || !(isPlayer _x) || !(alive _x) || _x == player || { side _x == side player &&  side player != resistance } ) then //Si la personne est dans le groupe, morte ou est une IA, ou si ils sont dans le même camp et pas independant ! ça ne compte pas !
 					{
 						_list = _list - [_x];
-						diag_log format["iter crew : %1",_iterCrew] ;
 					}
 					else{
 						cutText [format ["\nUn joueur ennemi est à proximité, vous ne pouvez pas deconnecter !"], "PLAIN DOWN"];
