@@ -32,12 +32,12 @@ with missionNamespace do
 				};
 
 			false call _enableButtons;			//Désactive les boutons par defaut
-			_list = (position player) nearEntities ["Man", 50];	//cherche les joueurs à proximite
+			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
 			while{ count _list != 0 } do
 			{
 				scopename "whileLoop";
 
-				_list = (position player) nearEntities ["Man", 50];	//cherche les joueurs à proximite
+				_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
 				//hint format ["Il y a %1 homme(s) à proximité", count _list];
 				//sleep 1;
 				{

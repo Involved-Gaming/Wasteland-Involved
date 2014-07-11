@@ -6,7 +6,7 @@ Serveur involved Wasteland Involved-gaming.com
 TODO list : 
 
 - FPS viewer
-- Ajouter un anti duplication d'argent.
+- Ajouter un anti duplication d'argent.		???
 - Continuer la traduction des fichiers
 - Hud plus sympa ( Couleur en orange )
 - Modifier & ajouter slot donnateur
@@ -28,6 +28,7 @@ En cours de dev:
 	- Supprimer le stuff lors de la deco quand au sol		-- FAIT
 
 - Parachutes automatique	-- mettre le sac sur le ventre
+- Empecher la deconnexion si personnel à proximité ( fait sauf pour les véhicules )
 
 
 Fait : 
