@@ -66,6 +66,7 @@ with missionNamespace do
 				_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
 
 				_listVehicles = [];
+				_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
 				diag_log format["Nb véhicules à proximité : %1",count _listVehicles];
 				if ( count _listVehicles > 0) then
 				{
