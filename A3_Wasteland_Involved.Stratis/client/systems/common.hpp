@@ -360,7 +360,7 @@ class w_RscButtonBase {
 class w_RscButton
 {
     
-   access = 0;
+    access = 0;
     type = CT_BUTTON;
     text = "";
     colorText[] = {0.824,0.404,0.157,1}; //orange 0.824,0.404,0.157,1
