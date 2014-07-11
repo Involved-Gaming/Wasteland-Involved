@@ -30,8 +30,39 @@ with missionNamespace do
 						(_display displayCtrl 1010) ctrlEnable _this; // Respawn
 					};
 				};
-			false call _enableButtons;			//Désactive les boutons par defaut
 
+			_searchEnnemyPlayers =
+				{
+					_list = [];
+					_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+					_listVehicles = [];
+					_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
+					diag_log format["Nb véhicules à proximité : %1",count _listVehicles];
+					if ( count _listVehicles > 0) then
+					{
+						for "_iterVehicle" from 0 to ((count _listVehicles)-1) do
+						{
+							diag_log format["iter : %1",_iterVehicle];
+							_veh = _listVehicles select _iterVehicle;
+							_listCrew = crew _veh;
+							_nbCrew = count (_listCrew);
+							diag_log format["nombre de crew : %1",_nbCrew];
+							if ( _nbCrew > 0 ) then
+							{
+								for "_iterCrew" from 0 to (_nbCrew-1) do
+								{
+									diag_log format["iter crew : %1",_iterCrew] ;
+									_oneCrew = _listCrew select _iterCrew;
+									_list = _list + [_oneCrew];+
+									diag_log format["Taille list: %1", count _list] ;
+								};
+							};
+						};
+					};
+					_list
+				};
+
+					/*
 			_list = [];
 			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
 			_listVehicles = [];
@@ -58,11 +89,16 @@ with missionNamespace do
 					};
 				};
 			};
+			*/
+
+			false call _enableButtons;			//Désactive les boutons par defaut
+			_list = call _searchEnnemyPlayers;
 
 			while{ count _list != 0 } do
 			{
 				scopename "whileLoop";
-
+				_list = call _searchEnnemyPlayers;
+				/*
 				_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
 
 				_listVehicles = [];
@@ -89,6 +125,7 @@ with missionNamespace do
 						};
 					};
 				};
+				*/
 
 				diag_log format ["Il y a %1 homme(s) à proximité", count _list];
 				//sleep 1;
