@@ -41,13 +41,15 @@ with missionNamespace do
 				for "_iterVehicle" from 0 to (count _listVehicles) do
 				{
 					_veh = vehicle (_listVehicles select _iterVehicle);
+					_listCrew = [];
+					_listCrew = crew _veh;
 					_nbCrew = 0;
-					_nbCrew = count (crew _veh);
+					_nbCrew = count (_listCrew);
 					if ( _nbCrew > 0 ) then
 					{
 						for "_iterCrew" from 0 to _nbCrew do
-
-							_oneCrew = (crew _veh) select _iterCrew;
+						{
+							_oneCrew = _listCrew select _iterCrew;
 							_list = _list + [_oneCrew];
 						};
 					};
@@ -67,19 +69,20 @@ with missionNamespace do
 					for "_iterVehicle" from 0 to (count _listVehicles) do
 					{
 						_veh = vehicle (_listVehicles select _iterVehicle);
+						_listCrew = [];
+						_listCrew = crew _veh;
 						_nbCrew = 0;
-						_nbCrew = count (crew _veh);
+						_nbCrew = count (_listCrew);
 						if ( _nbCrew > 0 ) then
 						{
 							for "_iterCrew" from 0 to _nbCrew do
-
-								_oneCrew = (crew _veh) select _iterCrew;
+							{
+								_oneCrew = _listCrew select _iterCrew;
 								_list = _list + [_oneCrew];
 							};
 						};
 					};
 				};
-
 				//hint format ["Il y a %1 homme(s) à proximité", count _list];
 				//sleep 1;
 				{
