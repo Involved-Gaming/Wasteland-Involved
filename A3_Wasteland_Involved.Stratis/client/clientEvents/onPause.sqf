@@ -34,11 +34,15 @@ with missionNamespace do
 			false call _enableButtons;			//Désactive les boutons par defaut
 			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
 			_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
+			for "_y" from 0 to (count _listVehicles) do
 			{
+				_listCrew = crew _listVehicles select _y;
+				for "_iterCrew" from 0 to (count _listCrew) do
 				{
-					_list = _list + [_x];
-				}forEach crew _x;
-			}forEach (_listVehicles);
+					_oneCrew = (_listCrew select _iterCrew);
+					_list = _list + [_oneCrew];
+				};
+			};
 
 			while{ count _list != 0 } do
 			{
