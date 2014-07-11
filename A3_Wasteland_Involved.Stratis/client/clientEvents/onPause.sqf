@@ -30,8 +30,8 @@ with missionNamespace do
 						(_display displayCtrl 1010) ctrlEnable _this; // Respawn
 					};
 				};
-
 			false call _enableButtons;			//Désactive les boutons par defaut
+
 			_list = [];
 			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
 			_listVehicles = [];
