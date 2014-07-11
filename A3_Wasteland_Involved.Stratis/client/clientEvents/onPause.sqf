@@ -32,31 +32,53 @@ with missionNamespace do
 				};
 
 			false call _enableButtons;			//Désactive les boutons par defaut
+			_list = [];
 			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+			_listVehicles = [];
 			_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
+			if ( count _listVehicles > 0) then
 			{
-				for "_iterCrew" from 0 to (count (crew _x)) do
+				for "_iterVehicle" from 0 to (count _listVehicles) do
 				{
-					_oneCrew = ((crew _x) select _iterCrew);
-					_list = _list + [_oneCrew];
+					_veh = vehicle (_listVehicles select _iterVehicle);
+					_nbCrew = 0;
+					_nbCrew = count (crew _veh);
+					if ( _nbCrew > 0 ) then
+					{
+						for "_iterCrew" from 0 to _nbCrew do
+						{
+							_oneCrew = ((crew ) select _iterCrew);
+							_list = _list + [_oneCrew];
+						};
+					};
 				};
-			}forEach (_list);
-
-
+			};
 
 			while{ count _list != 0 } do
 			{
 				scopename "whileLoop";
 
 				_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+
+				_listVehicles = [];
 				_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
+				if ( count _listVehicles > 0) then
 				{
-					for "_iterCrew" from 0 to (count (crew _x)) do
+					for "_iterVehicle" from 0 to (count _listVehicles) do
 					{
-						_oneCrew = ((crew _x) select _iterCrew);
-						_list = _list + [_oneCrew];
+						_veh = vehicle (_listVehicles select _iterVehicle);
+						_nbCrew = 0;
+						_nbCrew = count (crew _veh);
+						if ( _nbCrew > 0 ) then
+						{
+							for "_iterCrew" from 0 to _nbCrew do
+							{
+								_oneCrew = ((crew ) select _iterCrew);
+								_list = _list + [_oneCrew];
+							};
+						};
 					};
-				}forEach (_list);
+				};
 
 				//hint format ["Il y a %1 homme(s) à proximité", count _list];
 				//sleep 1;
