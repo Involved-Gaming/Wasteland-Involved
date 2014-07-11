@@ -37,14 +37,13 @@ with missionNamespace do
 			_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
 			for "_y" from 0 to (count _listVehicles) do
 			{
-				_listCrew = crew _listVehicles select _y;
+				_listCrew = crew (_listVehicles select _y);
 				for "_iterCrew" from 0 to (count _listCrew) do
 				{
 					_oneCrew = (_listCrew select _iterCrew);
 					_list = _list + [_oneCrew];
 				};
 			};
-
 			while{ count _list != 0 } do
 			{
 				scopename "whileLoop";
@@ -54,7 +53,7 @@ with missionNamespace do
 				_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
 				for "_y" from 0 to (count _listVehicles) do
 				{
-					_listCrew = crew _listVehicles select _y;
+					_listCrew = crew (_listVehicles select _y);
 					for "_iterCrew" from 0 to (count _listCrew) do
 					{
 						_oneCrew = (_listCrew select _iterCrew);
