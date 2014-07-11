@@ -12,9 +12,7 @@ externalConfigFolder = "A3Wasteland_settings";
 vChecksum = compileFinal format ["'%1'", call generateKey];
 
 //Execute Server Side Scripts.
-//OFF For debug purpose
-//call compile preprocessFileLineNumbers "server\antihack\setup.sqf";
-
+call compile preprocessFileLineNumbers "server\antihack\setup.sqf";
 [] execVM "server\admins.sqf";
 [] execVM "server\functions\serverVars.sqf";
 _serverCompileHandle = [] execVM "server\functions\serverCompile.sqf";
