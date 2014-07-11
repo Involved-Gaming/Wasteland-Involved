@@ -40,7 +40,7 @@ with missionNamespace do
 			{
 				for "_iterVehicle" from 0 to (count _listVehicles) do
 				{
-					_veh = vehicle (_listVehicles select _iterVehicle);
+					_veh = _listVehicles select _iterVehicle;
 					_listCrew = [];
 					_listCrew = crew _veh;
 					_nbCrew = 0;
@@ -68,7 +68,7 @@ with missionNamespace do
 				{
 					for "_iterVehicle" from 0 to (count _listVehicles) do
 					{
-						_veh = vehicle (_listVehicles select _iterVehicle);
+						_veh = _listVehicles select _iterVehicle;
 						_listCrew = [];
 						_listCrew = crew _veh;
 						_nbCrew = 0;
