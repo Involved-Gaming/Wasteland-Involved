@@ -1698,7 +1698,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=780;
+		items=781;
 		class Item0
 		{
 			position[]={4484.2783,113.72083,6777.0884};
@@ -3146,7 +3146,7 @@ class Mission
 		};
 		class Item148
 		{
-			position[]={1955.1105,0.32178527,4156.9233};
+			position[]={1940.6299,0,4140.374};
 			azimut=-75.714272;
 			id=243;
 			side="EMPTY";
@@ -9201,7 +9201,7 @@ class Mission
 		};
 		class Item776
 		{
-			position[]={3539.6077,204.54628,4929.0679};
+			position[]={3545.5654,198.02567,4944.5356};
 			azimut=-83.707161;
 			id=871;
 			side="EMPTY";
@@ -9230,6 +9230,15 @@ class Mission
 			position[]={4103.4736,229.17122,3534.1416};
 			azimut=-77.269966;
 			id=874;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item780
+		{
+			position[]={4556.5122,162.12103,5811.0137};
+			azimut=-83.707161;
+			id=875;
 			side="EMPTY";
 			vehicle="Land_BagBunker_Tower_F";
 			skill=0.60000002;
@@ -10557,7 +10566,7 @@ class Mission
 		{
 			position[]={3191.5469,2.2980213,6838.1821};
 			name="Aidan's Vehicle _1";
-			text="Entretien véhicule";
+			text="Entretien armement du véhicule";
 			type="respawn_plane";
 			colorName="ColorWhite";
 			angle=-26.1;

@@ -6,7 +6,7 @@ x_reload_time_factor = 10.00;
 
 _object setVehicleAmmo 1;
 
-_object vehicleChat format ["Entretien en cours %1... Merci de ne pas bouger...", _type];
+_object vehicleChat format ["Entretien de l'armement en cours %1... Merci de ne pas bouger...", _type];
 
 _magazines = getArray(configFile >> "CfgVehicles" >> _type >> "magazines");
 
@@ -54,6 +54,6 @@ if (_count > 0) then {
 };
 _object setVehicleAmmo 1;	// Reload turrets / drivers magazine
 
-_object vehicleChat format ["%1 est prêt ...", _type];
+_object vehicleChat format ["%1 est prêt ... Vous pouvez partir.", _type];
 
 if (true) exitWith {};
