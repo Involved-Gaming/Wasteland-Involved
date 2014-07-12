@@ -93,12 +93,14 @@ FAR_Player_Unconscious =
 	_unit enableSimulation false;
 	_unit setVariable ["FAR_isUnconscious", 1, true];
 
+	_EHhitpart = _unit addEventHandler ["HitPart", {[] execVM "addons\FAR_revive\IG_hitpart.sqf"}];
+
 	// Call this code only on players
 	if (isPlayer _unit) then
 	{
 		_bleedOut = time + FAR_BleedOut;
 
-		while { !isNull _unit && alive _unit && _unit getVariable "FAR_isUnconscious" == 1 && _unit getVariable "FAR_isStabilized" == 0 && (FAR_BleedOut <= 0 || time < _bleedOut) } do
+		while { !isNull _unit && alive _unit && _unit getVariable "FAR_isUnconscious" == 1 && _unit getVariable "FAR_isStabilized" == 0 && (FAR_BleedOut <= 0 || time < _bleedOut) && _unit getVariable "IG_headhit" == 0 } do
 		{
 			hintSilent format["Mort dans %1 secondes\n\n%2", round (_bleedOut - time), call FAR_CheckFriendlies];
 
@@ -109,7 +111,7 @@ FAR_Player_Unconscious =
 			//Unit has been stabilized. Disregard bleedout timer and umute player
 			_unit setVariable ["ace_sys_wounds_uncon", false];
 
-			while { !isNull _unit && alive _unit && _unit getVariable "FAR_isUnconscious" == 1 } do
+			while { !isNull _unit && alive _unit && _unit getVariable "FAR_isUnconscious" == 1 && _unit getVariable "IG_headhit" == 0} do
 			{
 				hintSilent format["Vous avez été stabilisé\n\n%1", call FAR_CheckFriendlies];
 
@@ -118,13 +120,13 @@ FAR_Player_Unconscious =
 		};
 
 		// Player bled out -- Cas de la mort
-		if (FAR_BleedOut > 0 && {time > _bleedOut} && {_unit getVariable ["FAR_isStabilized",0] == 0}) then
+		if (FAR_BleedOut > 0 && {time > _bleedOut} && {_unit getVariable ["FAR_isStabilized",0] == 0} && _unit getVariable "IG_headhit" == 1) then
 		{
 			_unit setDamage 1;
 		}
 		else
 		{
-			// Player got revived - Réanimation ---> on sauvegarde le stuff
+			// Player got revived - Réanimation ---> sauvegarde stuff autorisée
 			//spawn fn_savePlayerData;
 
 			_unit setVariable ["FAR_isStabilized", 0, true];
@@ -252,9 +254,9 @@ FAR_Drag =
 	publicVariable "FAR_isDragging_EH";
 
 	// Add release action and save its id so it can be removed
-	_id = player addAction ["<t color=""#C90000"">" + "Release" + "</t>", "FAR_revive\FAR_handleAction.sqf", ["action_release"], 10, true, true, "", "true"];
+	_id = player addAction ["<t color=""#C90000"">" + "Relacher" + "</t>", "FAR_revive\FAR_handleAction.sqf", ["action_release"], 10, true, true, "", "true"];
 
-	hint "Press 'C' if you can't move.";
+	hint "Appuyez sur C si vous ne pouvez pas bouger";
 
 	// Wait until release action is used
 	waitUntil
@@ -307,7 +309,7 @@ FAR_public_EH =
 
 		if (isPlayer _killed && isPlayer _killer) then
 		{
-			systemChat format["%1 a été bléssé par %2", name _killed, name _killer];
+			systemChat format["%1 a été blessé par %2", name _killed, name _killer];
 		};
 	};
 };

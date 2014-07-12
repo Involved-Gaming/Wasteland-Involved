@@ -25,6 +25,7 @@ FAR_ReviveMode = 1;
 //------------------------------------------//
 
 call compile preprocessFile "addons\FAR_revive\FAR_revive_funcs.sqf";
+call compile preprocessFile "addons\FAR_revive\IG_hitpart.sqf";
 
 #define SCRIPT_VERSION "1.5"
 
@@ -99,6 +100,7 @@ FAR_Player_Init =
 	player setVariable ["FAR_isStabilized", 0, true];
 	player setVariable ["FAR_isDragged", 0, true];
 	player setVariable ["ace_sys_wounds_uncon", false];
+	player setVariable ["IG_headhit", 0, true];
 	player setCaptive false;
 
 	FAR_isDragging = false;
@@ -189,5 +191,6 @@ if (!FAR_Debugging || isMultiplayer) exitWith {};
 		_x setVariable ["FAR_isUnconscious", 0, true];
 		_x setVariable ["FAR_isStabilized", 0, true];
 		_x setVariable ["FAR_isDragged", 0, true];
+		_x setVariable ["IG_headhit", 0, true];
 	};
 } forEach switchableUnits;
