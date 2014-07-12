@@ -31,3 +31,8 @@ if (_action == "action_release") then
 {
 	[] spawn FAR_Release;
 };
+
+if (_action == "action_kill") then
+{
+	[] spawn IG_kill;
+};

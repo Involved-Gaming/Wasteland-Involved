@@ -6,10 +6,11 @@ FAR_Player_Actions =
 	if (alive player && player isKindOf "Man") then
 	{
 		// addAction args: title, filename, (arguments, priority, showWindow, hideOnUse, shortcut, condition, positionInModel, radius, radiusView, showIn3D, available, textDefault, textToolTip)
-		player addAction ["<t color=""#C90000"">" + "Ranimer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_revive"], 10, true, true, "", "call FAR_Check_Revive"];
-		player addAction ["<t color=""#C90000"">" + "Stabiliser" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_stabilize"], 10, true, true, "", "call FAR_Check_Stabilize"];
-		player addAction ["<t color=""#C90000"">" + "Suicide" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_suicide"], 9, false, true, "", "call FAR_Check_Suicide"];
-		player addAction ["<t color=""#C90000"">" + "Trainer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_drag"], 9, false, true, "", "call FAR_Check_Dragging"];
+		player addAction ["<t color=""#336600"">" + "Réanimer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_revive"], 10, true, true, "", "call FAR_Check_Revive"];
+		player addAction ["<t color=""#FF6600"">" + "Stabiliser" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_stabilize"], 10, true, true, "", "call FAR_Check_Stabilize"];
+		player addAction ["<t color=""#000000"">" + "Suicide" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_suicide"], 9, false, true, "", "call FAR_Check_Suicide"];
+		player addAction ["<t color=""#000066"">" + "Trainer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_drag"], 9, false, true, "", "call FAR_Check_Dragging"];
+		player addAction ["<t color=""#C90000"">" + "Tuer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_kill"], 9, false, true, "", "call IG_Check_kill"];
 	};
 };
 
@@ -83,12 +84,10 @@ FAR_HandleDamage_EH =
 				{
 					unAssignVehicle _unit;
 					_unit action ["eject", vehicle _unit];
-					sleep 2;
 				};
 
 				//TODO : Suppression automatique du stuff	--
 				[[_unit],"fn_clearDatabaseUnconscious",false,false] spawn BIS_fnc_MP;
-
 				[_unit, _killer] spawn FAR_Player_Unconscious;
 
 			}
@@ -584,3 +583,46 @@ FAR_CheckFriendlies =
 
 
 
+///////////////////////////////////////////////
+// Kill Action Check
+////////////////////////////////////////////////
+IG_Check_kill =
+{
+	private ["_target", "_isPlayerUnconscious", "_isDragged"];
+
+	_return = false;
+	_target = cursorTarget;
+	_isPlayerUnconscious = player getVariable "FAR_isUnconscious";
+
+	if( !alive player || _isPlayerUnconscious == 1 || FAR_isDragging || isNil "_target" || !alive _target || (!isPlayer _target && !FAR_Debugging) || (_target distance player) > 2 ) exitWith
+	{
+		_return;
+	};
+
+	// Target of the action
+	_isTargetUnconscious = _target getVariable "FAR_isUnconscious";
+	_isDragged = _target getVariable "FAR_isDragged";
+
+	if(_isTargetUnconscious == 1 && _isDragged == 0) then
+	{
+		_return = true;
+	};
+
+	_return
+};
+
+
+////////////////////////////////////////////////
+// Kill Player
+////////////////////////////////////////////////
+IG_kill =
+{
+	private ["_target"];
+
+	_target = _this select 0;
+
+	if (alive _target) then
+	{
+		_target setVariable ["IG_headhit", 1, true];
+	};
+};
