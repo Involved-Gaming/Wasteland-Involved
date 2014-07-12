@@ -125,6 +125,7 @@ FAR_Player_Unconscious =
 	_unit enableSimulation false;
 	_unit setVariable ["FAR_isUnconscious", 1, true];
 
+	diag_log "Ajout event handler hit part";
 	_unit allowDamage true;
 	_EHhitpart = _unit addEventHandler ["HitPart", IG_HandleHitPart_EH];
 
@@ -155,6 +156,7 @@ FAR_Player_Unconscious =
 		// Player bled out -- Cas de la mort
 		if (FAR_BleedOut > 0 && {time > _bleedOut} && {_unit getVariable ["FAR_isStabilized",0] == 0} || _unit getVariable "IG_headhit" == 1) then
 		{
+			_unit removeEventHandler ["HitPart", _EHhitpart];
 			_unit setDamage 1;
 		}
 		else
@@ -181,6 +183,7 @@ FAR_Player_Unconscious =
 
 			_unit playMove "amovppnemstpsraswrfldnon";
 			_unit playMove "";
+			_unit removeEventHandler ["HitPart", _EHhitpart];
 		};
 	}
 	else

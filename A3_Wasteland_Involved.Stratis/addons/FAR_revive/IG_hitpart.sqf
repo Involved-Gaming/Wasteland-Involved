@@ -15,13 +15,13 @@ IG_HandleHitPart_EH =
 	_isUnconscious = _unit getVariable "FAR_isUnconscious";
 	_damage = (damage _unit);
 
-	cutText [format ["\nHITPART !"], "PLAIN DOWN"];
+	diag_log "HITPART !";
 
 	if (_isUnconscious == 1) then
 	{
 		if (format _hitPart == "head") then
 		{
-			cutText [format ["\nHEADSHOT, dans ta gueule !"], "PLAIN DOWN"];
+			diag_log "HEADSHOT !";
 			_unit setVariable ["IG_headhit", 1, true];			//Touché à la tète .... cause la mort
 		};
 	};
