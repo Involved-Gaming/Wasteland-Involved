@@ -4,48 +4,46 @@
 //	@file Created: 12/10/2013 12:36
 //	@file Args:
 
-#define STORE_ACTION_CONDITION "_this distance _target < 8"
+#define STORE_ACTION_CONDITION "_this distance _target < 3"
+#define SELL_ACTION_CONDITION "{_obj = missionNamespace getVariable ['R3F_LOG_joueur_deplace_objet', objNull]; _obj isKindOf 'ReammoBox_F' || {_obj isKindOf 'AllVehicles'}}"
 
-private ["_npc", "_type", "_num", "_identity"];
+private ["_npc", "_type", "_num", "_npcName"];
 
 _npc = _this select 0;
 _type = _this select 1;
 _num = _this select 2;
 
-switch (toLower _type) do
+if (hasInterface) then
 {
-	case "genstore":
+	switch (toLower _type) do
 	{
-		_npc addAction ["<img image='client\icons\store.paa'/> Open General Store", "client\systems\generalStore\loadGenStore.sqf", [], 1, false, false, "", STORE_ACTION_CONDITION];
+		case "genstore":
+		{
+			_npc addAction ["<img image='client\icons\store.paa'/> Open General Store", "client\systems\generalStore\loadGenStore.sqf", [], 1, false, false, "", STORE_ACTION_CONDITION];
+		};
+		case "gunstore":
+		{
+			_npc addAction ["<img image='client\icons\store.paa'/> Open Gun Store", "client\systems\gunStore\loadgunStore.sqf", [], 1, false, false, "", STORE_ACTION_CONDITION];
+		};
+		case "vehstore":
+		{
+			_npc addAction ["<img image='client\icons\store.paa'/> Open Vehicle Store", "client\systems\vehicleStore\loadVehicleStore.sqf", [], 1, false, false, "", STORE_ACTION_CONDITION];
+		};
 	};
-	case "gunstore":
-	{
-		_npc addAction ["<img image='client\icons\store.paa'/> Open Gun Store", "client\systems\gunStore\loadgunStore.sqf", [], 1, false, false, "", STORE_ACTION_CONDITION];
-	};
-	case "vehstore":
-	{
-		_npc addAction ["<img image='client\icons\store.paa'/> Open Vehicle Store", "client\systems\vehicleStore\loadVehicleStore.sqf", [], 1, false, false, "", STORE_ACTION_CONDITION];
-	};
+
+	_npc addAction ["<img image='client\icons\money.paa'/> Sell Contents", "client\systems\selling\sellCrateItems.sqf", [], 1, false, false, "", STORE_ACTION_CONDITION + " && " + SELL_ACTION_CONDITION];
 };
 
-_npc addAction ["<img image='client\icons\money.paa'/> Sell Crate Items", "client\systems\selling\sellCrateItems.sqf", [], 1, false, false, "", STORE_ACTION_CONDITION + " && {(missionNamespace getVariable ['R3F_LOG_joueur_deplace_objet', objNull]) isKindOf 'ReammoBox_F'}"];
-
-_identity = format ["%1%2", _type, _num];
-_npc setIdentity _identity;
+_npcName = format ["%1%2", _type, _num];
+_npc setName _npcName;
 
 _npc allowDamage false;
 _npc disableAI "MOVE";
 _npc disableAI "ANIM";
 _npc disableAI "FSM";
 
-//diag_log format ["setupStoreNPC for %1 start",_identity];
-
-//find the building closest to this gun store owner and make it damage-proof
 _building = nearestBuilding _npc;
 _building allowDamage false;
-
-//diag_log format ["setupStoreNPC for %1 nearest building is %2 m away at %3",_identity,(_building distance _npc),(getPos _building)];
-//diag_log format ["setupStoreNPC for %1 nearest building is typeOf %1", (typeOf _building)];
 
 if (isServer) then
 {
@@ -54,20 +52,16 @@ if (isServer) then
 	waitUntil {!isNil "storeConfigDone"};
 	
 	{
-		if (_x select 0 == _identity) exitWith
+		if (_x select 0 == _npcName) exitWith
 		{
 			//collect our arguments
 			_npcPos = _x select 1;
 			_deskDirMod = _x select 2;
-			
-			//find the building closest to this gun store owner
-			_markerName = format ["move_%1" ,_identity];
-			_mPos = markerPos _markerName;
 
 			private "_storeOwnerAppearance";
 				
 			{
-				if (_x select 0 == _identity) exitWith
+				if (_x select 0 == _npcName) exitWith
 				{
 					_storeOwnerAppearance = _x;
 				};
@@ -83,7 +77,7 @@ if (isServer) then
 					{
 						if (_classname != "") then
 						{
-							//diag_log format ["setupStoreNPC : Applying %1 as weapon for %2", _classname, _identity];
+							diag_log format ["Applying %1 as weapon for %2", _classname, _npcName];
 							_npc addWeapon _classname;
 						};
 					};
@@ -91,7 +85,7 @@ if (isServer) then
 					{
 						if (_classname != "") then
 						{
-							//diag_log format ["setupStoreNPC : Applying %1 as uniform for %2", _classname, _identity];
+							diag_log format ["Applying %1 as uniform for %2", _classname, _npcName];
 							_npc addUniform _classname;
 						};
 					};
@@ -99,7 +93,7 @@ if (isServer) then
 					{
 						if (_classname != "") then
 						{
-							//diag_log format ["setupStoreNPC : Applying %1 as switchMove for %2", _classname, _identity];
+							diag_log format ["Applying %1 as switchMove for %2", _classname, _npcName];
 							_npc switchMove _classname;
 						};
 					};
@@ -121,14 +115,10 @@ if (isServer) then
 				};
 			};
 			
-			//_bPos = _building buildingPos _npcPos;
-
-			//diag_log format ["setupStoreNPC for %1 npcPos set to %2 bPos set to %3",_identity,_npcPos,_bPos];
-
-
+			_bPos = _building buildingPos _npcPos;
 			_npc setPosATL _bPos;
 			
-			_desk = [_npc, _bPos, _pDir, _deskDirMod, _identity] call compile preprocessFileLineNumbers "common\functions\createStoreFurniture.sqf";
+			_desk = [_npc, _bPos, _pDir, _deskDirMod] call compile preprocessFileLineNumbers "server\functions\createStoreFurniture.sqf";
 			
 			sleep 1;
 			
@@ -163,10 +153,7 @@ if (isServer) then
 			
 			_npc enableSimulation false;
 			_desk enableSimulation false;
-
-			_markerName setMarkerPos getPos _npc;
-			
-			diag_log format ["setupStoreNPC for %1 complete store @ (%2) markerName=%3",_identity, (getPos _npc), _markerName];
 		};
+
 	} forEach (call storeOwnerConfig);
 };

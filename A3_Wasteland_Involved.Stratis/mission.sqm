@@ -9025,8 +9025,8 @@ class Mission
 		};
 		class Item757
 		{
-			position[]={3334.6394,234.01286,2900.231};
-			azimut=-64.19149;
+			position[]={3976.5496,195.53343,3421.8748};
+			azimut=-90.833488;
 			id=852;
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
@@ -9034,8 +9034,8 @@ class Mission
 		};
 		class Item758
 		{
-			position[]={3340.8413,234.44676,2900.4084};
-			azimut=-64.19149;
+			position[]={3982.0125,195.30461,3424.8145};
+			azimut=-90.833488;
 			id=853;
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
@@ -9043,8 +9043,8 @@ class Mission
 		};
 		class Item759
 		{
-			position[]={3347.6609,234.49637,2900.5559};
-			azimut=-64.19149;
+			position[]={3988.0437,195.39723,3428.0039};
+			azimut=-90.833488;
 			id=854;
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
@@ -9052,8 +9052,8 @@ class Mission
 		};
 		class Item760
 		{
-			position[]={3347.5378,234.5704,2914.312};
-			azimut=-64.19149;
+			position[]={3981.7639,197.9072,3440.2444};
+			azimut=-90.833488;
 			id=855;
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
@@ -9061,8 +9061,8 @@ class Mission
 		};
 		class Item761
 		{
-			position[]={3334.2339,233.54686,2914.21};
-			azimut=-64.19149;
+			position[]={3969.918,197.36542,3434.1887};
+			azimut=-90.833488;
 			id=856;
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
@@ -9070,8 +9070,8 @@ class Mission
 		};
 		class Item762
 		{
-			position[]={3333.3738,233.38974,2914.248};
-			azimut=-182.32947;
+			position[]={3969.1331,197.3318,3433.8369};
+			azimut=-208.97144;
 			id=857;
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
@@ -9079,8 +9079,8 @@ class Mission
 		};
 		class Item763
 		{
-			position[]={3347.207,234.57115,2914.626};
-			azimut=-182.32947;
+			position[]={3981.3286,197.89647,3440.3777};
+			azimut=-208.97144;
 			id=858;
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
@@ -9088,8 +9088,8 @@ class Mission
 		};
 		class Item764
 		{
-			position[]={3348.2061,234.49559,2900.6743};
-			azimut=-182.32947;
+			position[]={3988.4768,195.47304,3428.355};
+			azimut=-208.97144;
 			id=859;
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
@@ -9097,8 +9097,8 @@ class Mission
 		};
 		class Item765
 		{
-			position[]={3333.7737,233.90552,2900.3413};
-			azimut=-182.32947;
+			position[]={3975.7258,195.58868,3421.5854};
+			azimut=-208.97144;
 			id=860;
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
@@ -10377,12 +10377,12 @@ class Mission
 		};
 		class Item163
 		{
-			position[]={3338.3823,234.32043,2906.3972};
+			position[]={3977.1299,197.12138,3429.0649};
 			name="Aidan's Vehicle ";
 			text="Aidan's Vehicle Service/Refuel Point";
 			type="b_maint";
 			colorName="ColorRed";
-			angle=0.54195201;
+			angle=-26.100042;
 		};
 	};
 	class Sensors
@@ -10481,10 +10481,10 @@ class Mission
 		};
 		class Item5
 		{
-			position[]={3340.5945,234.47,2907.4646};
+			position[]={3978.6282,197.34698,3431.0112};
 			a=7;
 			b=7;
-			angle=-271.37839;
+			angle=-298.02039;
 			rectangular=1;
 			activationBy="ANY";
 			repeating=1;
