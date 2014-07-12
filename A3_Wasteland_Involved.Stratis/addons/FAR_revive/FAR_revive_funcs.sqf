@@ -120,7 +120,7 @@ FAR_Player_Unconscious =
 		};
 
 		// Player bled out -- Cas de la mort
-		if (FAR_BleedOut > 0 && {time > _bleedOut} && {_unit getVariable ["FAR_isStabilized",0] == 0} && _unit getVariable "IG_headhit" == 1) then
+		if (FAR_BleedOut > 0 && {time > _bleedOut} && {_unit getVariable ["FAR_isStabilized",0] == 0} || _unit getVariable "IG_headhit" == 1) then
 		{
 			_unit setDamage 1;
 		}
