@@ -48,7 +48,6 @@ class Mission
 		"A3_Structures_F_Naval_Piers",
 		"A3_Structures_F_Households_House_Big01",
 		"a3_structures_f_mil_bagfence",
-		"a3_structures_f_mil_bagbunker",
 		"a3_structures_f_items_luggage",
 		"a3_structures_f_items_valuables",
 		"a3_structures_f_items_cans",
@@ -91,7 +90,8 @@ class Mission
 		"A3_Air_F_Heli_Light_01",
 		"A3_Soft_F_MRAP_01",
 		"A3_Air_F_EPB_Heli_Light_03",
-		"A3_Structures_F_Civ_Accessories"
+		"A3_Structures_F_Civ_Accessories",
+		"A3_Structures_F_Mil_BagBunker"
 	};
 	addOnsAuto[]=
 	{
@@ -154,6 +154,7 @@ class Mission
 		"A3_Soft_F_MRAP_03",
 		"A3_Air_F_EPB_Heli_Light_03",
 		"A3_Structures_F_Mil_Radar",
+		"A3_Structures_F_Mil_BagBunker",
 		"a3_map_stratis"
 	};
 	randomSeed=14957468;
@@ -1690,7 +1691,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="VehStore4";
-					init="[this, 'VehStore', 4] execVM 'server\functions\setupStoreNPC.sqf'";
+					init="[this, 'VehStore', 4] execVM 'common\functions\setupStoreNPC.sqf'";
 				};
 			};
 		};
@@ -1702,7 +1703,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2625.3435,64.679451,608.06445};
+					position[]={3291.7495,229.18161,2927.3555};
 					id=95;
 					side="WEST";
 					vehicle="B_soldier_AAR_F";
@@ -1715,7 +1716,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=772;
+		items=780;
 		class Item0
 		{
 			position[]={4484.2783,113.72083,6777.0884};
@@ -9182,6 +9183,75 @@ class Mission
 			vehicle="Land_FloodLight_F";
 			skill=0.60000002;
 		};
+		class Item772
+		{
+			position[]={2652.3931,143.68181,1616.6885};
+			id=868;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item773
+		{
+			position[]={2459.9272,143.59958,2479.5171};
+			azimut=91.645363;
+			id=869;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item774
+		{
+			position[]={3191.6895,206.67844,2740.1714};
+			azimut=51.489574;
+			id=870;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item775
+		{
+			position[]={2720.1489,163.64088,3365.8291};
+			id=871;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item776
+		{
+			position[]={3539.6077,204.54628,4929.0679};
+			azimut=-83.707161;
+			id=872;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item777
+		{
+			position[]={2516.9006,120.20172,4932.1943};
+			azimut=-46.610332;
+			id=873;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item778
+		{
+			position[]={4005.3464,143.51065,7031.6016};
+			id=874;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item779
+		{
+			position[]={4103.4736,229.17122,3534.1416};
+			azimut=-77.269966;
+			id=875;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
 	};
 	class Markers
 	{
@@ -10544,7 +10614,7 @@ class Mission
 			text="Refill";
 			name="RefillHeli_1";
 			expCond="(""Helicopter"" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)";
-			expActiv="_xhandle= (thislist select 0) execVM ""server\functions\x_reload.sqf"";";
+			expActiv="_xhandle= (thislist select 0) execVM ""x_reload.sqf"";";
 			class Effects
 			{
 			};
@@ -10563,7 +10633,7 @@ class Mission
 			text="Refill";
 			name="Refill_1_1";
 			expCond="(""LandVehicle"" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)";
-			expActiv="_xhandle= (thislist select 0) execVM ""server\functions\x_reload.sqf"";";
+			expActiv="_xhandle= (thislist select 0) execVM ""x_reload.sqf"";";
 			class Effects
 			{
 			};
@@ -10600,7 +10670,7 @@ class Mission
 			text="Refill";
 			name="Refill_1_1_1";
 			expCond="(""LandVehicle"" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)";
-			expActiv="_xhandle= (thislist select 0) execVM ""server\functions\x_reload.sqf"";";
+			expActiv="_xhandle= (thislist select 0) execVM ""x_reload.sqf"";";
 			class Effects
 			{
 			};
