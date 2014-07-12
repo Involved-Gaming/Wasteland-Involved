@@ -93,6 +93,7 @@ FAR_Player_Init =
 
 				waitUntil { alive player };
 				_body = _this select 0;
+				sleep 900;
 				deleteVehicle _body;
 			}
 		}

@@ -25,9 +25,9 @@ En cours de dev:
 				- Ajouter un traitement pour rajouter du temps de rez.							[A voir si necessaire]
 				- Faire en sorte que ce soit que entre gang.									[A voir si necessaire]
 				- Supprimer le stuff lors de la deco quand au sol								[A TESTER] - Drop l'argent et les items au sol, supprime l'équipement si déco reco.
-	[AJOUT] 	Ajouter la possibiliter d'achever les gens d'un balle dans la tête. 							[FAIT, à tester]
-	[AJOUT] 	Parachutes automatique																[FAIT, à tester et voir pour améliorations]
-	[AJOUT] 	Parachuter des véhicules depuis le drop hélico + fumigène						[FAIT]
+				- Mort si dans un véhicule explosé, ejecté sinon
+	[AJOUT] 	Ajouter la possibiliter d'achever les gens d'un balle dans la tête. 			[FAIT,à debuguer en multi?]
+	
 
 
 Fait : 
@@ -41,3 +41,5 @@ Fait :
 	[FIX] 		Side supp globale
 	[AJOUT] 	Mettre son équipe en temps réel sur la carte ( quand la MAp s'ouvre )
 	[FIX] 		Droits admin
+	[AJOUT] 	Parachuter des véhicules depuis le drop hélico + fumigène					
+	[AJOUT] 	Parachutes automatique															

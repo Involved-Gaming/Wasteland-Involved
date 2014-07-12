@@ -71,9 +71,9 @@ FAR_HandleDamage_EH =
 		}
 		else		// in vehicle....
 		{
-			if ( alive (vehicle _unit) == true ) then			//if vehicle alive --> can eject
+			if (alive(vehicle _unit)) then			//if vehicle alive --> can eject
 			{
-				hint "Vehicule alive, trying to eject you !";
+				hint "Vehicule is alive, trying to eject you !";
 
 				_unit setDamage 0;
 				_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
