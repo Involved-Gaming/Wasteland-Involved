@@ -17,12 +17,12 @@ if (!isNull _object && {local _object}) then
 	_object enableSimulation true; // FPS fix safeguard
 	_tower enableSimulation true;
 
-	if (_airdrop) then
+	if (_airdrop || ((getPos _object) select 2) > 30) then
 	{
 		_vel = velocity _object;
 		detach _object;
-		sleep 1;
 		_object setVelocity _vel;
+		sleep 1;
 		_chute = createVehicle ["B_Parachute_02_F", _object modelToWorld [0,0,0], [], 0, "FLY"];
 		sleep 0.1;
 		_chute attachTo [_object,[0,0,0]];

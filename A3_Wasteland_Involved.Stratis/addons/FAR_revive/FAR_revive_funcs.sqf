@@ -27,6 +27,7 @@ FAR_HandleDamage_EH =
 
 	if (alive _unit && _amountOfDamage >= 1 && _isUnconscious == 0) then
 	{
+		diag_log "event handler damage fall unconscious";
 		_unit setDamage 0;
 		_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
 		_amountOfDamage = 0;
@@ -66,6 +67,7 @@ FAR_HandleDamage_EH =
 	};
 	if (_isUnconscious == 1) then		// if unconscious, can't take any damage
 	{
+		diag_log "event handler damage unsconscious";
 		_amountOfDamage = 0;
 	};
 
