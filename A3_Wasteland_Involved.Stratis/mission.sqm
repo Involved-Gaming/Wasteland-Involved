@@ -841,15 +841,7 @@ class Mission
 				};
 				class Item1
 				{
-<<<<<<< HEAD
 					position[]={3757.769,8.2662621,7963.7769};
-=======
-<<<<<<< HEAD
-					position[]={3757.769,8.2662621,7963.7769};
-=======
-					position[]={3757.4587,8.721633,7958.2632};
->>>>>>> origin/Dev
->>>>>>> origin/Dev
 					special="NONE";
 					id=48;
 					side="EAST";
@@ -859,15 +851,7 @@ class Mission
 				};
 				class Item2
 				{
-<<<<<<< HEAD
 					position[]={3758.0544,8.2669754,7963.7769};
-=======
-<<<<<<< HEAD
-					position[]={3758.0544,8.2669754,7963.7769};
-=======
-					position[]={3757.7754,8.774519,7958.2632};
->>>>>>> origin/Dev
->>>>>>> origin/Dev
 					special="NONE";
 					id=49;
 					side="EAST";
@@ -906,35 +890,7 @@ class Mission
 				};
 				class Item1
 				{
-<<<<<<< HEAD
 					position[]={3757.7412,8.3389769,7963.3887};
-=======
-<<<<<<< HEAD
-					position[]={3757.7412,8.3389769,7963.3887};
-					special="NONE";
-					id=52;
-					side="EAST";
-					vehicle="O_diver_F";
-					lock="UNLOCKED";
-					skill=0.60000002;
-				};
-				class Item2
-				{
-					position[]={3758.0266,8.3396902,7963.3887};
-					special="NONE";
-					id=53;
-					side="EAST";
-					vehicle="O_medic_F";
-					lock="UNLOCKED";
-					skill=0.60000002;
-				};
-				class Item3
-				{
-					position[]={3758.2876,8.340251,7963.3892};
-=======
-					position[]={3758.0188,8.8062353,7958.248};
->>>>>>> origin/Dev
->>>>>>> origin/Dev
 					special="NONE";
 					id=52;
 					side="EAST";
@@ -1640,40 +1596,6 @@ class Mission
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
-<<<<<<< HEAD
-=======
-				};
-			};
-		};
-		class Item53
-		{
-			side="EAST";
-			class Vehicles
-			{
-				items=2;
-				class Item0
-				{
-					position[]={3757.5002,8.7226734,7958.6357};
-					special="NONE";
-					id=93;
-					side="EAST";
-					vehicle="O_sniper_F";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-					init="removeAllWeapons this;";
-				};
-				class Item1
-				{
-					position[]={3757.7856,8.7590618,7958.6357};
-					special="NONE";
-					id=94;
-					side="EAST";
-					vehicle="O_medic_F";
-					lock="UNLOCKED";
-					skill=0.60000002;
-					init="removeAllWeapons this;";
->>>>>>> origin/Dev
 				};
 			};
 		};
@@ -7392,10 +7314,6 @@ class Mission
 			vehicle="Land_FloodLight_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/Dev
 		class Item604
 		{
 			position[]={3756.4456,7.8686967,7966.8193};
@@ -7501,23 +7419,10 @@ class Mission
 			vehicle="Land_BuoyBig_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
 	};
 	class Markers
 	{
 		items=162;
-=======
-	};
-	class Markers
-	{
-		items=162;
-=======
-	};
-	class Markers
-	{
-		items=156;
->>>>>>> origin/Dev
->>>>>>> origin/Dev
 		class Item0
 		{
 			position[]={4339.3457,226.45149,3824.2236};
@@ -8726,10 +8631,6 @@ class Mission
 			type="group_4";
 			colorName="ColorWhite";
 		};
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/Dev
 		class Item156
 		{
 			position[]={3756.8499,8.453723,7961.9941};
@@ -8779,11 +8680,6 @@ class Mission
 			a=100;
 			b=100;
 		};
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/Dev
->>>>>>> origin/Dev
 	};
 	class Sensors
 	{
@@ -8882,10 +8778,6 @@ class Mission
 			{
 			};
 		};
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/Dev
 		class Item5
 		{
 			position[]={3756.3533,7.8710904,7966.7983};
@@ -8902,11 +8794,6 @@ class Mission
 			{
 			};
 		};
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/Dev
->>>>>>> origin/Dev
 	};
 };
 class Intro
