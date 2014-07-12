@@ -1690,7 +1690,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="VehStore4";
-					init="[this, 'VehStore', 4] execVM 'common\functions\setupStoreNPC.sqf'";
+					init="[this, 'VehStore', 4] execVM 'server\functions\setupStoreNPC.sqf'";
 				};
 			};
 		};
@@ -10645,7 +10645,7 @@ class Mission
 			text="Refill";
 			name="RefillHeli_1";
 			expCond="(""Helicopter"" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)";
-			expActiv="_xhandle= (thislist select 0) execVM ""x_reload.sqf"";";
+			expActiv="_xhandle= (thislist select 0) execVM ""server\functions\x_reload.sqf"";";
 			class Effects
 			{
 			};
@@ -10664,7 +10664,7 @@ class Mission
 			text="Refill";
 			name="Refill_1_1";
 			expCond="(""LandVehicle"" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)";
-			expActiv="_xhandle= (thislist select 0) execVM ""x_reload.sqf"";";
+			expActiv="_xhandle= (thislist select 0) execVM ""server\functions\x_reload.sqf"";";
 			class Effects
 			{
 			};
@@ -10701,7 +10701,7 @@ class Mission
 			text="Refill";
 			name="Refill_1_1_1";
 			expCond="(""LandVehicle"" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)";
-			expActiv="_xhandle= (thislist select 0) execVM ""x_reload.sqf"";";
+			expActiv="_xhandle= (thislist select 0) execVM ""server\functions\x_reload.sqf"";";
 			class Effects
 			{
 			};
