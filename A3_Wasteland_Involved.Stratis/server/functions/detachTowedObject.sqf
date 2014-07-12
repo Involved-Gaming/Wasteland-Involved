@@ -36,6 +36,14 @@ if (!isNull _object && {local _object}) then
 		_chem         = "Chemlight_blue" createVehicle position _object;
 		_chem attachto [_object,[0,0,0]];
 
+
+		_heigh = 0;
+		while {((getPosATL _chute) select 2) > 8} do {
+			sleep 1;
+			_heigh = (getPosATL _chute) select 2;
+		};
+		detach _object;
+
 		/*
 		_heigh = 0;
 		while {((getPosATL _chute) select 2) > 8} do {

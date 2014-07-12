@@ -15,7 +15,7 @@ TODO list :
 - bogue blesser hélico
 - Faire pop plus d'arme & JVN dans les maisons, villages
 - Bogue de mort instantané
-- Parachuter des véhicules depuis le drop hélico
+
 - Unifier les repars kit (Actuellement deux sur le serveurs)
 
 En cours de dev:
@@ -27,7 +27,7 @@ En cours de dev:
 				- Supprimer le stuff lors de la deco quand au sol								[A TESTER] - Drop l'argent et les items au sol, supprime l'équipement si déco reco.
 	[AJOUT] 	Ajouter la possibiliter d'achever les gens d'un balle dans la tête. 							[FAIT, à tester]
 	[AJOUT] 	Parachutes automatique																[FAIT, à tester et voir pour améliorations]
-
+	[AJOUT] 	Parachuter des véhicules depuis le drop hélico + fumigène						[FAIT]
 
 
 Fait : 
