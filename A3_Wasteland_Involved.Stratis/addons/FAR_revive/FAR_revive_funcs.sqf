@@ -38,7 +38,7 @@ FAR_HandleDamage_EH =
 			_amountOfDamage = 0;
 
 			// Reset gear data, combat abort timer, and revive stuff
-		/*
+
 			if (_unit == player) then
 			{
 				playerData_gear = "";
@@ -63,7 +63,7 @@ FAR_HandleDamage_EH =
 					(_x select 0) call mf_inventory_drop;
 				};
 			} forEach call mf_inventory_all;
-		*/
+
 
 			//TODO : Suppression automatique du stuff	--
 			[[_unit],"fn_clearDatabaseUnconscious",false,false] spawn BIS_fnc_MP;
