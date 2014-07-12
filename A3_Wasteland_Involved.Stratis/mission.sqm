@@ -1698,7 +1698,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=781;
+		items=790;
 		class Item0
 		{
 			position[]={4484.2783,113.72083,6777.0884};
@@ -9243,10 +9243,97 @@ class Mission
 			vehicle="Land_BagBunker_Tower_F";
 			skill=0.60000002;
 		};
+		class Item781
+		{
+			position[]={3908.4871,141.31593,7032.6792};
+			azimut=91.060593;
+			id=876;
+			side="EMPTY";
+			vehicle="Land_HelipadSquare_F";
+			skill=0.60000002;
+		};
+		class Item782
+		{
+			position[]={3899.8992,140.13161,7025.4873};
+			azimut=-225.81888;
+			id=877;
+			side="EMPTY";
+			vehicle="Land_FloodLight_F";
+			skill=0.60000002;
+		};
+		class Item783
+		{
+			position[]={3915.675,140.34348,7024.3442};
+			azimut=-225.81888;
+			id=878;
+			side="EMPTY";
+			vehicle="Land_FloodLight_F";
+			skill=0.60000002;
+		};
+		class Item784
+		{
+			position[]={3917.1912,139.97461,7040.3325};
+			azimut=-225.81888;
+			id=879;
+			side="EMPTY";
+			vehicle="Land_FloodLight_F";
+			skill=0.60000002;
+		};
+		class Item785
+		{
+			position[]={3909.0208,140.20427,7040.6304};
+			azimut=-225.81841;
+			id=880;
+			side="EMPTY";
+			vehicle="RoadCone_L_F";
+			skill=0.60000002;
+		};
+		class Item786
+		{
+			position[]={3916.3909,140.9393,7032.124};
+			azimut=-225.81841;
+			id=881;
+			side="EMPTY";
+			vehicle="RoadCone_L_F";
+			skill=0.60000002;
+		};
+		class Item787
+		{
+			position[]={3907.9763,140.43713,7024.666};
+			azimut=-225.81841;
+			id=882;
+			side="EMPTY";
+			vehicle="RoadCone_L_F";
+			skill=0.60000002;
+		};
+		class Item788
+		{
+			position[]={3919.7874,140.57092,7032.1704};
+			azimut=-88.781052;
+			offsetY=-1;
+			id=883;
+			side="EMPTY";
+			vehicle="Land_Billboard_F";
+			leader=1;
+			skill=0.60000002;
+			init="this allowDamage false; this setObjectTexture [0, ""Textures\pub.jpg""];";
+		};
+		class Item789
+		{
+			position[]={3919.3665,140.61603,7032.1724};
+			azimut=-268.78104;
+			offsetY=-1;
+			id=884;
+			side="EMPTY";
+			vehicle="Land_Billboard_F";
+			leader=1;
+			skill=0.60000002;
+			init="this allowDamage false; this setObjectTexture [0, ""Textures\pub.jpg""];";
+		};
 	};
 	class Markers
 	{
-		items=168;
+		items=170;
 		class Item0
 		{
 			position[]={4339.3457,226.45149,3824.2236};
@@ -10571,10 +10658,25 @@ class Mission
 			colorName="ColorWhite";
 			angle=-26.1;
 		};
+		class Item168
+		{
+			position[]={3908.3152,141.31674,7032.7119};
+			name="Entretien aérien_1";
+			text="Entretien armement aérien";
+			type="b_maint";
+			colorName="ColorCIV";
+			angle=-43.621498;
+		};
+		class Item169
+		{
+			position[]={2850.5427,78.678963,4457.5352};
+			name="b b";
+			type="KIA";
+		};
 	};
 	class Sensors
 	{
-		items=5;
+		items=6;
 		class Item0
 		{
 			position[]={3757.8921,8.8123646,7955.8838};
@@ -10615,7 +10717,7 @@ class Mission
 			position[]={4164.8613,157.30275,3292.0273};
 			a=7;
 			b=7;
-			angle=-298.02039;
+			angle=-298.01999;
 			rectangular=1;
 			activationBy="ANY";
 			repeating=1;
@@ -10661,6 +10763,25 @@ class Mission
 			text="Refill";
 			name="Refill_1_1_1";
 			expCond="(""LandVehicle"" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)";
+			expActiv="_xhandle= (thislist select 0) execVM ""server\functions\x_reload_gun.sqf"";";
+			class Effects
+			{
+			};
+		};
+		class Item5
+		{
+			position[]={3908.5869,141.34666,7032.27};
+			a=8;
+			b=8;
+			angle=-268.10999;
+			rectangular=1;
+			activationBy="ANY";
+			repeating=1;
+			interruptable=1;
+			age="UNKNOWN";
+			text="Refill";
+			name="RefillHeli_1_1";
+			expCond="(""Helicopter"" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)";
 			expActiv="_xhandle= (thislist select 0) execVM ""server\functions\x_reload_gun.sqf"";";
 			class Effects
 			{
