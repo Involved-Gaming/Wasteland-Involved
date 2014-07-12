@@ -64,7 +64,7 @@ FAR_HandleDamage_EH =
 		{
 			if (alive(vehicle _unit)) then			//if vehicle alive --> can eject
 			{
-				hint "Vehicule is alive, trying to eject you !";
+				//hint "Vehicule is alive, trying to eject you !";
 
 				_unit setDamage 0;
 				_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
@@ -74,6 +74,24 @@ FAR_HandleDamage_EH =
 				{
 					unAssignVehicle _unit;
 					_unit action ["eject", vehicle _unit];
+				};
+
+				// Reset gear data, combat abort timer, and revive stuff
+				if (_unit == player) then
+				{
+					playerData_gear = "";
+					combatTimestamp = -1;
+				};
+
+				if (isNil {_unit getVariable "cmoney"}) then { _unit setVariable ["cmoney", 0, true] };
+
+				// Drop money
+				if (_unit getVariable "cmoney" > 0) then
+				{
+					_m = createVehicle ["Land_Money_F", getPos _unit, [], 0.5, "CAN_COLLIDE"];
+					_m setVariable ["cmoney", _unit getVariable "cmoney", true];
+					_m setVariable ["owner", "world", true];
+					_unit setVariable ["cmoney", 0, true];
 				};
 
 				//TODO : Suppression automatique du stuff	--
@@ -89,7 +107,7 @@ FAR_HandleDamage_EH =
 	};
 	if (_isUnconscious == 1) then		// if unconscious, can't take any damage
 	{
-		diag_log "event handler damage unsconscious";
+		//diag_log "event handler damage unsconscious";
 		_amountOfDamage = 0;
 	};
 
@@ -148,7 +166,7 @@ FAR_Player_Unconscious =
 	_unit enableSimulation false;
 	_unit setVariable ["FAR_isUnconscious", 1, true];
 
-	diag_log "attente event handler hit part";
+	//diag_log "attente event handler hit part";
 	_unit allowDamage true;
 
 
