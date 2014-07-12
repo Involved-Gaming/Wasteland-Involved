@@ -34,5 +34,5 @@ if (_action == "action_release") then
 
 if (_action == "action_kill") then
 {
-	[] spawn IG_kill;
+	[cursorTarget] spawn IG_kill;
 };
