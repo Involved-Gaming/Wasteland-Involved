@@ -31,8 +31,6 @@ FAR_HandleDamage_EH =
 		//_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
 		_amountOfDamage = 0;
 
-		//--------------------------------------------------------
-		//TODO : Suppression automatique du stuff	--
 		// Reset gear data, combat abort timer, and revive stuff
 	/*
 		if (_unit == player) then
@@ -61,14 +59,13 @@ FAR_HandleDamage_EH =
 		} forEach call mf_inventory_all;
 	*/
 
-		//clear database from server files
+
+		//TODO : Suppression automatique du stuff	--
 		[[_unit],"fn_clearDatabaseUnconscious",false,false] spawn BIS_fnc_MP;
-		//--------------------------------------------------------
 
 		[_unit, _killer] spawn FAR_Player_Unconscious;
 	};
-
-	if (_isUnconscious == 1) then		// if unconscious, can't take any damage except from headshot
+	if (_isUnconscious == 1) then		// if unconscious, can't take any damage
 	{
 		_amountOfDamage = 0;
 	};
@@ -191,7 +188,7 @@ FAR_Player_Unconscious =
 		// [Debugging] Bleedout for AI
 		_bleedOut = time + FAR_BleedOut;
 
-		while { !isNull _unit && alive _unit && _unit getVariable "FAR_isUnconscious" == 1 && _unit getVariable "FAR_isStabilized" == 0 && (FAR_BleedOut <= 0 || time < _bleedOut) } do
+		while { !isNull _unit && alive _unit && _unit getVariable "FAR_isUnconscious" == 1 && _unit getVariable "FAR_isStabilized" == 0 && (FAR_BleedOut <= 0 || time < _bleedOut) && _unit getVariable "IG_headhit" == 0} do
 		{
 			sleep 0.5;
 		};
@@ -204,7 +201,7 @@ FAR_Player_Unconscious =
 		};
 
 		// AI bled out
-		if (FAR_BleedOut > 0 && {time > _bleedOut} && {_unit getVariable ["FAR_isStabilized",0] == 0}) then
+		if (FAR_BleedOut > 0 && {time > _bleedOut} && {_unit getVariable ["FAR_isStabilized",0] == 0} || _unit getVariable "IG_headhit" == 1) then
 		{
 			_unit setDamage 1;
 			_unit setVariable ["FAR_isUnconscious", 0, true];
