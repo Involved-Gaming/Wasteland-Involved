@@ -28,42 +28,51 @@ FAR_HandleDamage_EH =
 	if (alive _unit && _amountOfDamage >= 1 && _isUnconscious == 0) then
 	{
 		diag_log "event handler damage fall unconscious";
-		_unit setDamage 0;
-		_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
-		_amountOfDamage = 0;
 
-		// Reset gear data, combat abort timer, and revive stuff
-	/*
-		if (_unit == player) then
+		//Check if in vehicle *
+		if (vehicle _unit == _unit) then
 		{
-			playerData_gear = "";
-			combatTimestamp = -1;
-		};
+			_unit setDamage 0;
+			_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
+			_amountOfDamage = 0;
 
-		if (isNil {_unit getVariable "cmoney"}) then { _unit setVariable ["cmoney", 0, true] };
-
-		// Drop money
-		if (_unit getVariable "cmoney" > 0) then
-		{
-			_m = createVehicle ["Land_Money_F", _unit call fn_getPos3D, [], 0.5, "CAN_COLLIDE"];
-			_m setVariable ["cmoney", _unit getVariable "cmoney", true];
-			_m setVariable ["owner", "world", true];
-			_unit setVariable ["cmoney", 0, true];
-		};
-
-		//Drop items
-		{
-			for "_i" from 1 to (_x select 1) do
+			// Reset gear data, combat abort timer, and revive stuff
+		/*
+			if (_unit == player) then
 			{
-				(_x select 0) call mf_inventory_drop;
+				playerData_gear = "";
+				combatTimestamp = -1;
 			};
-		} forEach call mf_inventory_all;
-	*/
 
-		//TODO : Suppression automatique du stuff	--
-		[[_unit],"fn_clearDatabaseUnconscious",false,false] spawn BIS_fnc_MP;
+			if (isNil {_unit getVariable "cmoney"}) then { _unit setVariable ["cmoney", 0, true] };
 
-		[_unit, _killer] spawn FAR_Player_Unconscious;
+			// Drop money
+			if (_unit getVariable "cmoney" > 0) then
+			{
+				_m = createVehicle ["Land_Money_F", _unit call fn_getPos3D, [], 0.5, "CAN_COLLIDE"];
+				_m setVariable ["cmoney", _unit getVariable "cmoney", true];
+				_m setVariable ["owner", "world", true];
+				_unit setVariable ["cmoney", 0, true];
+			};
+
+			//Drop items
+			{
+				for "_i" from 1 to (_x select 1) do
+				{
+					(_x select 0) call mf_inventory_drop;
+				};
+			} forEach call mf_inventory_all;
+		*/
+
+			//TODO : Suppression automatique du stuff	--
+			[[_unit],"fn_clearDatabaseUnconscious",false,false] spawn BIS_fnc_MP;
+
+			[_unit, _killer] spawn FAR_Player_Unconscious;
+		}
+		else
+		{
+			_unit setDamage 1;
+		};
 	};
 	if (_isUnconscious == 1) then		// if unconscious, can't take any damage
 	{
@@ -97,19 +106,14 @@ FAR_Player_Unconscious =
 		titleText ["", "BLACK FADED"];
 	};
 
-	_inVehicule = 0;
 	// Eject unit if inside vehicle
 	while {vehicle _unit != _unit} do
 	{
 		unAssignVehicle _unit;
 		_unit action ["eject", vehicle _unit];
-		sleep 0.1;
-		_inVehicule = 1;
+		sleep 2;
 	};
-	if (_inVehicule == 1) then
-	{
-		_unit setPos [(getPos _unit) select 0 + 2, (getPos _unit) select 1 + 2, (getPos _unit) select 2];
-	};
+
 	_unit setDamage 0;
     _unit setVelocity [0,0,0];
     _unit allowDamage false;
