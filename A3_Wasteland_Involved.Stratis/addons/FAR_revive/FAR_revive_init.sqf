@@ -77,8 +77,10 @@ FAR_Player_Init =
 
 	// Clear event handler before adding it
 	player removeAllEventHandlers "HandleDamage";
+	player removeAllEventHandlers "Hitpart";
 
 	player addEventHandler ["HandleDamage", FAR_HandleDamage_EH];
+	player addEventHandler ["HitPart", IG_HandleHitPart_EH];
 	player addEventHandler
 	[
 		"Killed",
@@ -188,6 +190,7 @@ if (!FAR_Debugging || isMultiplayer) exitWith {};
 	if (!isPlayer _x) then
 	{
 		_x addEventHandler ["HandleDamage", FAR_HandleDamage_EH];
+		_x addEventHandler ["HitPart", IG_HandleHitPart_EH];
 		_x setVariable ["FAR_isUnconscious", 0, true];
 		_x setVariable ["FAR_isStabilized", 0, true];
 		_x setVariable ["FAR_isDragged", 0, true];

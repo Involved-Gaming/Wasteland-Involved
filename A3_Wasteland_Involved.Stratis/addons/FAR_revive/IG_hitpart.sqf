@@ -3,7 +3,7 @@
 
 */
 
-HandleHitPart_EH =
+IG_HandleHitPart_EH =
 {
 	private ["_unit", "_shooter", "_hitPart", "_causedBy", "_ammo", "_isUnconscious", "_isBleeding", "_isDown"];
 	_unit = ((_this select 0) select 0);
@@ -17,8 +17,12 @@ HandleHitPart_EH =
 
 	cutText [format ["\nHITPART !"], "PLAIN DOWN"];
 
-	if (format _hitPart == "head") then
+	if (_isUnconscious == 1) then
 	{
-		_unit setVariable ["IG_headhit", 1, true];			//Touché à la tète .... cause la mort
+		if (format _hitPart == "head") then
+		{
+			cutText [format ["\nHEADSHOT, dans ta gueule !"], "PLAIN DOWN"];
+			_unit setVariable ["IG_headhit", 1, true];			//Touché à la tète .... cause la mort
+		};
 	};
 };

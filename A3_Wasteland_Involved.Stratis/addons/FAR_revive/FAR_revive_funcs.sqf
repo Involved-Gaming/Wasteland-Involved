@@ -126,7 +126,7 @@ FAR_Player_Unconscious =
 	_unit enableSimulation false;
 	_unit setVariable ["FAR_isUnconscious", 1, true];
 
-	_EHhitpart = _unit addEventHandler ["HitPart", HandleHitPart_EH];
+	//_EHhitpart = _unit addEventHandler ["HitPart", HandleHitPart_EH];
 
 	// Call this code only on players
 	if (isPlayer _unit) then
