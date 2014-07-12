@@ -6,11 +6,11 @@ FAR_Player_Actions =
 	if (alive player && player isKindOf "Man") then
 	{
 		// addAction args: title, filename, (arguments, priority, showWindow, hideOnUse, shortcut, condition, positionInModel, radius, radiusView, showIn3D, available, textDefault, textToolTip)
-		player addAction ["<t color=""#336600"">" + "Réanimer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_revive"], 10, true, true, "", "call FAR_Check_Revive"];
-		player addAction ["<t color=""#FF6600"">" + "Stabiliser" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_stabilize"], 10, true, true, "", "call FAR_Check_Stabilize"];
-		player addAction ["<img image='client\icons\dead.png'/><t color=""#000000"">" + "Suicide" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_suicide"], 9, false, true, "", "call FAR_Check_Suicide"];
-		player addAction ["<t color=""#000066"">" + "Trainer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_drag"], 9, false, true, "", "call FAR_Check_Dragging"];
-		player addAction ["<img image='client\icons\dead.png'/><t color=""#C90000"">" + "Tuer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_kill"], 9, false, true, "", "call IG_Check_kill"];
+		player addAction ["<img image='client\icons\dead.paa'/><t color=""#00CC00"">" + "Réanimer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_revive"], 10, true, true, "", "call FAR_Check_Revive"];
+		player addAction ["<img image='client\icons\dead.paa'/><t color=""#FF9900"">" + "Stabiliser" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_stabilize"], 10, true, true, "", "call FAR_Check_Stabilize"];
+		player addAction ["<img image='client\icons\dead.paa'/><t color=""#FFFFFF"">" + "Suicide" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_suicide"], 9, false, true, "", "call FAR_Check_Suicide"];
+		player addAction ["<img image='client\icons\dead.paa'/><t color=""#0099FF"">" + "Trainer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_drag"], 9, false, true, "", "call FAR_Check_Dragging"];
+		player addAction ["<img image='client\icons\dead.paa'/><t color=""#FFFFFF"">" + "Tuer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_kill"], 9, false, true, "", "call IG_Check_kill"];
 	};
 };
 
@@ -49,20 +49,11 @@ FAR_HandleDamage_EH =
 			// Drop money
 			if (_unit getVariable "cmoney" > 0) then
 			{
-				_m = createVehicle ["Land_Money_F", _unit call fn_getPos3D, [], 0.5, "CAN_COLLIDE"];
+				_m = createVehicle ["Land_Money_F", getPos _unit, [], 0.5, "CAN_COLLIDE"];
 				_m setVariable ["cmoney", _unit getVariable "cmoney", true];
 				_m setVariable ["owner", "world", true];
 				_unit setVariable ["cmoney", 0, true];
 			};
-
-			//Drop items
-			{
-				for "_i" from 1 to (_x select 1) do
-				{
-					(_x select 0) call mf_inventory_drop;
-				};
-			} forEach call mf_inventory_all;
-
 
 			//TODO : Suppression automatique du stuff	--
 			[[_unit],"fn_clearDatabaseUnconscious",false,false] spawn BIS_fnc_MP;
