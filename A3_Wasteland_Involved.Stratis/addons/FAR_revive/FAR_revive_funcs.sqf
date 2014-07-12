@@ -29,7 +29,7 @@ FAR_HandleDamage_EH =
 	{
 		diag_log "event handler damage fall unconscious";
 
-		//Check if in vehicle *
+		//Check if in vehicle
 		if (vehicle _unit == _unit) then
 		{
 			_unit setDamage 0;
@@ -69,9 +69,33 @@ FAR_HandleDamage_EH =
 
 			[_unit, _killer] spawn FAR_Player_Unconscious;
 		}
-		else
+		else		// in vehicle....
 		{
-			_unit setDamage 1;
+			if ( alive (vehicle _unit) == true ) then			//if vehicle alive --> can eject
+			{
+				hint "Vehicule alive, trying to eject you !";
+
+				_unit setDamage 0;
+				_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
+				_amountOfDamage = 0;
+
+				while {vehicle _unit != _unit} do
+				{
+					unAssignVehicle _unit;
+					_unit action ["eject", vehicle _unit];
+					sleep 2;
+				};
+
+				//TODO : Suppression automatique du stuff	--
+				[[_unit],"fn_clearDatabaseUnconscious",false,false] spawn BIS_fnc_MP;
+
+				[_unit, _killer] spawn FAR_Player_Unconscious;
+
+			}
+			else		//Vehicle destroyed ( sorry but you have to die !)
+			{
+				_unit setDamage 1;
+			};
 		};
 	};
 	if (_isUnconscious == 1) then		// if unconscious, can't take any damage
@@ -166,7 +190,6 @@ FAR_Player_Unconscious =
 		// Player bled out -- Cas de la mort
 		if (FAR_BleedOut > 0 && {time > _bleedOut} && {_unit getVariable ["FAR_isStabilized",0] == 0} || _unit getVariable "IG_headhit" == 1) then
 		{
-			_unit removeEventHandler ["HitPart", _EHhitpart];
 			_unit setDamage 1;
 		}
 		else
@@ -193,7 +216,6 @@ FAR_Player_Unconscious =
 
 			_unit playMove "amovppnemstpsraswrfldnon";
 			_unit playMove "";
-			_unit removeEventHandler ["HitPart", _EHhitpart];
 		};
 	}
 	else
