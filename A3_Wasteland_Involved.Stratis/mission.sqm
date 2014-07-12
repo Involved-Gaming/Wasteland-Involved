@@ -1697,11 +1697,7 @@ class Mission
 	};
 	class Vehicles
 	{
-<<<<<<< HEAD
-		items=620;
-=======
 		items=772;
->>>>>>> origin/Dev
 		class Item0
 		{
 			position[]={4484.2783,113.72083,6777.0884};
@@ -9062,223 +9058,108 @@ class Mission
 		};
 		class Item760
 		{
-<<<<<<< HEAD
-			position[]={2632.8071,59.493984,726.89148};
-			azimut=223.92967;
-			offsetY=5;
-			id=701;
-=======
 			position[]={4174.71,156.93108,3289.3711};
 			azimut=-208.97144;
 			id=855;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
 			skill=0.60000002;
 		};
 		class Item761
 		{
-<<<<<<< HEAD
-			position[]={2632.7493,59.501038,726.79016};
-			azimut=43.929741;
-			offsetY=5;
-			id=702;
-=======
 			position[]={4161.959,156.2886,3282.6016};
 			azimut=-208.97144;
 			id=856;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
 			skill=0.60000002;
 		};
 		class Item762
 		{
-<<<<<<< HEAD
-			position[]={2684.0471,59.660999,678.09552};
-			azimut=223.92967;
-			offsetY=5;
-			id=703;
-			side="EMPTY";
-			vehicle="UserTexture10m_F";
-			skill=0.2;
-			init="this setObjectTexture [0, ""images\billboard.jpg""]";
-		};
-		class Item609
-		{
-			position[]={2683.9897,59.649773,677.99426};
-			azimut=43.929741;
-			offsetY=5;
-			id=704;
-			side="EMPTY";
-			vehicle="UserTexture10m_F";
-			skill=0.2;
-			init="this setObjectTexture [0, ""images\billboard.jpg""]";
-		};
-		class Item610
-		{
-			position[]={2673.9158,61.189789,670.03723};
-			azimut=33.929741;
-			special="NONE";
-			id=705;
-=======
 			position[]={3756.6865,8.5884256,7958.5313};
 			id=857;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="Land_Radar_F";
 			skill=0.60000002;
 			init="this addEventHandler['handledamage',{false}];";
 		};
-<<<<<<< HEAD
-		class Item611
-		{
-			position[]={4153.9644,157.3782,3290.647};
-			azimut=-64.19149;
-			id=706;
-=======
 		class Item763
 		{
 			position[]={3190.9663,3.7327845,6830.9917};
 			azimut=-90.833488;
 			id=858;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
-		class Item612
-		{
-			position[]={4160.166,157.31705,3290.8245};
-			azimut=-64.19149;
-			id=707;
-=======
 		class Item764
 		{
 			position[]={3196.4292,3.4395201,6833.9316};
 			azimut=-90.833488;
 			id=859;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
-		class Item613
-		{
-			position[]={4166.9858,157.11403,3290.9719};
-			azimut=-64.19149;
-			id=708;
-=======
 		class Item765
 		{
 			position[]={3202.4604,3.6940551,6837.1211};
 			azimut=-90.833488;
 			id=860;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
-		class Item614
-		{
-			position[]={4166.8628,158.52304,3304.728};
-			azimut=-64.19149;
-			id=709;
-=======
 		class Item766
 		{
 			position[]={3196.1807,1.6243372,6849.3618};
 			azimut=-90.833488;
 			id=861;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
-		class Item615
-		{
-			position[]={4153.5586,158.22334,3304.626};
-			azimut=-64.19149;
-			id=710;
-=======
 		class Item767
 		{
 			position[]={3184.335,1.0694605,6843.3062};
 			azimut=-90.833488;
 			id=862;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
-		class Item616
-		{
-			position[]={4152.6987,158.1879,3304.6641};
-			azimut=-182.32947;
-			id=711;
-=======
 		class Item768
 		{
 			position[]={3183.5498,1.073457,6842.9541};
 			azimut=-208.97144;
 			id=863;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
-		class Item617
-		{
-			position[]={4166.5322,158.56125,3305.042};
-			azimut=-182.32947;
-			id=712;
-=======
 		class Item769
 		{
 			position[]={3195.7456,1.572401,6849.4946};
 			azimut=-208.97144;
 			id=864;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
-		class Item618
-		{
-			position[]={4167.5313,157.11774,3291.0903};
-			azimut=-182.32947;
-			id=713;
-=======
 		class Item770
 		{
 			position[]={3202.8936,3.694314,6837.4722};
 			azimut=-208.97144;
 			id=865;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
 			skill=0.60000002;
 		};
-<<<<<<< HEAD
-		class Item619
-		{
-			position[]={4153.0986,157.38477,3290.7573};
-			azimut=-182.32947;
-			id=714;
-=======
 		class Item771
 		{
 			position[]={3190.1426,3.7619128,6830.7026};
 			azimut=-208.97144;
 			id=866;
->>>>>>> origin/Dev
 			side="EMPTY";
 			vehicle="Land_FloodLight_F";
 			skill=0.60000002;
