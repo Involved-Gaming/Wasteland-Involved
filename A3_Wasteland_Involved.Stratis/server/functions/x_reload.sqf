@@ -2,7 +2,7 @@ _object = _this;
 
 _type = typeOf _object;
 
-x_reload_time_factor = 5.00;
+x_reload_time_factor = 10.00;
 
 _object setVehicleAmmo 1;
 
@@ -19,7 +19,7 @@ if (count _magazines > 0) then {
 		};
 	} forEach _magazines;
 	{
-		_object vehicleChat format ["Reloading %1", _x];
+		_object vehicleChat format ["Rechargement %1", _x];
 		sleep x_reload_time_factor;
 		_object addMagazine _x;
 	} forEach _magazines;
@@ -40,7 +40,7 @@ if (_count > 0) then {
 			};
 		} forEach _magazines;
 		{
-			_object vehicleChat format ["Reloading %1", _x];
+			_object vehicleChat format ["Rechargement %1", _x];
 			sleep x_reload_time_factor;
 			_object addMagazine _x;
 			sleep x_reload_time_factor;
@@ -58,7 +58,7 @@ if (_count > 0) then {
 					};
 				} forEach _magazines;
 				{
-					_object vehicleChat format ["Reloading %1", _x]; 
+					_object vehicleChat format ["Rechargement %1", _x];
 					sleep x_reload_time_factor;
 					_object addMagazine _x;
 					sleep x_reload_time_factor;
@@ -70,16 +70,16 @@ if (_count > 0) then {
 _object setVehicleAmmo 1;	// Reload turrets / drivers magazine
 
 sleep x_reload_time_factor;
-_object vehicleChat "Repairing... Please Hold On to your guns";
+_object vehicleChat "Réparation... Please Hold On to your guns";
 _object setDamage 0;
 sleep x_reload_time_factor;
-_object vehicleChat "Refueling... Gas Isn't Cheap yaknow";
+_object vehicleChat "Plein du véhicule... Gas Isn't Cheap yaknow";
 while {fuel _object < 0.99} do {
 	//_object setFuel ((fuel _vehicle + 0.1) min 1);
 	_object setFuel 1;
 	sleep 0.01;
 };
 sleep x_reload_time_factor;
-_object vehicleChat format ["%1 is ready...", _type];
+_object vehicleChat format ["%1 est prêt ...", _type];
 
 if (true) exitWith {};
