@@ -28,13 +28,46 @@ FAR_HandleDamage_EH =
 	if (alive _unit && _amountOfDamage >= 1 && _isUnconscious == 0) then
 	{
 		_unit setDamage 0;
-		_unit allowDamage false;
+		//_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
 		_amountOfDamage = 0;
 
+		//--------------------------------------------------------
 		//TODO : Suppression automatique du stuff	--
+		// Reset gear data, combat abort timer, and revive stuff
+		if (_unit == player) then
+		{
+			playerData_gear = "";
+			combatTimestamp = -1;
+		};
+
+		if (isNil {_unit getVariable "cmoney"}) then { _unit setVariable ["cmoney", 0, true] };
+
+		// Drop money
+		if (_unit getVariable "cmoney" > 0) then
+		{
+			_m = createVehicle ["Land_Money_F", _unit call fn_getPos3D, [], 0.5, "CAN_COLLIDE"];
+			_m setVariable ["cmoney", _unit getVariable "cmoney", true];
+			_m setVariable ["owner", "world", true];
+			_unit setVariable ["cmoney", 0, true];
+		};
+
+		//Drop items
+		{
+			for "_i" from 1 to (_x select 1) do
+			{
+				(_x select 0) call mf_inventory_drop;
+			};
+		} forEach call mf_inventory_all;
+
+		//clear database from server files
 		[[_unit],"fn_clearDatabaseUnconscious",false,false] spawn BIS_fnc_MP;
+		//--------------------------------------------------------
 
 		[_unit, _killer] spawn FAR_Player_Unconscious;
+	};
+	if (_isUnconscious == 1) then		// if unconscious, can't take any damage except from headshot
+	{
+		_amountOfDamage = 0;
 	};
 
 	_amountOfDamage
@@ -74,7 +107,7 @@ FAR_Player_Unconscious =
 
 	_unit setDamage 0;
     _unit setVelocity [0,0,0];
-    _unit allowDamage false;
+    //_unit allowDamage false;
 	_unit setCaptive true;
     _unit playMove "AinjPpneMstpSnonWrflDnon_rolltoback";
 
@@ -93,7 +126,7 @@ FAR_Player_Unconscious =
 	_unit enableSimulation false;
 	_unit setVariable ["FAR_isUnconscious", 1, true];
 
-	_EHhitpart = _unit addEventHandler ["HitPart", {[] execVM "addons\FAR_revive\IG_hitpart.sqf"}];
+	_EHhitpart = _unit addEventHandler ["HitPart", HandleHitPart_EH];
 
 	// Call this code only on players
 	if (isPlayer _unit) then
@@ -254,7 +287,7 @@ FAR_Drag =
 	publicVariable "FAR_isDragging_EH";
 
 	// Add release action and save its id so it can be removed
-	_id = player addAction ["<t color=""#C90000"">" + "Relacher" + "</t>", "FAR_revive\FAR_handleAction.sqf", ["action_release"], 10, true, true, "", "true"];
+	_id = player addAction ["<t color=""#C90000"">" + "Relacher" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_release"], 10, true, true, "", "true"];
 
 	hint "Appuyez sur C si vous ne pouvez pas bouger";
 

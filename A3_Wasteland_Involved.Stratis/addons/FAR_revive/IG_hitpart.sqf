@@ -15,6 +15,8 @@ HandleHitPart_EH =
 	_isUnconscious = _unit getVariable "FAR_isUnconscious";
 	_damage = (damage _unit);
 
+	//cutText [format ["\nHITPART !"], "PLAIN DOWN"];
+
 	if (format _hitPart == "head") then
 	{
 		_unit setVariable ["IG_headhit", 1, true];			//Touché à la tète .... cause la mort
