@@ -1691,7 +1691,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="VehStore4";
-					init="[this, 'VehStore', 4] execVM 'common\functions\setupStoreNPC.sqf'";
+					init="[this, 'VehStore', 4] execVM 'server\functions\setupStoreNPC.sqf'";
 				};
 			};
 		};
