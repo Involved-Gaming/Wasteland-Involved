@@ -102,7 +102,7 @@ FAR_Player_Unconscious =
 	{
 		unAssignVehicle _unit;
 		_unit action ["eject", vehicle _unit];
-
+		_unit setPos ( (getPos _unit) select 0 + 2, (getPos _unit) select 1 + 2, (getPos _unit) select 2);
 		sleep 2;
 	};
 
@@ -127,9 +127,9 @@ FAR_Player_Unconscious =
 	_unit enableSimulation false;
 	_unit setVariable ["FAR_isUnconscious", 1, true];
 
-	diag_log "Ajout event handler hit part";
+	diag_log "attente event handler hit part";
 	_unit allowDamage true;
-	_EHhitpart = _unit addEventHandler ["HitPart", IG_HandleHitPart_EH];
+
 
 	// Call this code only on players
 	if (isPlayer _unit) then

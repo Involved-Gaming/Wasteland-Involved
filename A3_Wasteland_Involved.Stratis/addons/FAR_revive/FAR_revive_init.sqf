@@ -77,7 +77,7 @@ FAR_Player_Init =
 
 	// Clear event handler before adding it
 	player removeAllEventHandlers "HandleDamage";
-	player removeAllEventHandlers "Hitpart";
+	player removeAllEventHandlers "HitPart";
 
 	player addEventHandler ["HandleDamage", FAR_HandleDamage_EH];
 	player addEventHandler ["HitPart", IG_HandleHitPart_EH];
