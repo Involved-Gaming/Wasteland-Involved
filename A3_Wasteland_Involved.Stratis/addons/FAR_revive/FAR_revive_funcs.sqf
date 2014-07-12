@@ -34,6 +34,7 @@ FAR_HandleDamage_EH =
 		//--------------------------------------------------------
 		//TODO : Suppression automatique du stuff	--
 		// Reset gear data, combat abort timer, and revive stuff
+	/*
 		if (_unit == player) then
 		{
 			playerData_gear = "";
@@ -58,6 +59,7 @@ FAR_HandleDamage_EH =
 				(_x select 0) call mf_inventory_drop;
 			};
 		} forEach call mf_inventory_all;
+	*/
 
 		//clear database from server files
 		[[_unit],"fn_clearDatabaseUnconscious",false,false] spawn BIS_fnc_MP;
@@ -65,6 +67,7 @@ FAR_HandleDamage_EH =
 
 		[_unit, _killer] spawn FAR_Player_Unconscious;
 	};
+
 	if (_isUnconscious == 1) then		// if unconscious, can't take any damage except from headshot
 	{
 		_amountOfDamage = 0;

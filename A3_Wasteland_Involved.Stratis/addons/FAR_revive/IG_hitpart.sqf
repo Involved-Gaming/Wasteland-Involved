@@ -15,7 +15,7 @@ HandleHitPart_EH =
 	_isUnconscious = _unit getVariable "FAR_isUnconscious";
 	_damage = (damage _unit);
 
-	//cutText [format ["\nHITPART !"], "PLAIN DOWN"];
+	cutText [format ["\nHITPART !"], "PLAIN DOWN"];
 
 	if (format _hitPart == "head") then
 	{
