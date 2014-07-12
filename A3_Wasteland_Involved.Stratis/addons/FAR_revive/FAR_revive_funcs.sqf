@@ -8,9 +8,9 @@ FAR_Player_Actions =
 		// addAction args: title, filename, (arguments, priority, showWindow, hideOnUse, shortcut, condition, positionInModel, radius, radiusView, showIn3D, available, textDefault, textToolTip)
 		player addAction ["<t color=""#336600"">" + "Réanimer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_revive"], 10, true, true, "", "call FAR_Check_Revive"];
 		player addAction ["<t color=""#FF6600"">" + "Stabiliser" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_stabilize"], 10, true, true, "", "call FAR_Check_Stabilize"];
-		player addAction ["<t color=""#000000"">" + "Suicide" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_suicide"], 9, false, true, "", "call FAR_Check_Suicide"];
+		player addAction ["<img image='client\icons\dead.png'/><t color=""#000000"">" + "Suicide" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_suicide"], 9, false, true, "", "call FAR_Check_Suicide"];
 		player addAction ["<t color=""#000066"">" + "Trainer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_drag"], 9, false, true, "", "call FAR_Check_Dragging"];
-		player addAction ["<t color=""#C90000"">" + "Tuer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_kill"], 9, false, true, "", "call IG_Check_kill"];
+		player addAction ["<img image='client\icons\dead.png'/><t color=""#C90000"">" + "Tuer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_kill"], 9, false, true, "", "call IG_Check_kill"];
 	};
 };
 
@@ -38,7 +38,6 @@ FAR_HandleDamage_EH =
 			_amountOfDamage = 0;
 
 			// Reset gear data, combat abort timer, and revive stuff
-
 			if (_unit == player) then
 			{
 				playerData_gear = "";
