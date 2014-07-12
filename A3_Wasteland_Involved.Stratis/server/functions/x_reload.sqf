@@ -4,8 +4,6 @@ _type = typeOf _object;
 
 x_reload_time_factor = 10.00;
 
-_object setVehicleAmmo 1;
-
 _object vehicleChat format ["Entretien du véhicule %1... Merci de patientez...", _type];
 
 _magazines = getArray(configFile >> "CfgVehicles" >> _type >> "magazines");
