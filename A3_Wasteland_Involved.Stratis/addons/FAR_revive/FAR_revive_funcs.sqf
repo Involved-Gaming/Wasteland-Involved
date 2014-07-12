@@ -6,11 +6,11 @@ FAR_Player_Actions =
 	if (alive player && player isKindOf "Man") then
 	{
 		// addAction args: title, filename, (arguments, priority, showWindow, hideOnUse, shortcut, condition, positionInModel, radius, radiusView, showIn3D, available, textDefault, textToolTip)
-		player addAction ["<img image='client\icons\dead.paa'/><t color=""#00CC00"">" + "Réanimer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_revive"], 10, true, true, "", "call FAR_Check_Revive"];
-		player addAction ["<img image='client\icons\dead.paa'/><t color=""#FF9900"">" + "Stabiliser" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_stabilize"], 10, true, true, "", "call FAR_Check_Stabilize"];
-		player addAction ["<img image='client\icons\dead.paa'/><t color=""#FFFFFF"">" + "Suicide" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_suicide"], 9, false, true, "", "call FAR_Check_Suicide"];
-		player addAction ["<img image='client\icons\dead.paa'/><t color=""#0099FF"">" + "Trainer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_drag"], 9, false, true, "", "call FAR_Check_Dragging"];
-		player addAction ["<img image='client\icons\dead.paa'/><t color=""#FFFFFF"">" + "Tuer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_kill"], 9, false, true, "", "call IG_Check_kill"];
+		player addAction ["<img image='client\icons\rea.paa'/><t color=""#FF0000""> " + "Réanimer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_revive"], 10, true, true, "", "call FAR_Check_Revive"];
+		player addAction ["<img image='client\icons\stab.paa'/><t color=""#FF9900""> " + "Stabiliser" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_stabilize"], 10, true, true, "", "call FAR_Check_Stabilize"];
+		player addAction ["<img image='client\icons\poison.paa'/><t color=""#00CC00""> " + "Suicide" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_suicide"], 9, false, true, "", "call FAR_Check_Suicide"];
+		player addAction ["<img image='client\icons\hand.paa'/><t color=""#0099FF""> " + "Trainer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_drag"], 9, false, true, "", "call FAR_Check_Dragging"];
+		player addAction ["<img image='client\icons\dead.paa'/><t color=""#FFFFFF""> " + "Tuer" + "</t>", "addons\FAR_revive\FAR_handleAction.sqf", ["action_kill"], 9, false, true, "", "call IG_Check_kill"];
 	};
 };
 

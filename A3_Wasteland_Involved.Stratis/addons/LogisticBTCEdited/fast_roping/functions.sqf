@@ -47,7 +47,6 @@ COMFA_parajump=
 	if (player == _unit ) then //local à un joueur !!
 	{
 
-
 	_markerName= "pack"+name _unit;
 	_veh = vehicle _unit;			//memoire vehicule
 	_pack = unitBackpack _unit;		//memoire du pack
@@ -57,7 +56,7 @@ COMFA_parajump=
 	unassignVehicle (_unit); // ejection véhicule
 	_unit action ["EJECT",_veh];
 
-		sleep 1;
+	sleep 1;
 	_markerPack = createMarkerLocal [_markerName, getPos _unit]; 	//add by Krisscut //add marker that follow the object
 
 	//_marker= createMarkerLocal [Marker1, position player ]

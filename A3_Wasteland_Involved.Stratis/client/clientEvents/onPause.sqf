@@ -17,19 +17,20 @@ with missionNamespace do
 
 	if (alive player && !isNil "_getPublicVar" && !isNil "_isConfigOn") then
 	{
+		_enableButtons =
+			{
+				_display = findDisplay 49;
+				if (!isNull _display) then
+				{
+					(_display displayCtrl 104) ctrlEnable _this; // Abort
+					(_display displayCtrl 1010) ctrlEnable _this; // Respawn
+				};
+			};
+
 		if (["A3W_playerSaving"] call _isConfigOn &&
 		   {["playerSetupComplete", false] call _getPublicVar} &&
 		   {!(["playerSpawning", false] call _getPublicVar)} && (player getVariable "FAR_isUnconscious") == 0) then
 		{
-			_enableButtons =
-				{
-					_display = findDisplay 49;
-					if (!isNull _display) then
-					{
-						(_display displayCtrl 104) ctrlEnable _this; // Abort
-						(_display displayCtrl 1010) ctrlEnable _this; // Respawn
-					};
-				};
 
 			_searchEnnemyPlayers =
 				{
@@ -201,6 +202,11 @@ with missionNamespace do
 					with missionNamespace do { [true] spawn fn_savePlayerData };
 				};
 			};
+		};
+		if (player getVariable "FAR_isUnconscious" == 1) then
+		{
+			false call _enableButtons;
+			cutText [format ["\nImpossible de quitter du jeu lorsque vous êtes à terre, suicidez-vous avant ! "], "PLAIN DOWN"];
 		};
 	};
 };

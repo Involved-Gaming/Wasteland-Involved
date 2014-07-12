@@ -1,5 +1,5 @@
 
-diag_log "DEBUG ------------- Entree Info.sqf ";
+//diag_log "DEBUG ------------- Entree Info.sqf ";
 waitUntil {!(isNull (findDisplay 46))};
 disableSerialization;
 
@@ -7,7 +7,7 @@ _rscLayer = "agnStatusBar" call BIS_fnc_rscLayer;
 _rscLayer cutRsc["agnStatusBar","PLAIN"];
 
 
-diag_log "DEBUG ------------- Entrée spawn Info.sqf ";
+//diag_log "DEBUG ------------- Entrée spawn Info.sqf ";
 [] spawn {
 	sleep 5;
 	_statusText = "Serveur Involved Gaming";
