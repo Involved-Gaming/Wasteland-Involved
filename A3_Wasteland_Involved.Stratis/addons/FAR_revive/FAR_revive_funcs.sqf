@@ -28,7 +28,7 @@ FAR_HandleDamage_EH =
 	if (alive _unit && _amountOfDamage >= 1 && _isUnconscious == 0) then
 	{
 		_unit setDamage 0;
-		//_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
+		_unit allowDamage false;				//Gestion par le handle damage lorsque la personne est inconsciente --> supprime les dégats
 		_amountOfDamage = 0;
 
 		// Reset gear data, combat abort timer, and revive stuff
@@ -106,7 +106,7 @@ FAR_Player_Unconscious =
 
 	_unit setDamage 0;
     _unit setVelocity [0,0,0];
-    //_unit allowDamage false;
+    _unit allowDamage false;
 	_unit setCaptive true;
     _unit playMove "AinjPpneMstpSnonWrflDnon_rolltoback";
 
@@ -125,6 +125,7 @@ FAR_Player_Unconscious =
 	_unit enableSimulation false;
 	_unit setVariable ["FAR_isUnconscious", 1, true];
 
+	_unit allowDamage true;
 	_EHhitpart = _unit addEventHandler ["HitPart", IG_HandleHitPart_EH];
 
 	// Call this code only on players
