@@ -30,6 +30,20 @@ if (!isNull _object && {local _object}) then
 		detach _chute;
 		sleep 0.1;
 		_object attachTo [_chute,[0,0,0]];
+
+		_smoke        = "SmokeshellBlue" createVehicle position _object;
+		_smoke attachto [_object,[0,0,0]];
+		_chem         = "Chemlight_blue" createVehicle position _object;
+		_chem attachto [_object,[0,0,0]];
+
+		/*
+		_heigh = 0;
+		while {((getPosATL _chute) select 2) > 8} do {
+			sleep 1;
+			_heigh = (getPosATL _chute) select 2;
+		};
+		detach _dropped;
+		*/
 	}
 	else
 	{

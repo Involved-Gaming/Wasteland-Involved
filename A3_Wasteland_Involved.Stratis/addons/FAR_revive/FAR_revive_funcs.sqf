@@ -97,15 +97,19 @@ FAR_Player_Unconscious =
 		titleText ["", "BLACK FADED"];
 	};
 
+	_inVehicule = 0;
 	// Eject unit if inside vehicle
 	while {vehicle _unit != _unit} do
 	{
 		unAssignVehicle _unit;
 		_unit action ["eject", vehicle _unit];
-		_unit setPos ( (getPos _unit) select 0 + 2, (getPos _unit) select 1 + 2, (getPos _unit) select 2);
 		sleep 2;
+		_inVehicule = 1;
 	};
-
+	if (_inVehicule == 1) then
+	{
+		_unit setPos [(getPos _unit) select 0 + 2, (getPos _unit) select 1 + 2, (getPos _unit) select 2];
+	};
 	_unit setDamage 0;
     _unit setVelocity [0,0,0];
     _unit allowDamage false;
