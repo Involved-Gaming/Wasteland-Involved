@@ -11,18 +11,16 @@ TODO list :
 - Hud plus sympa ( Couleur en orange ) -> logo sur menu
 - Modifier & ajouter slot donnateur
 - Coûts armes-véhicules
-- Ajouter des textures fun
-
+- Ajouter des textures fun (hélico involved + tour rebelle façon KoH)
 - Faire pop plus d'arme & JVN dans les maisons, villages
 - Bogue de mort instantané
 - Faire payer le ravitaillement, armement, etc
 - Ajouter indications héliports etc dans des notes 
 - Statistiques avancées sur le déroulement de la partie façon sa-matra.
-
 - Soin seulement si trousse de soin et / ou slot médic
 - Unifier les repars kit & kit de rez (Actuellement deux sur le serveurs)
 
-En cours de dev:
+En cours de dev :
 
 	[AJOUT] 	Intro involved (Altis)	+ musique (très peu fort, et courte)
 	[FIX] 		Ajouter zone fix pour repar, reload et fuel zone. [A voir si necessaire]
@@ -31,7 +29,7 @@ En cours de dev:
 	- Faire en sorte que ce soit que entre gang. [A voir si necessaire]
 	
 
-	Fait : 
+Fait : 
 
 	[AJOUT] 	Empecher la deconnexion si personnel à proximité 
 	[AJOUT]		Système de revive
