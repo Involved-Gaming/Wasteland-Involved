@@ -100,6 +100,12 @@ class CfgSounds
     sound[] = {"\sounds\houseunlock.ogg", 0.10, 1};
     titles[] = {};
   };
+  class clavier
+  {
+    name = "clavier";
+    sound[] = {"\sounds\clavier.ogg", 0.10, 1};
+    titles[] = {};
+  };
 };
 
 
