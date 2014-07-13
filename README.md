@@ -21,6 +21,11 @@ TO DO LIST :
 - Soin seulement si trousse de soin et / ou slot médic
 - Unifier les repars kit & kit de rez (Actuellement deux sur le serveurs)
 
+- Rajout de missions 
+	- Desarmoçage de caisses piegees. 
+			- http://s1download-universal-soundbank.com/mp3/sounds/3497.mp3
+			- http://s1download-universal-soundbank.com/mp3/sounds/3498.mp3
+
 EN COURS DE DEV :
 -----------------
 

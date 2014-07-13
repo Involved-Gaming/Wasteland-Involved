@@ -267,7 +267,7 @@ FAR_HandleRevive =
 
 		_target setVariable ["FAR_isUnconscious", 0, true];
 		_target setVariable ["FAR_isDragged", 0, true];
-		player say3D "defibrillateur";
+		playSound3D ["\sounds\defibrillateur.ogg", player, false, getPos player, 1, 1, 50];
 		sleep 6;
 
 		// [Debugging] Code below is only relevant if revive script is enabled for AI

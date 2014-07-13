@@ -103,7 +103,19 @@ class CfgSounds
   class clavier
   {
     name = "clavier";
-    sound[] = {"\sounds\clavier.ogg", 0.5, 1};
+    sound[] = {"\sounds\clavier.ogg", 0.1, 1};
+    titles[] = {};
+  };
+  class statique1
+  {
+    name = "statique1";
+    sound[] = {"\sounds\statique1.ogg", 0.5, 1};
+    titles[] = {};
+  };
+  class statique2
+  {
+    name = "statique2";
+    sound[] = {"\sounds\statique2.ogg", 0.5, 1};
     titles[] = {};
   };
 };

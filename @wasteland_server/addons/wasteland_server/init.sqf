@@ -1,6 +1,6 @@
 #define __CONST__(var1,var2) var1 = compileFinal (if(typeName var2 == "STRING") then {var2} else {str(var2)})
 
-diag_log "=======INITIALIZING WASTELAND_SERVER=======";
+diag_log "=======INITIALIZING WASTELAND_SERVER MOD=======";
 
 __CONST__(LIFE_SCHEMA_NAME,"'arma3life'");//CHANGE THIS IF YOUR DATABASE IS NOT CALLED ARMA3LIFE KEEP THE ' '
 publicVariable "LIFE_SCHEMA_NAME";
