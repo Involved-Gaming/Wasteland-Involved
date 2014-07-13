@@ -57,3 +57,81 @@ class RscTitles
 	#include "client\systems\playerMenu\dialog\welcome.hpp"
 	#include "monitor\info.hpp"
 };
+
+
+class CfgSounds
+{
+  sounds[] = {};
+
+  class defibrillateur {
+    name = "defibrillateur";
+    sound[] = {"\sounds\defibrillateur.ogg", 0.25, 1};
+    titles[] = {};
+  };
+
+  class Bankalarm
+  {
+    name = "bankalarm";
+    sound[] = {"\sounds\bankalarm.ogg", 0.95, 1};
+    titles[] = {};
+  };
+
+  class Eat
+  {
+    name = "eat";
+    sound[] = {"\sounds\eat.ogg", 0.95, 0.95};
+    titles[] = {};
+  };
+  class Intro
+  {
+    name = "Intro";
+    sound[] = {"\sounds\Intro.ogg", 0.10, 1};
+    titles[] = {};
+  };
+  class houselock
+  {
+    name = "houselock";
+    sound[] = {"\sounds\houselock.ogg", 0.10, 1};
+    titles[] = {};
+  };
+  class houseunlock
+  {
+    name = "houseunlock";
+    sound[] = {"\sounds\houseunlock.ogg", 0.10, 1};
+    titles[] = {};
+  };
+};
+
+
+class CfgDebriefing
+{
+	class NotWhitelisted
+	{
+		title = "Mission Failed";
+		subtitle = "You are not white-listed to use this slot";
+		description = "You are not allowed to use this slot because you do not have the appropriate permissions, try another slot.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0.3,0.6,1};
+	};
+
+		class NotPremium
+	{
+		title = "Echec de la Mission";
+		subtitle = "Vous n'êtes pas autorisé a utiliser ce slot";
+		description = "Vous n'êtes pas autorisé à utiliser ce slot parce que vous n'êtes pas membre premium grade 2, essayez un autre emplacement";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0.3,0.6,1};
+	};
+
+	class scriptKiddie
+	{
+		title = "No more cancer";
+		subtitle = "POWNED BY BLOOPIS SCRIPT KIDDIE ;)";
+		description = "TRY HARDER AND GET SOME PROGRAMMING SKILLZ, KID";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0.3,0.6,1};
+	};
+};
