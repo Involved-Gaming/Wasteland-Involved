@@ -3,7 +3,8 @@
 
 Serveur involved Wasteland Involved-gaming.com
 
-TODO list : 
+TO DO LIST :
+------------
 
 - FPS viewer problème anti-cheat?
 - Ajouter un anti duplication d'argent.
@@ -20,7 +21,8 @@ TODO list :
 - Soin seulement si trousse de soin et / ou slot médic
 - Unifier les repars kit & kit de rez (Actuellement deux sur le serveurs)
 
-En cours de dev :
+EN COURS DE DEV :
+-----------------
 
 	[AJOUT] 	Intro involved (Altis)	+ musique (très peu fort, et courte)
 	[FIX] 		Ajouter zone fix pour repar, reload et fuel zone. [A voir si necessaire]
@@ -29,7 +31,8 @@ En cours de dev :
 	- Faire en sorte que ce soit que entre gang. [A voir si necessaire]
 	
 
-Fait : 
+CHANGELOG :
+-----------
 
 	[AJOUT] 	Empecher la deconnexion si personnel à proximité 
 	[AJOUT]		Système de revive
