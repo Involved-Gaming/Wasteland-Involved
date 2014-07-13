@@ -65,7 +65,7 @@ class CfgSounds
 
   class defibrillateur {
     name = "defibrillateur";
-    sound[] = {"\sounds\defibrillateur.ogg", 0.25, 1};
+    sound[] = {"\sounds\defibrillateur.ogg", 0.5, 1};
     titles[] = {};
   };
 
@@ -103,7 +103,7 @@ class CfgSounds
   class clavier
   {
     name = "clavier";
-    sound[] = {"\sounds\clavier.ogg", 0.10, 1};
+    sound[] = {"\sounds\clavier.ogg", 0.5, 1};
     titles[] = {};
   };
 };
