@@ -57,7 +57,7 @@ if (isServer) then
 	diag_log "WASTELAND INVOLVED SERVEUR - Initializing Serveur";
 	[] execVM "server\init.sqf";
 
-	[] call compile PreprocessFileLineNumbers "\wasteland_server\init.sqf";		// CALL INIT MOD WASTELAND SERVER
+	//[] call compile PreprocessFileLineNumbers "\wasteland_server\init.sqf";		// CALL INIT MOD WASTELAND SERVER
 };
 
 //init 3rd Party Scripts

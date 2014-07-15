@@ -280,7 +280,6 @@ FAR_HandleRevive =
 
 			_target playMove "amovppnemstpsraswrfldnon";
 		};
-
 	};
 };
 
