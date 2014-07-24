@@ -10,7 +10,7 @@ player createDiarySubject ["credits", "Credits"];
 
 player createDiaryRecord ["changelog",
 [
-"Version : 0.1 Involved 10/07/2014",
+"Version : 1.0 Involved 10/07/2014",
 "
 <br/> [Added]  Marqueur d'escouade
 <br/> [Added]  Image d'intro
@@ -105,6 +105,7 @@ player createDiaryRecord ["credits",
 <br/>	* S.Lambert
 <br/>	* Graincheux
 <br/>	* LA10
+<br/>	* Serrat
 <br/>	* Altis-Life Involved dev
 
 
