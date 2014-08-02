@@ -233,9 +233,9 @@ accessoriesArray = compileFinal str
 	["LRPS", "optic_LRPS", 175, "item"],
 	["SOS", "optic_SOS", 200, "item"],
 	["NVS", "optic_NVS", 400, "item"],
-	["TWS", "optic_tws", 600, "item"],
-	["TWS MG", "optic_tws_mg", 650, "item"],
-	["Nightstalker", "optic_Nightstalker", 750, "item"]
+	["TWS", "optic_tws", 1600, "item"],
+	["TWS MG", "optic_tws_mg", 1650, "item"],
+	["Nightstalker", "optic_Nightstalker", 1750, "item"]
 ];
 
 // If commented, means the color/camo isn't implemented or is a duplicate of another hat
