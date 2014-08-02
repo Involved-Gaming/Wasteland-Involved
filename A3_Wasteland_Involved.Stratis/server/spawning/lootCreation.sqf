@@ -87,7 +87,7 @@ _buildMIL =
 	"Cargo_House_base_F",
 	"Cargo_Patrol_base_F",
 	"Cargo_HQ_base_F"
-	//"Land_Hangar_F",
+	"Land_Hangar_F",
 	//"Cargo_Tower_base_F",
 	//"Land_Dome_Big_F",
 	//"Land_Dome_Small_F"

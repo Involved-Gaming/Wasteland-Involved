@@ -38,3 +38,18 @@ while { true } do
 		};
 	} forEach allGroups;
 };
+
+	//DELETE CARCAS BUGTESTE
+
+    fnc_allDead = {sleep 600;deleteVehicle _this};
+     
+    while {true} do {
+            {
+            if (_x isKindOf "CAR" or _x isKindOf "AIR" or _x isKindOf "Tank" or _x isKindOf "Tank" or _x isKindOf "Ship") Then {
+                    _x spawn fnc_allDead;
+                    };
+            } forEach alldead;
+            sleep 20;
+    };
+
+
