@@ -80,4 +80,7 @@ else
 
 9999 cutText ["", "BLACK IN"];
 
+[] spawn updateFatigue;
 playerSpawning = false;
+
+
