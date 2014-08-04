@@ -3,9 +3,9 @@
 //	@file Author: S.Lambert
 //	@file Created: 03/08/2014 16h12
 
-hint "init Fatigue system";
+//hint "init Fatigue system";
 sleep 6;
-hint "Beginning loop fatigue system";
+//hint "Beginning loop fatigue system";
 while{ alive player} do
 {
 	private ["_fatigue" , "_coef"];
@@ -14,12 +14,12 @@ while{ alive player} do
 	_fatigue = getFatigue player;
 
 	if (_fatigue > 0.0) then {
-	 hint "Reducing fatigue";
+	// hint "Reducing fatigue";
 	 player setFatigue (_fatigue - 0.01 * _coef)
 	}
 	else
 	{
-		 hint "no fatigue detected";
+		 //hint "no fatigue detected";
 	};
 
 	sleep 1;
