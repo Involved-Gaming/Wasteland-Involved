@@ -10,7 +10,7 @@ while{ alive player} do
 {
 	private ["_fatigue" , "_coef"];
 
-	_coef = 4;
+	_coef = 1.5;
 	_fatigue = getFatigue player;
 
 	if (_fatigue > 0.0) then {
