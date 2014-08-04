@@ -39,6 +39,16 @@ EN COURS DE DEV :
 CHANGELOG :
 -----------
 
+	[AJOUT]		Caisse de stuff under the dome
+	[FIX]		Bogue des conteneurs réarmement véhicule
+	[FIX]		Prix des TWS & Nightstalker plus élevé
+	[AJOUT]		Ajout de JVN à l'apparition
+	[AJOUT]		Ajout d'icone involved player menu
+	[FIX]		Slot sapeur corriger
+	[FIX]		Slot civil supprimer
+	[FIX]		Bogue bureau vendeur d'arme
+	[FIX]		Correction de la fatigue
+	
 	[AJOUT] 	Empecher la deconnexion si personnel à proximité 
 	[AJOUT]		Système de revive
 	[AJOUT] 	Ajouter la possibiliter d'achever les gens d'un balle dans la tête. [FAIT,à debuguer en multi?]
