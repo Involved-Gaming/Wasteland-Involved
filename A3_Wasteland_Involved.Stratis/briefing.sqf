@@ -10,8 +10,18 @@ player createDiarySubject ["credits", "Credits"];
 
 player createDiaryRecord ["changelog",
 [
-"Version : 1.0 Involved 10/07/2014",
+"Version : 1.1 Involved 04/08/2014",
 "
+<br/>	[AJOUT]		Caisse de stuff under the dome
+<br/>	[FIX]		Bogue des conteneurs réarmement véhicule
+<br/>	[FIX]		Prix des TWS & Nightstalker plus élevé
+<br/>	[AJOUT]		Ajout de JVN à l'apparition
+<br/>	[AJOUT]		Ajout d'icone involved player menu
+<br/>	[FIX]		Slot sapeur corriger
+<br/>	[FIX]		Slot civil supprimer
+<br/>	[FIX]		Bogue bureau vendeur d'arme
+<br/>	[FIX]		Correction de la fatigue
+<br/>
 <br/> [Added]  Marqueur d'escouade
 <br/> [Added]  Image d'intro
 <br/> [Added]  Droit modo/admin
@@ -107,8 +117,7 @@ player createDiaryRecord ["credits",
 <br/>	* LA10
 <br/>	* Serrat
 <br/>	* Altis-Life Involved dev
-
-
+<br/>
 <br/><font size='16'>Developed by Team Wasteland:</font>
 <br/>	* JoSchaap (GoT/Tweakers.net)
 <br/>	* AgentRev (TeamPlayerGaming)
@@ -165,7 +174,7 @@ player createDiaryRecord ["infos",
 [
 "Hints and Tips",
 "
-<br/><font size='18'>A3Wasteland</font>
+<br/><font size='18'>A3Wasteland Involved modified</font>
 <br/>
 <br/>* At the start of the game, spread out and find supplies before worrying about where to establish a meeting place or a base, supplies are important and very valuable.
 <br/>
