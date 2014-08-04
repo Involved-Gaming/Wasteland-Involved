@@ -13,10 +13,14 @@ while{ alive player} do
 	_coef = 4;
 	_fatigue = getFatigue player;
 
-	 if (_fatigue player > 0.0) Then {
-	 	hint "Reducing fatigue";
-	 	player setFatigue (_fatigue - 0.01 * _coef)
-	 };
+	if (_fatigue > 0.0) then {
+	 hint "Reducing fatigue";
+	 player setFatigue (_fatigue - 0.01 * _coef)
+	}
+	else
+	{
+		 hint "no fatigue detected";
+	};
 
 	sleep 1;
 	//disable all the fatigue of the player
