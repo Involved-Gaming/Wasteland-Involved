@@ -140,7 +140,6 @@ waituntil {!(IsNull (findDisplay 46))};
 [] execVM "client\functions\playerTags.sqf";
 [] execVM "client\functions\groupTags.sqf";
 [] call updateMissionsMarkers;
-// [] call updateRadarMarkers;
 
 /*
 	Involved-added scripts
@@ -159,8 +158,10 @@ waituntil {!(IsNull (findDisplay 46))};
 [] execVM "client\functions\drawPlayerIcons.sqf";
 [] execVM "addons\fpsFix\vehicleManager.sqf";
 [] execVM "addons\Lootspawner\LSclientScan.sqf";
-//[] execVM "monitor\info.sqf";
+[] execVM "monitor\info.sqf";
 
+14 cutRsc ["logo","PLAIN"];
+15 cutRsc ["banner","PLAIN"];
 
 // Synchronize score compensation
 {

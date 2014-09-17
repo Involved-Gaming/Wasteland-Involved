@@ -56,6 +56,7 @@ class RscTitles
  	#include "client\systems\hud\dialog\hud.hpp"
 	#include "client\systems\playerMenu\dialog\welcome.hpp"
 	#include "monitor\info.hpp"
+  #include "client\systems\involved\involved.hpp"
 };
 
 
