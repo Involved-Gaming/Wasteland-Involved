@@ -13,17 +13,9 @@ while{ alive player} do
 	_coef = 0.5;
 	_fatigue = getFatigue player;
 
-	if (_fatigue > 0.0) then {
+	if (_fatigue > 0.5) then {
 	// hint "Reducing fatigue";
-		if (_fatigue > 0.7)
-		{
-			player setFatigue (0.7);
-		}
-		else
-		{
-			player setFatigue (_fatigue - 0.01 * _coef);
-		};
-
+		player setFatigue (0.5);
 	}
 	else
 	{
