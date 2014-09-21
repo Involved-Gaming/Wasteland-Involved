@@ -9,7 +9,7 @@
 private ["_pressedKey", "_handled"];
 _pressedKey = _this select 1;
 _handled = false;
-hint format["%1",_pressedKey];
+diag_log format["Variable 1 : %1 , Variable 2 : %2",_pressedKey, _uneautrevariable];
 if (_pressedKey in actionKeys "GetOver") then
 {
 	if (horde_jumpmf_var_jumping) then
