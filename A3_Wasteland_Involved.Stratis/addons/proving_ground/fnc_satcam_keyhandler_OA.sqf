@@ -118,7 +118,7 @@ switch (_dikCode) do {
 		true setCamUseTi 1;
 		camUseNVG false;
 	};
-	case 57:{	//V night vision
+	case 47:{	//V night vision
 		ppEffectDestroy ppColor;
 		ppEffectDestroy ppInversion;
 		ppEffectDestroy ppGrain;

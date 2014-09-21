@@ -100,7 +100,7 @@ switch (_dikCode) do {
 		ppGrain ppEffectAdjust [0.02, 1, 1, 0, 1];
 		ppGrain ppEffectCommit 0;
 	};
-	case 57:{	//V night vision
+	case 47:{	//V night vision
 		ppEffectDestroy ppColor;
 		ppEffectDestroy ppInversion;
 		ppEffectDestroy ppGrain;
