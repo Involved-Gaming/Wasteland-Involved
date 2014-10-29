@@ -38,13 +38,13 @@ case 0: {//fill weapon list
 					GET_CTRL(balca_WC_weaplist_IDC) lbAdd _display_name;
 					GET_CTRL(balca_WC_weaplist_IDC) lbSetData [(lbSize GET_CTRL(balca_WC_weaplist_IDC))-1,_weap_type];
 					GET_CTRL(balca_WC_weaplist_IDC) lbSetPicture [(lbSize GET_CTRL(balca_WC_weaplist_IDC))-1,getText(_weapon >> "picture")];
-				
-				
-				
+
+
+
 				};
 			};
 		};
-		lbSort GET_CTRL(balca_WC_weaplist_IDC);		
+		lbSort GET_CTRL(balca_WC_weaplist_IDC);
 
 
 	};
@@ -83,7 +83,7 @@ case 2: {//addweapon
 		PG_set(MAGS,[]);
 		[GET_SELECTED_DATA(balca_WC_weaplist_IDC)] call PG_get(FNC_ADD_WEAPON);
 		PG_set(WEAPONS,weapons player);
-		if (!isNil "notifyAdminMenu") then { GET_SELECTED_DATA(balca_WC_weaplist_IDC) call notifyAdminMenu };
+		if (!isNil "notifyAdminMenu") then { ["weapon", GET_SELECTED_DATA(balca_WC_weaplist_IDC)] call notifyAdminMenu };
 	};
 
 case 3: {//ammo info
@@ -120,7 +120,7 @@ case 4: {//addMagazine
 		_mag = GET_SELECTED_DATA(balca_WC_magazinelist_IDC);
 		player addMagazine _mag;
 		PG_set(MAGS,magazines player);
-		if (!isNil "notifyAdminMenu") then { _mag call notifyAdminMenu };
+		if (!isNil "notifyAdminMenu") then { ["ammo", _mag] call notifyAdminMenu };
 	};
 
 case 5: {//weap to clipboard

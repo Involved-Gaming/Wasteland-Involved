@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by Brett, v1.062, #Comaxy)
 ////////////////////////////////////////////////////////
@@ -12,25 +15,27 @@ class WarchestDialog {
 			h = 0.3;
 		};
 		class WarchestTitle: RscText {
-			style = ST_SINGLE + ST_CENTER;
-			text = "War Chest"; //--- ToDo: Localize;
+			idc = IDC_MENUTITLE;
+			style = ST_CENTER;
+			text = "Warchest";
 			x = 0.3;
 			y = 0.25;
 			w = 0.4;
 			h = 0.05;
 			colorBackground[] = {0,0,0,0.7};
 		};
-		
+
 		class FundsTitle: RscText {
-			style = ST_SINGLE + ST_CENTER;
-			text = "Team Funds:"; //--- ToDo: Localize;
+			idc = IDC_FUNDSTITLE;
+			style = ST_LEFT;
+			text = "Team Funds:";
 			x = 0.35;
 			y = 0.325;
 			w = 0.15;
 			h = 0.05;
 			colorBackground[] = {0,0,0,0.7};
 		};
-		
+
 		class AmountBackground: IGUIBack {
 			x = 0.35;
 			y = 0.4;
@@ -38,7 +43,7 @@ class WarchestDialog {
 			h = 0.05;
 			colorBackground[] = {0,0,0,0.7};
 		};
-		
+
 		class Decoration1: IGUIBack {
 			x = 0.3;
 			y = 0.56;
@@ -50,8 +55,8 @@ class WarchestDialog {
 	class controls {
 		class Funds: RscText {
 			idc = IDC_FUNDS;
-			style = ST_SINGLE + ST_RIGHT;
-			text = ""; //--- ToDo: Localize;
+			style = ST_RIGHT;
+			text = "";
 			x = 0.5;
 			y = 0.325;
 			w = 0.15;
@@ -69,18 +74,18 @@ class WarchestDialog {
 			colorBackground[] = {0,0,0,0.7};
 		};
 		class WithdrawButton: w_RscButton {
-			idc = -1;
-			text = "Withdraw"; //--- ToDo: Localize;
-			action = FNC_WITHDRAW;
+			idc = IDC_WITHDRAWBUTTON;
+			text = "Withdraw";
+			action = "call mf_items_warchest_withdraw";
 			x = 0.35;
 			y = 0.475;
 			w = 0.125;
 			h = 0.05;
 		};
 		class DepositButton: w_RscButton {
-			idc = -1;
-			text = "Deposit"; //--- ToDo: Localize;
-			action = FNC_DEPOSIT;
+			idc = IDC_DEPOSITBUTTON;
+			text = "Deposit";
+			action = "call mf_items_warchest_deposit";
 			x = 0.525;
 			y = 0.475;
 			w = 0.125;
@@ -89,7 +94,7 @@ class WarchestDialog {
 		class DoneButton: w_RscButton {
 			idc = -1;
 			text = "Done";
-			action = FNC_CLOSE;
+			action = "closeDialog 0";
 			x = 0.60;
 			y = 0.56;
 			w = 0.1;

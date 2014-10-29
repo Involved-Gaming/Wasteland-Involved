@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: getMoveParams.sqf
 //	@file Author: AgentRev
@@ -14,7 +17,7 @@ _currentMove = _currentMove call parseMove;
 _result = "";
 
 {
-	_result = _result + _x + ([_currentMove, _x, ""] call BIS_fnc_getFromPairs);
+	_result = _result + _x + ([_currentMove, _x, ""] call fn_getFromPairs);
 } forEach _params;
 
 _result

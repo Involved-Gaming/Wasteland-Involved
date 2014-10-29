@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Version: 1.1
 //	@file Name: vehicleCreation.sqf
 //	@file Author: [404] Deadbeat, modded by AgentRev
@@ -13,8 +16,8 @@ _type = 0;  //test due to undefined variable errors..
 
 if (count _this > 1) then
 {
-	_vehicleType = _this select 1;	
-	
+	_vehicleType = _this select 1;
+
 	switch (true) do
 	{
 		case ({_vehicleType == _x} count civilianVehicles > 0):       { _type = 0 };
@@ -41,17 +44,9 @@ _pos = _markerPos;
 //Car Initialization
 _vehicle = createVehicle [_vehicleType, _pos, [], 0, "None"];
 
-[_vehicle] call vehicleSetup;
-_vehicle setPosATL [_pos select 0, _pos select 1, 1.5];
-_vehicle setVelocity [0,0,0.01];
+_vehicle setDamage (random 0.5); // setDamage must always be called before vehicleSetup
 
-[_vehicle, 15*60, 30*60, 45*60, 1000, 0, false, _markerPos] execVM "server\functions\vehicle.sqf";
-
-//Set Vehicle Attributes
-_vehicle setFuel (0.2 + random 0.1);
-_vehicle setDamage (random 0.5);
-
-// Remove wheel damage
+// Reset wheel damage
 {
 	_hitPoint = configName _x;
 	if (["Wheel", _hitPoint] call fn_findString != -1) then
@@ -60,6 +55,16 @@ _vehicle setDamage (random 0.5);
 	};
 } forEach (_vehicleType call getHitPoints);
 
+[_vehicle] call vehicleSetup;
+_vehicle setPosATL [_pos select 0, _pos select 1, 1.5];
+_vehicle setVelocity [0,0,0.01];
+
+[_vehicle, 15*60, 30*60, 45*60, 1000, 0, false, _markerPos] spawn vehicleRespawnCheck;
+
+//Set Vehicle Attributes
+_vehicle setFuel (0.2 + random 0.1);
+
+// Reset armed Offroad to 1 mag
 if (_vehicleType isKindOf "Offroad_01_armed_base_F") then
 {
 	_vehicle removeMagazinesTurret ["100Rnd_127x99_mag_Tracer_Yellow", [0]];

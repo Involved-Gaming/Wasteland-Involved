@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //@file Version: 1.0
 //@file Name: init.sqf
 //@file Author: [404] Deadbeat
@@ -6,7 +9,3 @@ diag_log format["Message %1",messageSystem];
 
 _hint = messageSystem;
 hint _hint;
-
-//Test playSounc
-playSound "statique1";
-playSound "statique2";

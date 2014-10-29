@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Name: cargoToPairs.sqf
 //	@file Author: AgentRev
 
@@ -9,7 +12,7 @@ _array = [];
 if (count _this > 1) then
 {
 	{
-		_array set [count _array, [_x, (_this select 1) select _forEachIndex]];
+		_array pushBack [_x, (_this select 1) select _forEachIndex];
 	} forEach (_this select 0);
 };
 

@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 /*********************************************************#
 # @@ScriptName: toggle_spawn_permissions.sqf
 # @@Author: Nick 'Bewilderbeest' Ludlam <bewilder@recoil.org>
@@ -26,18 +29,18 @@ _hasFailed = {
 	_text = "";
 	_failed = true;
 	switch (true) do {
-		case not(alive player): {}; // player dead, no error msg needed
-		case not(vehicle player == player): {};
-        case (isNull _beacon): {_text = ERR_SOMEONE_ELSE_TAKEN};
-		case not(player distance _beacon < 5): {_text = ERR_TOO_FAR_AWAY};
+		case (!alive player): {}; // player dead, no error msg needed
+		case (vehicle player != player): {};
+		case (isNull _beacon): {_text = ERR_SOMEONE_ELSE_TAKEN};
+		case (player distance _beacon > 5): {_text = ERR_TOO_FAR_AWAY};
 		case (doCancelAction): {doCancelAction = false; _text = ERR_CANCELLED};
 		//case (count units group player < 2): {_text = ERR_NO_GROUP};
 		default {
 			_text = format["Spawn beacon is %1%2 updated", round(_progress*100), "%"];
 			_failed = false;
-        };
-    };
-    [_failed, _text];
+		};
+	};
+	[_failed, _text];
 };
 
 _currentGroupOnlyState = _beacon getVariable ["groupOnly", false];
@@ -54,4 +57,5 @@ if (_success) then {
 		["The Spawn Beacon is now limited to your group", 5] call mf_notify_client;
 		_beacon setVariable ['groupOnly', true, true];
 	};
-};
+};
+

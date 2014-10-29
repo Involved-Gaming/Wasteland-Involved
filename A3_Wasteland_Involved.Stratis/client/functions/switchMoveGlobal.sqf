@@ -1,11 +1,16 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Name: switchMoveGlobal.sqf
 //	@file Author: AgentRev
 
-private ["_player", "_move"];
-_player = _this select 0;
+private ["_unit", "_move"];
+_unit = _this select 0;
 _move = _this select 1;
 
-pvar_switchMoveGlobal = [_player, _move];
+if (isNil "_unit" || isNil "_move" || {typeName _unit != "OBJECT" || typeName _move != "STRING"}) exitWith {};
+
+pvar_switchMoveGlobal = [_unit, _move];
 publicVariable "pvar_switchMoveGlobal";
 
-_player switchMove _move;
+_unit switchMove _move;

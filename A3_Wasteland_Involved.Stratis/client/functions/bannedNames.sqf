@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: bannedNames.sqf
 //	@file Author: AgentRev
@@ -8,7 +11,7 @@ if (isServer) exitWith {};
 private ["_bannedNames", "_name", "_trueName"];
 
 waitUntil {sleep 1; !isNil "bannedPlayerNames"};
-	
+
 _bannedNames = call bannedPlayerNames;
 _name = profileName;
 _trueName = [];
@@ -23,7 +26,7 @@ _trueName = [];
 {
 	if ((_x > 32 && _x < 127) || (_x > 160 && _x < 383)) then
 	{
-		_trueName set [count _trueName, _x];
+		_trueName pushBack _x;
 	}
 } forEach toArray _name;
 

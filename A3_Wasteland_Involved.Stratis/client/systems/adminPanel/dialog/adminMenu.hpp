@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 #define adminMenu_dialog 50000
 #define adminMenu_option 50001
 
@@ -12,8 +15,8 @@ class AdminMenu
 		class AdminMenu_background:w_RscPicture
 		{
 			idc=-1;
-			colorText[] = {0.969,0.969,0.969,1};
-			colorBackground[] = {0.212,0.216,0.243,0.8};
+			colorText[] = {1, 1, 1, 1};
+			colorBackground[] = {0,0,0,0};
 			text = "#(argb,8,8,3)color(0,0,0,0.6)";
 			x=0.28;
 			y=0.10;
@@ -24,9 +27,9 @@ class AdminMenu
 		class TopBar: w_RscPicture
 		{
 			idc = -1;
-			colorText[] = {0.969,0.969,0.969,1};
-			colorBackground[] = {0.824,0.404,0.157,1};
-			text = "#(argb,8,8,3)color(0.824,0.404,0.157,1)";
+			colorText[] = {1, 1, 1, 1};
+			colorBackground[] = {0,0,0,0};
+			text = "#(argb,8,8,3)color(0.25,0.51,0.96,0.8)";
 
 			x=0.28;
 			y=0.10;

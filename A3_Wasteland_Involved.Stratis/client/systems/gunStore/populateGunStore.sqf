@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: populateGunStore.sqf
 //	@file Author: [404] Deadbeat, [KoS] His_Shadow, AgentRev
@@ -6,7 +9,7 @@
 
 #include "dialog\gunstoreDefines.sqf";
 disableSerialization;
-private ["_switch", "_dialog", "_gunlisttext", "_gunlist", "_ammolist", "_ammoBtn", "_ammoLbl", "_gunDesc", "_showAmmo", "_itemsArray", "_parentCfg", "_weaponClass", "_weapon", "_picture", "_gunlistIndex"];
+private ["_switch", "_dialog", "_gunlisttext", "_gunlist", "_ammolist", "_ammoBtn", "_ammoLbl", "_gunDesc", "_showAmmo", "_playerSideNum", "_itemsArray", "_parentCfg", "_weaponClass", "_weapon", "_picture", "_gunlistIndex"];
 _switch = _this select 0;
 
 // Grab access to the controls
@@ -26,39 +29,47 @@ _gunlist lbSetCurSel -1;
 
 _showAmmo = false;
 
-switch(_switch) do 
+_playerSideNum = switch (playerSide) do
 {
-	case 0: 
+	case BLUFOR:      { 1 };
+	case OPFOR:       { 0 };
+	case INDEPENDENT: { 2 };
+	default           { 3 };
+};
+
+switch(_switch) do
+{
+	case 0:
 	{
 		_itemsArray = call pistolArray;
 		_showAmmo = true;
 	};
-	case 1: 
+	case 1:
 	{
 		_itemsArray = call smgArray;
 		_showAmmo = true;
 	};
-	case 2: 
+	case 2:
 	{
 		_itemsArray = call rifleArray;
 		_showAmmo = true;
 	};
-	case 3: 
+	case 3:
 	{
 		_itemsArray = call lmgArray;
 		_showAmmo = true;
 	};
-	case 4: 
+	case 4:
 	{
 		_itemsArray = call shotgunArray;
 		_showAmmo = true;
 	};
-	case 5: 
+	case 5:
 	{
 		_itemsArray = call launcherArray;
 		_showAmmo = true;
 	};
-	case 6: 
+	case 6:
 	{
 		_itemsArray = call throwputArray;
 	};
@@ -68,7 +79,14 @@ switch(_switch) do
 	};
 	case 8:
 	{
-		_itemsArray = call staticGunsArray;
+		_itemsArray = [];
+
+		{
+			if (getNumber (configFile >> "CfgVehicles" >> _x select 1 >> "side") in [_playerSideNum, 3]) then
+			{
+				_itemsArray pushBack _x;
+			};
+		} forEach (call staticGunsArray);
 	};
 	default
 	{
@@ -93,7 +111,7 @@ else
 	_weaponClass = _x select 1;
 	_gunlistIndex = _gunlist lbAdd format ["%1", _x select 0];
 	_gunlist lbSetData [_gunlistIndex, _weaponClass];
-	
+
 	switch (true) do
 	{
 		case (isClass (configFile >> "CfgVehicles" >> _weaponClass)):  { _parentCfg = configFile >> "CfgVehicles" };
@@ -101,26 +119,29 @@ else
 		case (isClass (configFile >> "CfgMagazines" >> _weaponClass)): { _parentCfg = configFile >> "CfgMagazines" };
 		case (isClass (configFile >> "CfgGlasses" >> _weaponClass)):   { _parentCfg = configFile >> "CfgGlasses" };
 	};
-	
+
 	if (!isNil "_parentCfg") then
 	{
 		_weapon = _parentCfg >> _weaponClass;
 		_picture = getText (_weapon >> "picture");
-		
+
 		// Show scope on sniper rifle pictures
-		if (["_SOS_F", _weaponClass] call fn_findString == count toArray _weaponClass - 6) then
+		if (["_SOS_F", _weaponClass] call fn_findString != -1) then
 		{
 			private ["_picArr", "_picLen"];
 			_picArr = toArray _picture;
 			_picLen = count _picArr;
-			
+
 			if (toString [_picArr select (_picLen - 8)] == "X") then
 			{
 				_picArr set [(_picLen - 8), (toArray "T") select 0];
 				_picture = toString _picArr;
 			};
 		};
-	
-		_gunlist lbSetPicture [_gunlistIndex, _picture];
+
+		if (_picture != "" && _picture != "pictureThing") then
+		{
+			_gunlist lbSetPicture [_gunlistIndex, _picture];
+		};
 	};
 } forEach _itemsArray;

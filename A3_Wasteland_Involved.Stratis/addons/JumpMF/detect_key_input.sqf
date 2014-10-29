@@ -9,7 +9,7 @@
 private ["_pressedKey", "_handled"];
 _pressedKey = _this select 1;
 _handled = false;
-diag_log format["Variable 1 : %1 , Variable 2 : %2",_pressedKey, _uneautrevariable];
+
 if (_pressedKey in actionKeys "GetOver") then
 {
 	if (horde_jumpmf_var_jumping) then
@@ -42,7 +42,7 @@ if (_pressedKey in actionKeys "GetOver") then
 						(_prevVel select 1) * HORDE_JUMPMF_SLOWING_MULTIPLIER,
 						(velocity player) select 2
 					];
-					(["AovrPercMrun", animationState player] call fn_findString == -1)
+					!(["AovrPercMrun", animationState player] call fn_startsWith)
 				};
 
 				[player, _prevMove] call switchMoveGlobal;

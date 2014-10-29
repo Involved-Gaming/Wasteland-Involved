@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 /*
 	@file Version: 1.0
 	@file Name: common.hpp
@@ -29,6 +32,7 @@
 #define CT_XSLIDER 43
 #define CT_XCOMBO 44
 #define CT_ANIMATED_TEXTURE 45
+#define CT_CHECKBOX 77
 #define CT_OBJECT 80
 #define CT_OBJECT_ZOOM 81
 #define CT_OBJECT_CONTAINER 82
@@ -93,6 +97,11 @@ class w_RscText {
 	text = "";
 };
 
+class w_RscTextCenter : w_RscText
+{
+	style = ST_CENTER;
+};
+
 class w_RscStructuredText
 {
 	access = 0;
@@ -142,67 +151,74 @@ class w_RscStructuredTextLeft
 class w_RscBackground
 {
 
-    colorBackground[] = {0.14, 0.18, 0.13, 0.8};
-    text              = "";
-    type              = CT_STATIC;
-    idc               = -1;
-    style             = ST_LEFT;
-    colorText[]       = {1, 1, 1, 1};
-    font              = "PuristaMedium";
-    sizeEx            = 0.04;
+	colorBackground[] = {0.14, 0.18, 0.13, 0.8};
+	text              = "";
+	type              = CT_STATIC;
+	idc               = -1;
+	style             = ST_LEFT;
+	colorText[]       = {1, 1, 1, 1};
+	font              = "PuristaMedium";
+	sizeEx            = 0.04;
 };
 
 class w_RscEdit
 {
-    idc = -1;
-    type = CT_EDIT;
-    style = ST_LEFT;
-    x = 0;
-    y = 0;
-    w = .2;
-    h = .4;
-    sizeEx = .02;
-    font = "PuristaMedium";
+	idc = -1;
+	type = CT_EDIT;
+	style = ST_LEFT;
+	x = 0;
+	y = 0;
+	w = .2;
+	h = .4;
+	sizeEx = .02;
+	font = "PuristaMedium";
 
-    text = "";
-    colorText[] = {1,1,1,1};
+	text = "";
+	colorText[] = {1,1,1,1};
 
-    autocomplete = false;
-    colorSelection[] = {0,0,0,1};
+	autocomplete = false;
+	colorSelection[] = {0,0,0,1};
 };
 
 class w_RscListBox
 {
+	idc = -1;
 	type = CT_LISTBOX;
-    style = 69;
-    idc = -1;
-    text = "";
-    w = 0.275;
-    h = 0.04;
-    colorSelect[] = {1, 1, 1, 1};
-    colorText[] = {1, 1, 1, 1};
-    colorBackground[] = {0,0,0,0};
-    colorSelectBackground[] = {0.40, 0.43, 0.28, 0.5};
-    colorScrollbar[] = {0.2, 0.2, 0.2, 1};
-    arrowEmpty = "client\ui\ui_arrow_combo_ca.paa";
-    arrowFull = "client\ui\ui_arrow_combo_active_ca.paa";
-    wholeHeight = 0.45;
-    rowHeight = 0.04;
-    color[] = {0.7, 0.7, 0.7, 1};
-    colorActive[] = {0,0,0,1};
-    colorDisabled[] = {0,0,0,0.3};
-    font = "PuristaMedium";
-    sizeEx = 0.026;
-    soundSelect[] = {"",0.1,1};
-    soundExpand[] = {"",0.1,1};
-    soundCollapse[] = {"",0.1,1};
-    maxHistoryDelay = 1;
-    autoScrollSpeed = -1;
-    autoScrollDelay = 5;
-    autoScrollRewind = 0;
+	style = ST_MULTI;
+	w = 0.4;
+	h = 0.4;
+	rowHeight = 0;
+	colorText[] = {1, 1, 1, 1};
+	colorDisabled[] = {1, 1, 1, 0.25};
+	colorScrollbar[] = {1, 0, 0, 0};
+	colorSelect[] = {0, 0, 0, 1};
+	colorSelect2[] = {0, 0, 0, 1};
+	colorSelectBackground[] = {0.95, 0.95, 0.95, 1};
+	colorSelectBackground2[] = {1, 1, 1, 0.5};
+	colorBackground[] = {0, 0, 0, 0.3};
+	soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect", 0.09, 1};
+	autoScrollSpeed = -1;
+	autoScrollDelay = 5;
+	autoScrollRewind = 0;
+	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
+	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+	colorPicture[] = {1, 1, 1, 1};
+	colorPictureSelected[] = {1, 1, 1, 1};
+	colorPictudeDisabled[] = {1, 1, 1, 0.25};
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {0, 0, 0, 0.65};
+	font = "PuristaMedium";
+	sizeEx = 0.035;
+	shadow = 0;
+	colorShadow[] = {0, 0, 0, 0.5};
+	period = 0.8;
+	maxHistoryDelay = 1;
+	colorPictureDisabled[] = {1, 1, 1, 1};
 
-	class ListScrollBar {
-		color[] = {1, 1, 1, 0.6};
+	class ListScrollBar
+	{
+		color[] = {1, 1, 1, 1};
 		colorActive[] = {1, 1, 1, 1};
 		colorDisabled[] = {1, 1, 1, 0.3};
 		thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
@@ -212,46 +228,7 @@ class w_RscListBox
 	};
 };
 
-class w_Rsclist : w_RscListBox
-{
-        /*type = CT_LISTBOX;
-        style = 69;
-        idc = -1;
-        text = "";
-        w = 0.275;
-        h = 0.04;
-        colorSelect[] = {1, 1, 1, 1};
-        colorText[] = {1, 1, 1, 1};
-        colorBackground[] = {0,0,0,0};
-        colorSelectBackground[] = {0.25,0.51,0.96,0.5};
-        colorScrollbar[] = {0.2, 0.2, 0.2, 1};
-        arrowEmpty = "client\ui\ui_arrow_combo_ca.paa";
-        arrowFull = "client\ui\ui_arrow_combo_active_ca.paa";
-        wholeHeight = 0.45;
-        rowHeight = 0.04;
-        color[] = {0.7, 0.7, 0.7, 1};
-        colorActive[] = {0,0,0,1};
-        colorDisabled[] = {0,0,0,0.3};
-        font = "PuristaMedium";
-        sizeEx = 0.023;
-        soundSelect[] = {"",0.1,1};
-        soundExpand[] = {"",0.1,1};
-        soundCollapse[] = {"",0.1,1};
-        maxHistoryDelay = 1;
-        autoScrollSpeed = -1;
-        autoScrollDelay = 5;
-        autoScrollRewind = 0;
-
-	class ScrollBar {
-		color[] = {1, 1, 1, 0.6};
-		colorActive[] = {1, 1, 1, 1};
-		colorDisabled[] = {1, 1, 1, 0.3};
-		thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
-		arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
-		arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
-		border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
-	};*/
-};
+class w_RscList: w_RscListBox {};
 
 class w_RscPicture
 {
@@ -272,29 +249,6 @@ class w_RscPicture
 	text = "";
 
 };
-
-class Wasteland_RscPicture {
-	shadow = 0;
-	type = 0;
-	style = 48;
-	sizeEx = 0.023;
-	font = "PuristaMedium";
-	colorBackground[] = {};
-	colorText[] = {};
-	x = 0;
-	y = 0;
-	w = 0.2;
-	h = 0.15;
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
-	tooltipColorShade[] = {0,0,0,0.65};
-};
-
-class Wasteland_RscPictureKeepAspect : Wasteland_RscPicture
-{
-	style = 0x30 + 0x800;
-};
-
 
 class w_RscButtonBase {
 
@@ -382,41 +336,40 @@ class w_RscButtonBase {
 
 class w_RscButton
 {
-
-    access = 0;
-    type = CT_BUTTON;
-    text = "";
-    colorText[] = {0.824,0.404,0.157,1}; //orange 0.824,0.404,0.157,1
-    colorDisabled[] = {0,0,0,1};
-    colorBackground[] = {0.831,0.824,0.824,1}; //Blanc 0.969,0.969,0.969,1
-    colorBackgroundDisabled[] = {0.3,0.3,0.3,1}; //GRISCLAIR 0.831,0.824,0.824,1
-    colorBackgroundActive[] = {0.969,0.969,0.969,1}; //Gris foncer 0.212,0.216,0.243,1
-    colorFocused[] = {0.969,0.969,0.969,0.5};
-    colorShadow[] = {0.0,0,0.0,0};
-    colorBorder[] = {0.0,0,0.0,0};
+   access = 0;
+	type = CT_BUTTON;
+	text = "";
+	colorText[] = {1,1,1,.9};
+	colorDisabled[] = {0,0,0,1};
+	colorBackground[] = {0.2,0.41,0.78,1}; // normal
+	colorFocused[] = {0.14,0.25,0.49,1}; // pulse
+	colorBackgroundActive[] = {0.25,0.51,0.96,1}; // hover
+	colorBackgroundDisabled[] = {0.3,0.3,0.3,1};
+	colorShadow[] = {0,0,0,1};
+	colorBorder[] = {0,0,0,1};
 	soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter", 0.09, 1};
 	soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush", 0.09, 1};
 	soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick", 0.09, 1};
 	soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape", 0.09, 1};
-  	animTextureDefault = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
+	animTextureDefault = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
 	animTextureNormal = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
 	animTextureDisabled = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
 	animTextureOver = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\over_ca.paa";
 	animTextureFocused = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\focus_ca.paa";
 	animTexturePressed = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\down_ca.paa";
-    style = 2;
-    x = 0;
-    y = 0;
-    w = 0.055589;
-    h = 0.039216;
-    shadow = 0;
-    font = "PuristaMedium";
-    sizeEx = 0.03921;
-    offsetX = 0.003;
-    offsetY = 0.003;
-    offsetPressedX = 0.002;
-    offsetPressedY = 0.002;
-    borderSize = 0;
+	style = 2;
+	x = 0;
+	y = 0;
+	w = 0.055589;
+	h = 0.039216;
+	shadow = 0;
+	font = "PuristaMedium";
+	sizeEx = 0.04;
+	offsetX = 0.003;
+	offsetY = 0.003;
+	offsetPressedX = 0.002;
+	offsetPressedY = 0.002;
+	borderSize = 0;
 };
 
 class w_RscCombo {
@@ -464,3 +417,39 @@ class w_RscCombo {
 	};
 };
 
+class w_RscCheckBox
+{
+	idc = -1;
+	type = CT_CHECKBOX;
+	style = 0;
+	checked = 0;
+	w = "0.04 * (safezoneW min safezoneH)";
+	h = "0.04 * (safezoneW min safezoneH)";
+	color[] = {1, 1, 1, 0.7};
+	colorFocused[] = {1, 1, 1, 1};
+	colorHover[] = {1, 1, 1, 1};
+	colorPressed[] = {1, 1, 1, 1};
+	colorDisabled[] = {1, 1, 1, 0.2};
+	colorBackground[] = {0, 0, 0, 0};
+	colorBackgroundFocused[] = {0, 0, 0, 0};
+	colorBackgroundHover[] = {0, 0, 0, 0};
+	colorBackgroundPressed[] = {0, 0, 0, 0};
+	colorBackgroundDisabled[] = {0, 0, 0, 0};
+	textureChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
+	textureUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
+	textureFocusedChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
+	textureFocusedUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
+	textureHoverChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
+	textureHoverUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
+	texturePressedChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
+	texturePressedUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
+	textureDisabledChecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
+	textureDisabledUnchecked = "\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {1, 1, 1, 1};
+	soundEnter[] = {1, 1, 1, 1};
+	soundPush[] = {1, 1, 1, 1};
+	soundClick[] = {1, 1, 1, 1};
+	soundEscape[] = {1, 1, 1, 1};
+};

@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: serverTimeSync.sqf
 //	@file Author: [404] Deadbeat, AgentRev
@@ -5,9 +8,28 @@
 
 if (!isServer) exitWith {};
 
+_timeMultiDay = ["A3W_timeMultiplierDay", 1] call getPublicVar;
+_timeMultiNight = ["A3W_timeMultiplierNight", 1] call getPublicVar;
+
 while {true} do
 {
 	currentDate = date;
 	publicVariable "currentDate";
-	sleep 30;
+
+	if (daytime >= 20 || daytime < 5) then
+	{
+		if (timeMultiplier != _timeMultiNight) then
+		{
+			setTimeMultiplier _timeMultiNight;
+		};
+	}
+	else
+	{
+		if (timeMultiplier != _timeMultiDay) then
+		{
+			setTimeMultiplier _timeMultiDay;
+		};
+	};
+
+	uiSleep 30;
 };

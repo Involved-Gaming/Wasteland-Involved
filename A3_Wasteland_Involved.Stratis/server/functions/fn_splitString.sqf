@@ -1,8 +1,11 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 /*
 	File: fn_splitString.sqf
 	Author: Karel Moricky
 	Modified by AgentRev to not remove empty strings (e.g. expected behavior of any split function)
-	
+
 	Description:
 	Split spring according to given separators
 
@@ -25,13 +28,13 @@ _resultArray = [];
 _localArray = [];
 {
 	if (_x in _separatorArray) then {
-		_resultArray set [count _resultArray,tostring _localArray];
+		_resultArray pushBack tostring _localArray;
 		_localArray = [];
 	} else {
-		_localArray set [count _localArray,_x];
+		_localArray pushBack _x;
 	};
 } foreach _stringArray;
 
-_resultArray set [count _resultArray,tostring _localArray];
+_resultArray pushBack toString _localArray;
 // _resultArray = _resultArray - [""];
 _resultArray

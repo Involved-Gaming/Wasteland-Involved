@@ -1,136 +1,52 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //
-// Farooq's Revive 1.5
+// Farooq's Revive 2.0
+// Heavily modified for A3Wasteland by AgentRev
+//
+// Licensed under GPLv3 with permission from Farooq
 //
 
-//------------------------------------------//
-// Parameters - Feel free to edit these
-//------------------------------------------//
+if (isDedicated) exitWith {};
 
-// Seconds until unconscious unit bleeds out and dies. Set to 0 to disable.
-FAR_BleedOut = 600;
+#include "FAR_defines.sqf"
+#include "gui_defines.hpp"
 
-// Enable teamkill notifications
-FAR_EnableDeathMessages = true;
-
-// If enabled, unconscious units will not be able to use ACRE radio, hear other people or use proximity chat
-FAR_MuteACRE = false;
-
-/*
-	0 = Only medics can revive
-	1 = All units can revive
-	2 = Same as 1 but a medikit is required to revive
-*/
-FAR_ReviveMode = 1;
-
-//------------------------------------------//
-
-call compile preprocessFile "addons\FAR_revive\FAR_revive_funcs.sqf";
-call compile preprocessFile "addons\FAR_revive\IG_hitpart.sqf";
-
-#define SCRIPT_VERSION "1.5"
+call compile preprocessFile "addons\far_revive\FAR_revive_funcs.sqf";
 
 FAR_isDragging = false;
 FAR_isDragging_EH = [];
 FAR_deathMessage = [];
-FAR_Debugging = true;
+FAR_Debugging = false;
 
-if (isDedicated) exitWith {};
-
-////////////////////////////////////////////////
-// Player Initialization
-////////////////////////////////////////////////
-[] spawn
+FAR_Reset_Unit =
 {
-    waitUntil { !isNull player };
+	_this setVariable ["FAR_isUnconscious", 0, true];
+	_this setVariable ["FAR_isStabilized", 0, true];
+	_this setVariable ["FAR_iconBlink", nil, true];
+	_this setVariable ["FAR_draggedBy", nil, true];
+	_this setVariable ["FAR_treatedBy", nil, true];
+	_this setCaptive false;
 
-	// Public event handlers
-	"FAR_isDragging_EH" addPublicVariableEventHandler FAR_public_EH;
-	"FAR_deathMessage" addPublicVariableEventHandler FAR_public_EH;
-
-	[] spawn FAR_Player_Init;
-
-	if (FAR_MuteACRE) then
+	if (isPlayer _this) then
 	{
-		[] spawn FAR_Mute_ACRE;
+		_this setVariable ["ace_sys_wounds_uncon", false];
 
-		//hintSilent format["Farooq's Revive %1 is initialized.%2", SCRIPT_VERSION, "\n\n Note: Unconscious units will not be able to use radio, hear other people or use proximity chat"];
-	}
-	else
-	{
-		//hintSilent format["Farooq's Revive %1 is initialized.", SCRIPT_VERSION];
-	};
-
-	// Event Handlers
-	player addEventHandler
-	[
-		"Respawn",
+		if (_this == player) then
 		{
-			[] spawn FAR_Player_Init;
-		}
-	];
-};
+			FAR_isDragging = false;
+		};
+	};
+}
+call mf_compile;
 
 FAR_Player_Init =
 {
-	// Cache player's side
-	FAR_PlayerSide = side player;
-
-	// Clear event handler before adding it
-	player removeAllEventHandlers "HandleDamage";
-	player removeAllEventHandlers "HitPart";
-
-	player addEventHandler ["HandleDamage", FAR_HandleDamage_EH];
-	player addEventHandler ["HitPart", IG_HandleHitPart_EH];
-	player addEventHandler
-	[
-		"Killed",
-		{
-			// Remove dead body of player (for missions with respawn enabled)
-			_body = _this select 0;
-
-			[_body] spawn
-			{
-
-				waitUntil { alive player };
-				_body = _this select 0;
-				sleep 900;
-				deleteVehicle _body;
-			}
-		}
-	];
-
-	player setVariable ["FAR_isUnconscious", 0, true];
-	player setVariable ["FAR_isStabilized", 0, true];
-	player setVariable ["FAR_isDragged", 0, true];
-	player setVariable ["ace_sys_wounds_uncon", false];
-	player setVariable ["IG_headhit", 0, true];
-	player setCaptive false;
-
-	FAR_isDragging = false;
-
-	[] spawn FAR_Player_Actions;
-};
-
-// Drag & Carry animation fix
-[] spawn
-{
-	while {true} do
-	{
-		if (animationState player == "acinpknlmstpsraswrfldnon_acinpercmrunsraswrfldnon" || animationState player == "helper_switchtocarryrfl" || animationState player == "AcinPknlMstpSrasWrflDnon") then
-		{
-			if (FAR_isDragging) then
-			{
-				player switchMove "AcinPknlMstpSrasWrflDnon";
-			}
-			else
-			{
-				player switchMove "amovpknlmstpsraswrfldnon";
-			};
-		};
-
-		sleep 3;
-	}
-};
+	player call FAR_Reset_Unit;
+	call FAR_Player_Actions;
+}
+call mf_compile;
 
 FAR_Mute_ACRE =
 {
@@ -180,21 +96,69 @@ FAR_Mute_ACRE =
 
 		false
 	};
+}
+call mf_compile;
+
+FAR_findKiller = "addons\far_revive\FAR_findKiller.sqf" call mf_compile;
+
+////////////////////////////////////////////////
+// Public event handlers
+////////////////////////////////////////////////
+"FAR_isDragging_EH" addPublicVariableEventHandler FAR_public_EH;
+"FAR_deathMessage" addPublicVariableEventHandler FAR_public_EH;
+
+////////////////////////////////////////////////
+// Player Initialization
+////////////////////////////////////////////////
+[] spawn
+{
+	waitUntil {!isNull player};
+
+	[] spawn FAR_Player_Init;
+
+	if (FAR_MuteACRE) then
+	{
+		[] spawn FAR_Mute_ACRE;
+
+		//hintSilent format["Farooq's Revive %1 is initialized.%2", SCRIPT_VERSION, "\n\n Note: Unconscious units will not be able to use radio, hear other people or use proximity chat"];
+	};
+	/*else
+	{
+		hintSilent format["Farooq's Revive %1 is initialized.", SCRIPT_VERSION];
+	};*/
+
+	// Event Handlers
+	player addEventHandler ["Respawn", { [] spawn FAR_Player_Init }];
+	player addEventHandler
+	[
+		"Killed",
+		{
+			if (!isNil "FAR_Player_Unconscious_thread" && {!scriptDone FAR_Player_Unconscious_thread}) then
+			{
+				terminate FAR_Player_Unconscious_thread;
+				closeDialog ReviveBlankGUI_IDD;
+				closeDialog ReviveGUI_IDD;
+				FAR_cutTextLayer cutText ["", "PLAIN"];
+				//(FAR_cutTextLayer + 1) cutText ["", "PLAIN"];
+			};
+
+			player call FAR_Reset_Unit;
+			player allowDamage true;
+		}
+	];
 };
 
 ////////////////////////////////////////////////
 // [Debugging] Add revive to playable AI units
 ////////////////////////////////////////////////
-if (!FAR_Debugging || isMultiplayer) exitWith {};
+if (!FAR_Debugging) exitWith {};
 
 {
 	if (!isPlayer _x) then
 	{
 		_x addEventHandler ["HandleDamage", FAR_HandleDamage_EH];
-		_x addEventHandler ["HitPart", IG_HandleHitPart_EH];
 		_x setVariable ["FAR_isUnconscious", 0, true];
 		_x setVariable ["FAR_isStabilized", 0, true];
-		_x setVariable ["FAR_isDragged", 0, true];
-		_x setVariable ["IG_headhit", 0, true];
+		_x setVariable ["FAR_draggedBy", objNull, true];
 	};
 } forEach switchableUnits;

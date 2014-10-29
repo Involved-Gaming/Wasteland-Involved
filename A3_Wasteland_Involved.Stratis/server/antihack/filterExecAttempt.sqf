@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: filterExecAttempt.sqf
 //	@file Author: AgentRev
@@ -10,14 +13,14 @@ _packetName = [_this, 0, "", [""]] call BIS_fnc_param;
 
 if (_packetName == "BIS_fnc_MP_packet") then
 {
-	private ["_values", "_arguments", "_code", "_function", "_filePath", "_allowedFile", "_allowedFunction"];
-	_values = [_this select 1, 0] call BIS_fnc_removeIndex;
+	private ["_values", "_code", "_function", "_whitelisted", "_filePath", "_args2", "_buffer"];
 
-	_arguments = [_values, 0] call BIS_fnc_removeIndex;
+	_values = +(_this select 1);
+	_values deleteAt 0;
+
 	_code = _values select 0;
 	_function = _values select 1;
-
-	_allowedFile = false;
+	_whitelisted = false;
 
 	if (_function == "BIS_fnc_execVM") then
 	{
@@ -26,7 +29,7 @@ if (_packetName == "BIS_fnc_MP_packet") then
 		{
 			if (_filePath == _x) exitWith
 			{
-				_allowedFile = true;
+				_whitelisted = true;
 			};
 		}
 		forEach
@@ -37,36 +40,37 @@ if (_packetName == "BIS_fnc_MP_packet") then
 		];
 	};
 
-	_allowedFunction = false;
-
+	if (!_whitelisted) then
 	{
-		if (_function == _x) exitWith
 		{
-			_allowedFunction = true;
-		};
-	}
-	forEach
-	[
-		"BIS_fnc_effectKilledAirDestruction",
-		"BIS_fnc_effectKilledAirDestructionStage2",
-		"BIS_fnc_effectKilledSecondaries",
-		"BIS_fnc_kbTellLocal",
-		"BIS_fnc_showNotification",
-		"BIS_fnc_taskSetState",
-		"BIS_fnc_tridentHandleDamage",
-		"BIS_fnc_tridentHandleDamage_server",
-		"JTS_FNC_SENT", // PM Compact by JTS
-		"fn_clearDatabaseUnconscious"
-	];
+			if (_function == _x) exitWith
+			{
+				_whitelisted = true;
+			};
+		}
+		forEach
+		[
+			"BIS_fnc_effectKilledAirDestruction",
+			"BIS_fnc_effectKilledAirDestructionStage2",
+			"BIS_fnc_effectKilledSecondaries"/*,
+			"JTS_FNC_SENT"*/ // PM Compact by JTS
+		];
+	};
 
-	if (_allowedFile || _allowedFunction) then
+	if (_whitelisted) then
 	{
 		_this call BIS_fnc_MPexec;
 	}
 	else
 	{
-		_arguments = [_values, 0] call BIS_fnc_removeIndex;
-		_code = _values select 0;
-		diag_log format ["ANTI-HACK 0.8.0: Blocked remote execution: arguments=%1 code=%2", _arguments, str _code];
+		_values deleteAt 0;
+		_args2 = if (typeName _code == "STRING") then { "'" + _code + "'" } else { str (if (typeName _code in ["BOOL","SCALAR","ARRAY","SIDE"]) then { _code } else { str _code }) };
+		_buffer = toArray ("ANTI-HACK: Blocked remote execution: params=" + str _values + " args=" + _args2);
+
+		while {count _buffer > 0} do
+		{
+			diag_log toString (_buffer select [0, 1024]);
+			_buffer deleteRange [0, 1024];
+		};
 	};
 };

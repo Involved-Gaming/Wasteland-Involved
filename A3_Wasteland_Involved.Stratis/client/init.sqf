@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 //@file Version: 1.1
 //@file Name: init.sqf
 //@file Author: [404] Deadbeat, [GoT] JoSchaap, AgentRev, [KoS] Bewilderbeest
@@ -9,10 +12,7 @@ if (isDedicated) exitWith {};
 if (!isServer) then
 {
 	waitUntil {!isNil "A3W_network_compileFuncs"};
-
-	_networkCompile = [] spawn A3W_network_compileFuncs;
-	A3W_network_compileFuncs = nil;
-
+	_networkCompile = call A3W_network_compileFuncs;
 	waitUntil {scriptDone _networkCompile};
 };
 
@@ -26,8 +26,6 @@ respawnDialogActive = false;
 groupManagmentActive = false;
 pvar_PlayerTeamKiller = objNull;
 doCancelAction = false;
-currentMissionsMarkers = [];
-currentRadarMarkers = [];
 
 //Initialization Variables
 playerCompiledScripts = false;
@@ -53,25 +51,12 @@ if !(playerSide in [BLUFOR,OPFOR,INDEPENDENT]) exitWith
 	endMission "LOSER";
 };
 
-
-//Donator part TODO!
-/*
-if(str(player) in ["civ_1","civ_2","civ_3","civ_4","civ_5","civ_6","civ_7","civ_8","civ_9","civ_10","civ_11","civ_12","civ_13","civ_14","civ_15","civ_16","civ_17","civ_18","civ_19","civ_20","civ_21","civ_22","civ_23","civ_24","civ_25","civ_26","civ_27","civ_28","civ_29","civ_30"]) then {
-
-		if((__GETC__(life_donator) < 2)) then {
-		player enableSimulation false;
-		["NotPremium",false,true] call BIS_fnc_endMission;
-		sleep 35;
-		};
-
-};
-*/
-
-
 //Setup player events.
 if (!isNil "client_initEH") then { player removeEventHandler ["Respawn", client_initEH] };
 player addEventHandler ["Respawn", { _this spawn onRespawn }];
 player addEventHandler ["Killed", { _this spawn onKilled }];
+
+A3W_scriptThreads pushBack execVM "client\functions\evalManagedActions.sqf";
 
 //Player setup
 player call playerSetupStart;
@@ -90,15 +75,11 @@ if (["A3W_playerSaving"] call isConfigOn) then
 
 	[] spawn
 	{
-		sleep 20;
 		// Save player every 60s
 		while {true} do
 		{
-			if ((player getVariable "FAR_isUnconscious") == 0) then			// save only if the player is not unconscious
-			{
-				sleep 60;
-				call fn_savePlayerData;
-			};
+			sleep 60;
+			call fn_savePlayerData;
 		};
 	};
 };
@@ -112,42 +93,31 @@ player call playerSetupEnd;
 
 diag_log format ["Player starting with $%1", player getVariable ["cmoney", 0]];
 
+[] execVM "territory\client\hideDisabledTerritories.sqf";
+
 // Territory system enabled?
 if (count (["config_territory_markers", []] call getPublicVar) > 0) then
 {
-	territoryActivityHandler = "territory\client\territoryActivityHandler.sqf" call mf_compile;
-	[] execVM "territory\client\createCaptureTriggers.sqf";
+	A3W_fnc_territoryActivityHandler = "territory\client\territoryActivityHandler.sqf" call mf_compile;
+	[] execVM "territory\client\setupCaptureTriggers.sqf";
 };
 
 //Setup player menu scroll action.
-[] execVM "client\clientEvents\onMouseWheel.sqf";
+//[] execVM "client\clientEvents\onMouseWheel.sqf";
 
 //Setup Key Handler
-waituntil {!(IsNull (findDisplay 46))};
-(findDisplay 46) displayAddEventHandler ["KeyDown", "_this call onKeyPress"];
+waitUntil {!isNull findDisplay 46};
+(findDisplay 46) displayAddEventHandler ["KeyDown", onKeyPress];
+(findDisplay 46) displayAddEventHandler ["KeyUp", onKeyRelease];
 
-"currentDate" addPublicVariableEventHandler {[] call timeSync};
-"messageSystem" addPublicVariableEventHandler {[] call serverMessage};
-"clientMissionMarkers" addPublicVariableEventHandler {[] call updateMissionsMarkers};
-// "clientRadarMarkers" addPublicVariableEventHandler {[] call updateRadarMarkers};
-"pvar_teamKillList" addPublicVariableEventHandler {[] call updateTeamKiller};
-"publicVar_teamkillMessage" addPublicVariableEventHandler {if (local (_this select 1)) then { [] spawn teamkillMessage }};
-"compensateNegativeScore" addPublicVariableEventHandler { (_this select 1) call removeNegativeScore };
+call compile preprocessFileLineNumbers "client\functions\setupClientPVars.sqf";
 
 //client Executes
+A3W_scriptThreads pushBack execVM "client\systems\hud\playerHud.sqf";
 [] execVM "client\functions\initSurvival.sqf";
-[] execVM "client\systems\hud\playerHud.sqf";
-[] execVM "client\functions\playerTags.sqf";
-[] execVM "client\functions\groupTags.sqf";
-[] call updateMissionsMarkers;
-
-/*
-	Involved-added scripts
-*/
 
 [] spawn
 {
-	call compile preprocessFileLineNumbers "client\functions\createTownMarkers.sqf"; // wait until town markers are placed before adding others
 	[] execVM "client\functions\createGunStoreMarkers.sqf";
 	[] execVM "client\functions\createGeneralStoreMarkers.sqf";
 	[] execVM "client\functions\createVehicleStoreMarkers.sqf";
@@ -155,27 +125,15 @@ waituntil {!(IsNull (findDisplay 46))};
 
 [] spawn playerSpawn;
 
+A3W_scriptThreads pushBack execVM "addons\fpsFix\vehicleManager.sqf";
+A3W_scriptThreads pushBack execVM "addons\Lootspawner\LSclientScan.sqf";
 [] execVM "client\functions\drawPlayerIcons.sqf";
-[] execVM "addons\fpsFix\vehicleManager.sqf";
-[] execVM "addons\Lootspawner\LSclientScan.sqf";
-[] execVM "monitor\info.sqf";
+[] execVM "addons\far_revive\FAR_revive_init.sqf";
 
-14 cutRsc ["logo","PLAIN"];
-15 cutRsc ["banner","PLAIN"];
-
-// Synchronize score compensation
+if (["A3W_teamPlayersMap"] call isConfigOn) then
 {
-	if (isPlayer _x) then
-	{
-		_scoreVar = "addScore_" + getPlayerUID _x;
-		_scoreVal = missionNamespace getVariable _scoreVar;
-
-		if (!isNil "_scoreVal" && {typeName _scoreVal == "SCALAR"}) then
-		{
-			_x addScore _scoreVal;
-		};
-	};
-} forEach playableUnits;
+	[] execVM "client\functions\drawPlayerMarkers.sqf";
+};
 
 // update player's spawn beaoon
 {
@@ -185,3 +143,12 @@ waituntil {!(IsNull (findDisplay 46))};
 		_x setVariable ["side", playerSide, true];
 	};
 } forEach pvar_spawn_beacons;
+
+{
+	{
+		if (!isPlayer _x) then
+		{
+			_x setName ["AI","",""];
+		};
+	} forEach crew _x;
+} forEach allUnitsUAV;

@@ -1,3 +1,6 @@
+// ******************************************************************************************
+// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// ******************************************************************************************
 // objectSearchInteraction
 
 #define objectSearchDialog 55600
@@ -26,7 +29,7 @@ if (_uid call isAdmin) then
 	// Get handles on the UI elements we need
 	_objectSearchTermCtrl = _display displayCtrl objectSearchFindTexteditBox;
 	_objectListBoxCtrl = _display displayCtrl objectSearchObjectList;
-	
+
 	_switch = _this select 0;
 
 	switch (_switch) do
@@ -62,7 +65,7 @@ if (_uid call isAdmin) then
 				_marker setMarkerPosLocal _objPos;
 				_marker setMarkerColorLocal "ColorBlue";
 				_marker setMarkerTextLocal _name;
-				objectSearchMapMarkers set [count objectSearchMapMarkers, _marker];
+				objectSearchMapMarkers pushBack _marker;
 			} forEach _objects;
 
 			if (count _objects > 0) then {
