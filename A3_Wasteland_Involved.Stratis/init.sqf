@@ -1,9 +1,7 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
+																																																												asaerw3rw3r4 = 1; Menu_Init_Lol = 1;
 //	@file Version: 1.2
 //	@file Name: init.sqf
-//	@file Author: [404] Deadbeat, [GoT] JoSchaap, AgentRev
+//	@file Author: [404] Deadbeat, [GoT] JoSchaap, + Involved
 //	@file Description: The main init.
 
 #define DEBUG false
@@ -28,20 +26,19 @@ if (isServer) then { X_Server = true };
 if (!isDedicated) then { X_Client = true };
 if (isNull player) then { X_JIP = true };
 
-A3W_scriptThreads = [];
-
 [DEBUG] call compile preprocessFileLineNumbers "globalCompile.sqf";
 
 //init Wasteland Core
 [] execVM "config.sqf";
 [] execVM "storeConfig.sqf"; // Separated as its now v large
 [] execVM "briefing.sqf";
+[] execVM "monitor\info.sqf"; //Ajout involved-Gaming (fps viewer)
 
 if (!isDedicated) then
 {
 	[] spawn
 	{
-		9999 cutText ["Welcome to A3Wasteland, please wait for your client to initialize", "BLACK", 0.01];
+		9999 cutText ["Bienvenue sur Wasteland Involved. Patientez Merci", "BLACK", 0.01];
 
 		waitUntil {!isNull player};
 		removeAllWeapons player;
@@ -49,7 +46,6 @@ if (!isDedicated) then
 
 		// Reset group & side
 		[player] joinSilent createGroup playerSide;
-		player setVariable ["playerSpawning", true, true];
 
 		[] execVM "client\init.sqf";
 	};
@@ -58,12 +54,26 @@ if (!isDedicated) then
 if (isServer) then
 {
 	diag_log format ["############################# %1 #############################", missionName];
-	diag_log "WASTELAND SERVER - Initializing Server";
+	diag_log "WASTELAND INVOLVED SERVEUR - Initializing Serveur";
 	[] execVM "server\init.sqf";
+
+	//[] call compile PreprocessFileLineNumbers "\wasteland_server\init.sqf";		// CALL INIT MOD WASTELAND SERVER
 };
 
 //init 3rd Party Scripts
 [] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
-[] execVM "addons\proving_ground\init.sqf";
+[] execVM "addons\proving_Ground\init.sqf";
 [] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 [] execVM "addons\JumpMF\init.sqf";
+
+/*
+	Involved part
+*/
+
+//Far revive
+diag_log "FAR REVIVE Initializing !";
+call compileFinal preprocessFileLineNumbers "addons\FAR_revive\FAR_revive_init.sqf";
+
+//Btc Logistic ( fast roping + parajump)
+diag_log "BTC Logistic Initializing !";
+[] execVM "addons\LogisticBTCEdited\logistic_init.sqf";

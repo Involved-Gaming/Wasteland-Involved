@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: createVehicleStoreMarkers.sqf
 //	@file Author: [404] Deadbeat, [404] Costlyy
@@ -9,11 +6,11 @@
 
 //Creates the markers around vehicle stores.
 {
-	if (!isPlayer _x && {["VehStore", vehicleVarName _x] call fn_startsWith}) then
+	if (["VehStore", name _x] call fn_findString == 0) then
 	{
-		_npcPos = getPosATL _x;
-
-		// Vehicle store title
+		_npcPos = getPos _x;
+		
+		// Vehicle store title    
 		_markerName = format["marker_shop_title_%1",_x];
 		deleteMarkerLocal _markerName;
 		_marker = createMarkerLocal [_markerName, _npcPos];

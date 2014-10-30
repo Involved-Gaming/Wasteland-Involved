@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: onPause.sqf
 //	@file Author: AgentRev
@@ -13,86 +10,203 @@ waitUntil {!isNull findDisplay 49}; // 49 = Esc menu
 // Disable field manual to prevent scriptkiddie exploits
 ((findDisplay 49) displayCtrl 122) ctrlEnable false;
 
-_getPublicVar = if (!isNil "getPublicVar") then { getPublicVar } else { missionNamespace getVariable "getPublicVar" };
-_isConfigOn = if (!isNil "isConfigOn") then { isConfigOn } else { missionNamespace getVariable "isConfigOn" };
-
-if (alive player && !isNil "_getPublicVar" && !isNil "_isConfigOn") then
+with missionNamespace do
 {
-	if (["A3W_playerSaving"] call _isConfigOn &&
-	   {["playerSetupComplete", false] call _getPublicVar} &&
-	   {!(["playerSpawning", false] call _getPublicVar)}) then
+	_getPublicVar = missionNamespace getVariable "getPublicVar";
+	_isConfigOn = missionNamespace getVariable "isConfigOn";
+
+	if (alive player && !isNil "_getPublicVar" && !isNil "_isConfigOn") then
 	{
-		_abortDelay = ["A3W_combatAbortDelay", 0] call _getPublicVar;
-
-		if (_abortDelay > 0) then
-		{
-			_preventAbort =
+		_enableButtons =
 			{
-				_unconscious = (player getVariable ["FAR_isUnconscious", 0] == 1);
-				_timeStamp = ["combatTimestamp", -1] call _getPublicVar;
-				(!isNull findDisplay 49 && ((_timeStamp != -1 && diag_tickTime - _timeStamp < _abortDelay) || _unconscious))
-			};
-
-			if !(call _preventAbort) then
-			{
-				with missionNamespace do { [true] spawn fn_savePlayerData };
-			};
-
-			if !(["onPauseLoopRunning", false] call _getPublicVar) then
-			{
-				missionNamespace setVariable ["onPauseLoopRunning", true];
-
-				_enableButtons =
+				_display = findDisplay 49;
+				if (!isNull _display) then
 				{
-					_display = findDisplay 49;
-					if (!isNull _display) then
+					(_display displayCtrl 104) ctrlEnable _this; // Abort
+					(_display displayCtrl 1010) ctrlEnable _this; // Respawn
+				};
+			};
+
+		if (["A3W_playerSaving"] call _isConfigOn &&
+		   {["playerSetupComplete", false] call _getPublicVar} &&
+		   {!(["playerSpawning", false] call _getPublicVar)} && (player getVariable "FAR_isUnconscious") == 0) then
+		{
+
+			_searchEnnemyPlayers =
+				{
+					_list = [];
+					_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+					_listVehicles = [];
+					_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
+					diag_log format["Nb véhicules à proximité : %1",count _listVehicles];
+					if ( count _listVehicles > 0) then
 					{
-						(_display displayCtrl 104) ctrlEnable _this; // Abort
-						(_display displayCtrl 1010) ctrlEnable _this; // Respawn
+						for "_iterVehicle" from 0 to ((count _listVehicles)-1) do
+						{
+							diag_log format["iter : %1",_iterVehicle];
+							_veh = _listVehicles select _iterVehicle;
+							_listCrew = crew _veh;
+							_nbCrew = count (_listCrew);
+							diag_log format["nombre de crew : %1",_nbCrew];
+							if ( _nbCrew > 0 ) then
+							{
+								for "_iterCrew" from 0 to (_nbCrew-1) do
+								{
+									diag_log format["iter crew : %1",_iterCrew] ;
+									_oneCrew = _listCrew select _iterCrew;
+									_list = _list + [_oneCrew];+
+									diag_log format["Taille list: %1", count _list] ;
+								};
+							};
+						};
 					};
+					_list
 				};
 
-				while {!isNull findDisplay 49} do
+					/*
+			_list = [];
+			_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+			_listVehicles = [];
+			_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
+			diag_log format["Nb véhicules à proximité : %1",count _listVehicles];
+			if ( count _listVehicles > 0) then
+			{
+				for "_iterVehicle" from 0 to ((count _listVehicles)-1) do
 				{
-					if (call _preventAbort) then
+					diag_log format["iter : %1",_iterVehicle];
+					_veh = _listVehicles select _iterVehicle;
+					_listCrew = crew _veh;
+					_nbCrew = count (_listCrew);
+					diag_log format["nombre de crew : %1",_nbCrew];
+					if ( _nbCrew > 0 ) then
 					{
-						with missionNamespace do { [false] spawn fn_savePlayerData };
-						false call _enableButtons;
-
-						private ["_unconscious", "_timeStamp", "_text"];
-
-						while {call _preventAbort} do
+						for "_iterCrew" from 0 to (_nbCrew-1) do
 						{
-							if (_unconscious) then
-							{
-								_text = "\n\n\n\nCannot pussy out during bleeding!";
-							}
-							else
-							{
-								_time = with missionNamespace do { (_abortDelay - (diag_tickTime - _timeStamp)) call fn_formatTimer };
+							diag_log format["iter crew : %1",_iterCrew] ;
+							_oneCrew = _listCrew select _iterCrew;
+							_list = _list + [_oneCrew];+
+							diag_log format["Taille list: %1", count _list] ;
+						};
+					};
+				};
+			};
+			*/
 
-								_text = format ["\nCannot pussy out during combat! (%1)", _time];
+			false call _enableButtons;			//Désactive les boutons par defaut
+			_list = call _searchEnnemyPlayers;
+
+			while{ count _list != 0 } do
+			{
+				scopename "whileLoop";
+				_list = call _searchEnnemyPlayers;
+				/*
+				_list = (position player) nearEntities ["Man", 100];	//cherche les joueurs à proximite
+
+				_listVehicles = [];
+				_listVehicles = (position player) nearEntities [["Air","Car","Tank","Boat"], 100];		//liste les vehicules
+				diag_log format["Nb véhicules à proximité : %1",count _listVehicles];
+				if ( count _listVehicles > 0) then
+				{
+					for "_iterVehicle" from 0 to ((count _listVehicles)-1) do
+					{
+						diag_log format["iter : %1",_iterVehicle];
+						_veh = _listVehicles select _iterVehicle;
+						_listCrew = crew _veh;
+						_nbCrew = count (_listCrew);
+						diag_log format["nombre de crew : %1",_nbCrew];
+						if ( _nbCrew > 0 ) then
+						{
+							for "_iterCrew" from 0 to (_nbCrew-1) do
+							{
+								diag_log format["iter crew : %1",_iterCrew] ;
+								_oneCrew = _listCrew select _iterCrew;
+								_list = _list + [_oneCrew];
+								diag_log format["Taille list: %1", count _list] ;
+							};
+						};
+					};
+				};
+				*/
+
+				diag_log format ["Il y a %1 homme(s) à proximité", count _list];
+				//sleep 1;
+				{
+					if (group _x == group player || !(isPlayer _x) || !(alive _x) || _x == player || { side _x == side player &&  side player != resistance } ) then //Si la personne est dans le groupe, morte ou est une IA, ou si ils sont dans le même camp et pas independant ! ça ne compte pas !
+					{
+						_list = _list - [_x];
+					}
+					else{
+						cutText [format ["\nUn joueur ennemi est à proximité, vous ne pouvez pas deconnecter !"], "PLAIN DOWN"];
+					};
+					diag_log format ["Il reste %1 homme(s) à proximité", count _list];
+					//sleep 0.5
+				}forEach (_list);			//parcours la liste
+
+				//On continu sauf si l'écran échap n'est plus affiché ou que la boucle est à 0
+				if (isNull findDisplay 49 || (count _list == 0) ) then
+				{
+					//cutText [format ["\nBREAKOUT"], "PLAIN DOWN"];
+					true call _enableButtons;
+					breakOut "whileLoop" ;
+				};
+				cutText [format ["\nUn joueur ennemi est à proximité, vous ne pouvez pas deconnecter !"], "PLAIN DOWN"];
+				sleep 1;
+			};
+			if (count _list == 0) then			// S'il n'y a plus d'ennemis à proximite
+			{
+				_abortDelay = ["A3W_combatAbortDelay", 0] call _getPublicVar;
+				if (_abortDelay > 0) then			//Delay avant réapparition
+				{
+					_preventAbort =
+					{
+						_timeStamp = ["combatTimestamp", -1] call _getPublicVar;
+						(!isNull findDisplay 49 && {_timeStamp != -1} && {diag_tickTime - _timeStamp < _abortDelay})
+					};
+
+					if !(["cannotAbortMessage", false] call _getPublicVar) then
+					{
+						if (call _preventAbort) then
+						{
+							missionNamespace setVariable ["cannotAbortMessage", true];
+
+							with missionNamespace do { [false] spawn fn_savePlayerData };
+							false call _enableButtons;
+
+							private "_timeStamp";
+							while {call _preventAbort} do
+							{
+								_remaining = ceil (_abortDelay - (diag_tickTime - _timeStamp));
+								_mins = floor (_remaining / 60);
+								_secs = _remaining - (_mins * 60);
+								_time = format ["%1:%2%3", _mins, if (_secs < 10) then { "0" } else { "" }, _secs];
+
+								cutText [format ["\nImpossible de quitter du jeu pendant un combat (%1)", _time], "PLAIN DOWN"];
+								sleep 1;
 							};
 
-							cutText [_text, "PLAIN DOWN"];
-							sleep 1;
+							true call _enableButtons;
+							cutText ["", "PLAIN DOWN"];
+
+							missionNamespace setVariable ["cannotAbortMessage", false];
+						}
+						else
+						{
+							true call _enableButtons;
+							with missionNamespace do { [true] spawn fn_savePlayerData };
 						};
-
-						true call _enableButtons;
-						cutText ["", "PLAIN DOWN"];
-					}
-					else
-					{
-						sleep 0.1;
 					};
+				}
+				else
+				{
+					true call _enableButtons;
+					with missionNamespace do { [true] spawn fn_savePlayerData };
 				};
-
-				missionNamespace setVariable ["onPauseLoopRunning", nil];
 			};
-		}
-		else
+		};
+		if (player getVariable "FAR_isUnconscious" == 1) then
 		{
-			with missionNamespace do { [true] spawn fn_savePlayerData };
+			false call _enableButtons;
+			cutText [format ["\nImpossible de quitter du jeu lorsque vous êtes à terre, suicidez-vous avant ! "], "PLAIN DOWN"];
 		};
 	};
 };

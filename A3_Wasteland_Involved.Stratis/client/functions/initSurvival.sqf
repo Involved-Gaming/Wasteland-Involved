@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: initSurvival.sqf
 //	@file Author: MercyfulFate, [404] Deadbeat, [404] Costlyy, TAW_Tonic (original)
@@ -18,21 +15,17 @@
 #define DEHYDRATION "<t size='2' color='#ffff00'> R.I.P.</t><br/><br/>You have died from: <br/><t size='2' color='#ff0000'>dehydration</t><br/><br/>You need to drink to survive here!<br/>"
 
 private["_warnf1","_warnf2","_warnf3","_warnf4","_warnd1","_warnd2","_warnd3","_warnd4"];
-
-_warnf1 = true;
-_warnf2 = true;
-_warnf3 = true;
+_warnf1 = true; 
+_warnf2 = true; 
+_warnf3 = true; 
 _warnf4 = true;
-_warnd1 = true;
-_warnd2 = true;
-_warnd3 = true;
+_warnd1 = true; 
+_warnd2 = true; 
+_warnd3 = true; 
 _warnd4 = true;
 
-if (!isNil "mf_survival_handle1") then { terminate mf_survival_handle1 };
-mf_survival_handle1 = [] spawn
-{
-	scriptName "mf_survival_handle1";
-
+if not(isNil "mf_survival_handle1") then {terminate mf_survival_handle1};
+mf_survival_handle1 = [] spawn {
 	_decrementHunger = {
 		if (hungerLevel > 0) then {hungerLevel = hungerLevel - HUNGER_DELTA };
 	};
@@ -61,11 +54,7 @@ mf_survival_handle1 = [] spawn
 	};
 };
 
-if (!isNil "mf_survival_handle2") then { terminate mf_survival_handle2 };
-mf_survival_handle2 = [] spawn
-{
-	scriptName "mf_survival_handle2";
-
+[] spawn  {
 	_warnf1 = true; _warnf2 = true; _warnf3 = true; _warnf4 = true;
 	while{true} do {
 		sleep TIME_DELTA;
@@ -80,11 +69,7 @@ mf_survival_handle2 = [] spawn
 	};
 };
 
-if (!isNil "mf_survival_handle3") then { terminate mf_survival_handle3 };
-mf_survival_handle3 = [] spawn
-{
-	scriptName "mf_survival_handle3";
-
+[] spawn  {
 	_warnd1 = true; _warnd2 = true; _warnd3 = true; _warnd4 = true;
 	while{true} do {
 		sleep TIME_DELTA;
@@ -98,5 +83,3 @@ mf_survival_handle3 = [] spawn
 		};
 	};
 };
-
-{ A3W_scriptThreads pushBack _x } forEach [mf_survival_handle1, mf_survival_handle2, mf_survival_handle3];

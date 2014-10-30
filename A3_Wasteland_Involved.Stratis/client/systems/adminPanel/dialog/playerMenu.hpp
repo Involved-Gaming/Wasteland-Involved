@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 #define playerMenuDialog 55500
 #define playerMenuPlayerSkin 55501
 #define playerMenuPlayerGun 55502
@@ -20,12 +17,12 @@ class PlayersMenu
 	enableSimulation = true;
 
 	class controlsBackground {
-
+		
 		class MainBackground: w_RscPicture
 		{
 			idc = -1;
-			colorText[] = {1, 1, 1, 1};
-			colorBackground[] = {0,0,0,0};
+			colorText[] = {0.969,0.969,0.969,1};
+			colorBackground[] = {0.212,0.216,0.243,0.8};
 			text = "#(argb,8,8,3)color(0,0,0,0.6)";
 			x = 0.1875 * safezoneW + safezoneX;
 			y = 0.15 * safezoneH + safezoneY;
@@ -36,9 +33,9 @@ class PlayersMenu
 		class TopBar: w_RscPicture
 		{
 			idc = -1;
-			colorText[] = {1, 1, 1, 1};
-			colorBackground[] = {0,0,0,0};
-			text = "#(argb,8,8,3)color(0.25,0.51,0.96,0.8)";
+			colorText[] = {0.969,0.969,0.969,1};
+			colorBackground[] = {0.824,0.404,0.157,1};
+			text = "#(argb,8,8,3)color(0.824,0.404,0.157,1)";
 
 			x = 0.1875 * safezoneW + safezoneX;
 			y = 0.15 * safezoneH + safezoneY;
@@ -58,7 +55,7 @@ class PlayersMenu
 			w = 0.0844792 * safezoneW;
 			h = 0.0448148 * safezoneH;
 		};
-
+		
 		class PlayerUIDText: w_RscText
 		{
 			idc = playerMenuPlayerUID;
@@ -136,7 +133,7 @@ class PlayersMenu
 			h = 0.04 * safezoneH;
 		};
 	};
-
+	
 	class controls {
 
 		class PlayerEditBox:w_RscEdit
@@ -170,7 +167,7 @@ class PlayersMenu
 			h = 0.04 * safezoneH;
 		};
 
-		/*class SlayButton: w_RscButton
+		class SlayButton: w_RscButton
 		{
 			idc = -1;
 			text = "Slay";
@@ -179,7 +176,7 @@ class PlayersMenu
 			y = 0.748 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-		};*/
+		};
 
 		class UnlockTeamSwitchButton: w_RscButton
 		{
@@ -214,7 +211,7 @@ class PlayersMenu
 			h = 0.04 * safezoneH;
 		};
 
-		/*class RemoveAllWeaponsButton: w_RscButton
+		class RemoveAllWeaponsButton: w_RscButton
 		{
 			idc = -1;
 			text = "Remove Weapons";
@@ -223,9 +220,9 @@ class PlayersMenu
 			y = 0.748 * safezoneH + safezoneY;
 			w = 0.105 * safezoneW;
 			h = 0.04 * safezoneH;
-		};*/
+		};
 
-		/*class CheckPlayerGearButton: w_RscButton
+		class CheckPlayerGearButton: w_RscButton
 		{
 			idc = -1;
 			text = "Gear";
@@ -234,7 +231,7 @@ class PlayersMenu
 			y = 0.748 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-		};*/
+		};
 
 		class WarnButton: w_RscButton
 		{
@@ -246,8 +243,8 @@ class PlayersMenu
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
 		};
-
-		/*class DonationButton: w_RscButton
+		
+		class DonationButton: w_RscButton
 		{
 			idc = -1;
 			text = "Donation";
@@ -256,7 +253,7 @@ class PlayersMenu
 			y = 0.70  * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-		};*/
+		};
 	};
 };
 

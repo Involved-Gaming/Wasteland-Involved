@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: weaponInfo.sqf
 //	@file Author: [404] Deadbeat, [KoS] His_Shadow, AgentRev
@@ -37,5 +34,5 @@ _itemConfigInfo = [_itemText, _itemData] call getItemInfo;
 _price = _itemConfigInfo select 1;
 _description = _itemConfigInfo select 2;
 
-_itemlisttext ctrlSetText format ["Price: $%1", [_price] call fn_numbersText];
+_itemlisttext ctrlSetText format ["Price: $%1", _price];
 _itemDesc ctrlSetStructuredText parseText _description;

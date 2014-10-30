@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 private ["_params", "_action"];
 
 // Parameters passed by the action
@@ -10,30 +7,32 @@ _action = _params select 0;
 ////////////////////////////////////////////////
 // Handle actions
 ////////////////////////////////////////////////
-switch (toLower _action) do
+if (_action == "action_revive") then
 {
-	case "action_revive":
-	{
-		[cursorTarget] spawn FAR_HandleRevive;
-	};
+	[cursorTarget] spawn FAR_HandleRevive;
+};
 
-	case "action_stabilize":
-	{
-		[cursorTarget] spawn FAR_HandleStabilize;
-	};
+if (_action == "action_stabilize") then
+{
+	[cursorTarget] spawn FAR_HandleStabilize;
+};
 
-	case "action_suicide":
-	{
-		player setDamage 1;
-	};
+if (_action == "action_suicide") then
+{
+	player setDamage 1;
+};
 
-	case "action_drag":
-	{
-		[cursorTarget] spawn FAR_Drag;
-	};
+if (_action == "action_drag") then
+{
+	[cursorTarget] spawn FAR_Drag;
+};
 
-	case "action_release":
-	{
-		[] spawn FAR_Release;
-	};
+if (_action == "action_release") then
+{
+	[] spawn FAR_Release;
+};
+
+if (_action == "action_kill") then
+{
+	[cursorTarget] spawn IG_kill;
 };

@@ -1,139 +1,47 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
-//	@file Name: groupMarkers.sqf
-//	@file Author: AgentRev
+/*
+	File: groupMarkers.sqf
+	Author: Bryan "Tonic" Boardwine, modified by Involved-Gaming
 
-_groupMembers = [[]];
+	Description:
+	Marks groupMembers on the map for other groupMembers. Only initializes when the actual map is open.
+*/
+private["_markers","_groupMembers"];
+_markers = [];
+_groupMembers = [];
 
-_groupMembers spawn
-{
-	_groupMembers = _this;
+sleep 0.5;
+if(visibleMap) then {
+	{if((side _x == side player) && group _x == group player ) then {_groupMembers set[count _groupMembers,_x];}} foreach playableUnits; //Fetch list of groupMembers
 
-	while {true} do
+	//Create markers
 	{
-		_groupMembersArray = _groupMembers select 0;
-		_mapIcons = difficultyEnabled "map";
+		_marker = createMarkerLocal [format["%1_marker",_x],visiblePosition _x];
+		_marker setMarkerColorLocal "ColorBlue";
+		_marker setMarkerTypeLocal "Mil_dot";
+		_marker setMarkerTextLocal format["%1", name _x];
 
-		if (count _groupMembersArray > 0) then
+		_markers set[count _markers,[_marker,_x]];
+	} foreach _groupMembers;
+
+	while {visibleMap} do
+	{
 		{
-			_playerRemoved = false;
-
-			// Reverse cleaning
-			for [{_i = count _groupMembersArray - 1}, {_i >= 0}, {_i = _i - 1}] do
+			private["_marker","_unit"];
+			_marker = _x select 0;
+			_unit = _x select 1;
+			if(!isNil "_unit") then
 			{
-				_member = _groupMembersArray select _i;
-				_unit = _member select 0;
-
-				if (isNull _unit || alive _unit && {!(_unit in units player)}) then
+				if(!isNull _unit) then
 				{
-					_groupMembersArray = [_groupMembersArray, _i] call BIS_fnc_removeIndex;
-					deleteMarkerLocal (_member select 2);
-					_playerRemoved = true;
+					_marker setMarkerPosLocal (visiblePosition _unit);
 				};
 			};
-
-			if (_playerRemoved) then
-			{
-				_groupMembers set [0, _groupMembersArray];
-			};
-		};
-
-		{
-			_unit = _x;
-
-			// Add new members
-			if (isPlayer _unit && (_unit != player || !_mapIcons)) then
-			{
-				if ({_x select 0 == _unit} count _groupMembersArray == 0) then
-				{
-					_groupMembersArray pushBack [_unit, name _unit, "groupMember_" + getPlayerUID _unit, false];
-					//_groupMembersArray pushBack [_unit, name _unit, "groupMember_" + name _unit, false];
-				};
-			};
-		} forEach units player;
-
-		sleep 1;
+		} foreach _markers;
+		if(!visibleMap) exitWith {};
+		sleep 0.02;
 	};
-};
 
-_markerColor = format ["Color%1", playerSide];
-_mapIcons = difficultyEnabled "map";
-
-while {true} do
-{
-	{
-		_unit = _x select 0;
-		_name = _x select 1;
-		_marker = _x select 2;
-		_created = _x select 3;
-
-		_isSpawning = _unit getVariable ["playerSpawning", false];
-
-		_isPlayer = if (_unit == player) then
-		{
-			_unit = vehicle player;
-			if (!alive _unit) then { _unit = player };
-			true
-		}
-		else
-		{
-			false
-		};
-
-		_pos = getPosASL _unit;
-
-		if (!_created) then
-		{
-			createMarkerLocal [_marker, _pos];
-			_marker setMarkerShapeLocal "ICON";
-			_marker setMarkerTypeLocal "mil_start";
-			_marker setMarkerSizeLocal [0.6, 0.6];
-			_x set [3, true];
-		};
-
-		if (alive _unit && !_isSpawning) then
-		{
-			_marker setMarkerPosLocal _pos;
-
-			if (_isPlayer) then
-			{
-				_marker setMarkerSizeLocal [0.9, 0.9];
-				_marker setMarkerAlphaLocal (if (visibleMap) then { 1 } else { 0 });
-				_marker setMarkerTypeLocal "Select";
-				_marker setMarkerColorLocal "ColorRed";
-			}
-			else
-			{
-				_marker setMarkerSizeLocal [0.6, 0.6];
-				if (!_mapIcons) then { _marker setMarkerTypeLocal "mil_start" };
-				_marker setMarkerColorLocal _markerColor;
-				_marker setMarkerAlphaLocal 1;
-			};
-
-			_marker setMarkerDirLocal getDir _unit;
-		}
-		else
-		{
-			if (!_isSpawning) then { _marker setMarkerPosLocal _pos };
-			_marker setMarkerDirLocal 0;
-			_marker setMarkerColorLocal "ColorBlack";
-			_marker setMarkerAlphaLocal 0.5;
-			_marker setMarkerSizeLocal [0.8, 0.8];
-			_marker setMarkerTypeLocal "KIA";
-		};
-
-		if (visibleMap) then
-		{
-			if (!_isPlayer) then { _marker setMarkerTextLocal _name };
-			if (_mapIcons) then { _marker setMarkerTypeLocal "EmptyIcon" };
-		}
-		else
-		{
-			_marker setMarkerTextLocal "";
-			_marker setMarkerTypeLocal "mil_start";
-		};
-	} forEach (_groupMembers select 0);
-
-	sleep 0.1;
+	{deleteMarkerLocal (_x select 0);} foreach _markers;
+	_markers = [];
+	_groupMembers = [];
 };

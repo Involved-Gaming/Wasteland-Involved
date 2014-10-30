@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Name: playerSetupStart.sqf
 //	@file Author: [GoT] JoSchaap, AgentRev
 
@@ -11,12 +8,6 @@ _player setSkill 0;
 {_player disableAI _x} foreach ["move","anim","target","autotarget"];
 _player setVariable ["BIS_noCoreConversations", true];
 _player allowDamage false;
-//_player enableSimulation false;
-
-if (["A3W_unlimitedStamina"] call isConfigOn) then
-{
-	_player enableFatigue false;
-};
 
 enableSentences false;
 

@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: getDefaultClothing.sqf
 //	@file Author: AgentRev
@@ -30,7 +27,7 @@ _result = "";
 
 switch (_side) do
 {
-	case BLUFOR:
+	case BLUFOR: 
 	{
 		switch (true) do
 		{
@@ -51,7 +48,7 @@ switch (_side) do
 				if (_item == "vest") then { _result = _defaultVest };
 			};
 		};
-
+		
 		if (_item == "headgear") then { _result = "H_MilCap_mcamo" };
 	};
 	case OPFOR:
@@ -75,7 +72,7 @@ switch (_side) do
 				if (_item == "vest") then { _result = _defaultVest };
 			};
 		};
-
+		
 		if (_item == "headgear") then { _result = "H_MilCap_ocamo" };
 	};
 	default
@@ -99,7 +96,7 @@ switch (_side) do
 				if (_item == "vest") then { _result = _defaultVest };
 			};
 		};
-
+		
 		if (_item == "headgear") then { _result = "H_MilCap_dgtl" };
 	};
 };

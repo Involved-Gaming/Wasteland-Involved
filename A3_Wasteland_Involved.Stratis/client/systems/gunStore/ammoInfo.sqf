@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: ammoInfo.sqf
 //	@file Author: [KoS] His_Shadow, AgentRev
@@ -33,6 +30,6 @@ _ammoText ctrlSetText "";
 	{
 		_weap_type = _x select 1;
 		_price = _x select 2;
-		_ammoText ctrlSetText format ["Price: $%1", [_price] call fn_numbersText];
+		_ammoText ctrlSetText format ["Price: $%1", _price];
 	};
 } forEach (call ammoArray);

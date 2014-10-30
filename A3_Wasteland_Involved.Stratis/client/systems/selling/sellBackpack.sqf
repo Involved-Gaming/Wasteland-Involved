@@ -1,90 +1,141 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
-//	@file Name: sellBackpack.sqf
-//	@file Author: AgentRev
-//	@file Created: 21/10/2013 18:20
+//        @file Version: 1.0
+//        @file Name: sellBackpack.sqf
+//        @file Author: AgentRev
+//        @file Created: 21/10/2013 18:20
+//        @file Args:
 
-#define DEFAULT_SELL_VALUE 50
+if (!isNil "storeSellingHandle" && {typeName storeSellingHandle == "SCRIPT"} && {!scriptDone storeSellingHandle}) exitWith {hint "Please wait, your previous sale is being processed"};
 
-#include "sellIncludesStart.sqf";
-
-if (isNull backpackContainer player) exitWith
+if (backpack player == "") then
 {
-	playSound "FD_CP_Not_Clear_F";
-	hint "You don't have a backpack to sell!";
-};
-
-storeSellingHandle = _this spawn
+        hint "You don't have a backpack to sell!";
+}
+else
 {
-	_obj = backpackContainer player;
-	_sellValue = 0;
-	_originalCargo = CARGO_STRING(_obj);
+        storeSellingHandle = [] spawn
+        {
+                private ["_getHalfPrice", "_backpack", "_sellValue", "_allBackpackItems", "_backpackItems", "_backpackMags", "_item", "_itemName", "_itemValue", "_itemsToSell", "_itemAdded", "_magazines", "_mag", "_magAmmo", "_magFullAmmo", "_magValue", "_confirmMsg"];
 
-	// Get all the items
-	_allObjItems = _obj call getSellPriceList;
+                _getHalfPrice =
+                {
+                        ((ceil ((_this / 2) / 5)) * 5) // Ceil half the value to the nearest multiple of 5
+                };
+                
+                _backpack = backpack player;
+                _sellValue = 75; // This is the default value for items that aren't listed in the store
+                
+                // Calculate backpack sell value
+                {
+                        if (_x select 1 == _backpack) then
+                        {
+                                _sellValue = (_x select 2) call _getHalfPrice;
+                        };
+                } forEach (call backpackArray);
+                
+                _allBackpackItems = backpackItems player;
+                _backpackItems = + _allBackpackItems;
+                _backpackMags = [];
 
-	_objClass = backpack player;
-	_objName = getText (configFile >> "CfgVehicles" >> _objClass >> "displayName");
+                // Collect backpack magazine types and ammo counts
+                {
+                        if (_x select 4 == "Backpack") then
+                        {
+                                _backpackItems = _backpackItems - [_x select 0];
+                                _backpackMags set [count _backpackMags, [_x select 0, _x select 1]];
+                        };
+                } forEach magazinesAmmoFull player;
 
-	_added = false;
+                // Add value of each non-mag backpack item to sell value
+                {
+                        _item = _x;
+                        _itemValue = 10;
+                        
+                        {
+                                if (_x select 1 == _item) exitWith
+                                {
+                                        _itemValue = (_x select 2) call _getHalfPrice;
+                                };
+                        } forEach (call allRegularStoreItems);
+                        
+                        _sellValue = _sellValue + _itemValue;
+                        
+                } forEach _backpackItems;
 
-	// Include backpack in item list
-	{
-		if (_x select 1 == _objClass) exitWith
-		{
-			_allObjItems = [[_objClass, 1, _objName, GET_HALF_PRICE(_x select 2)]] + _allObjItems;
-			_added = true;
-		};
-	} forEach (call backpackArray);
+                // Add value of each backpack magazine to sell value, based on ammo count
+                {
+                        _mag = _x select 0;
+                        _magAmmo = _x select 1;
+                        _magFullAmmo = getNumber (configFile >> "CfgMagazines" >> _mag >> "count");
+                        _magValue = 10;
+                        
+                        {
+                                if (_x select 1 == _mag) exitWith
+                                {
+                                        _magValue = ((_x select 2) * (_magAmmo / _magFullAmmo)) call _getHalfPrice; // Get selling price relative to ammo count
+                                };
+                        } forEach (call ammoArray);
+                        
+                        _sellValue = _sellValue + _magValue;
+                        
+                } forEach _backpackMags;
 
-	if (!_added) then
-	{
-		_allObjItems = [[_objClass, 1, _objName, DEFAULT_SELL_VALUE]] + _allObjItems;
-	};
+                _itemsToSell = [];
 
-	// Calculate total value
-	{
-		if (count _x > 3) then
-		{
-			_sellValue = _sellValue + (_x select 3);
-		};
-	} forEach _allObjItems;
+                // Count items of same type, and acquire item display name
+                {
+                        _item = _x;
+                        _itemAdded = false;
+                        
+                        {
+                                if (_x select 0 == _item) exitWith
+                                {
+                                        _itemsToSell set [_forEachIndex, [_x select 0, (_x select 1) + 1, _x select 2]];
+                                        _itemAdded = true;
+                                };
+                        } forEach _itemsToSell;
+                        
+                        if (!_itemAdded) then
+                        {
+                                _itemName = getText (configFile >> "CfgWeapons" >> _item >> "displayName");
+                                if (_itemName == "") then { _itemName = getText (configFile >> "CfgMagazines" >> _item >> "displayName") };
+                                
+                                _itemsToSell set [count _itemsToSell, [_item, 1, _itemName]];
+                        };
+                } forEach _allBackpackItems;
+                
+                // Add total sell value to confirm message
+                _confirmMsg = format ["You will obtain $%1 for:<br/><br/>", _sellValue];
 
-	// Add total sell value to confirm message
-	_confirmMsg = format ["You will obtain $%1 for:<br/>", [_sellValue] call fn_numbersText];
+                // Add uniform name to confirm message
+                _confirmMsg = _confirmMsg + format ["<t font='EtelkaMonospaceProBold'>1</t> x %1", getText (configFile >> "CfgVehicles" >> _backpack >> "displayName")];
 
-	// Add item quantities and names to confirm message
-	{
-		_item = _x select 0;
-		_itemQty = _x select 1;
+                // Add item quantities and names to confirm message
+                {
+                        _item = _x select 0;
+                        _itemQty = _x select 1;
+                        _itemName = _x select 2;
+                        
+                        _confirmMsg = _confirmMsg + format ["<br/><t font='EtelkaMonospaceProBold'>%1</t> x %2", _itemQty, _itemName];
+                        
+                } forEach _itemsToSell;
 
-		if (_itemQty > 0 && {count _x > 2}) then
-		{
-			_itemName = _x select 2;
-			_confirmMsg = _confirmMsg + format ["<br/><t font='EtelkaMonospaceProBold'>%1</t> x %2%3", _itemQty, _itemName, if (PRICE_DEBUGGING) then { format [" ($%1)", [_x select 3] call fn_numbersText] } else { "" }];
-		};
-	} forEach _allObjItems;
+                // Display confirmation
+                if ([parseText _confirmMsg, "Confirm", "Sell", true] call BIS_fnc_guiMessage) then
+                {
+                        // Remove backpack if sale confirmed by player
+                        removeBackpack player;
 
-	// Display confirmation
-	if ([parseText _confirmMsg, "Confirm", "Sell", true] call BIS_fnc_guiMessage) then
-	{
-		// Check if somebody else manipulated the cargo since the start
-		if (CARGO_STRING(_obj) == _originalCargo) then
-		{
-			removeBackpack player;
-
-			player setVariable ["cmoney", (player getVariable ["cmoney", 0]) + _sellValue, true];
-
-			hint format ['You sold "%1" for $%2', _objName, _sellValue];
-			playSound "FD_Finish_F";
-		}
-		else
-		{
-			playSound "FD_CP_Not_Clear_F";
-			[format ['The contents of "%1" have changed, please restart the selling process.', _objName], "Error"] call BIS_fnc_guiMessage;
-		};
-	};
+                        player setVariable ["cmoney", (player getVariable ["cmoney", 0]) + _sellValue, true];
+                        hint format ["You sold your backpack for $%1", _sellValue];
+                };
+        };
+        
+        if (typeName storeSellingHandle == "SCRIPT") then
+        {
+                private "_storeSellingHandle";
+                _storeSellingHandle = storeSellingHandle;
+                waitUntil {scriptDone _storeSellingHandle};
+        };
+        
+        storeSellingHandle = nil;
 };
-
-#include "sellIncludesEnd.sqf";

@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //@file Version: 1.0
 //@file Name: eat.sqf
 //@file Author: MercyfulFate
@@ -17,7 +14,7 @@ _checks = {
 	_text = "";
 	_failed = true;
 	switch (true) do {
-		case (!alive player) : {}; // player is dead, not need for a error message
+		case not(alive player) : {}; // player is dead, not need for a error message
 		case (doCancelAction): {doCancelAction = false; _text = ERR_CANCELLED;};
 		default {
 			_failed = false;
@@ -31,6 +28,5 @@ _success = [5, ANIMATION, _checks, []] call a3w_actions_start;
 if (_success) then {
 	hungerLevel = (hungerLevel + _this) min 100;
 	["Your hunger has eased", 5] call mf_notify_client;
-	hint "";
 };
 _success;

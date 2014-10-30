@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: createGunStoreMarkers.sqf
 //	@file Author: [404] Deadbeat, [404] Costlyy, [GoT] JoSchaap
@@ -16,9 +13,9 @@ _col_mixed = "ColorOrange";
 
 //Creates the markers around gunstores.
 {
-	if (!isPlayer _x && {["GunStore", vehicleVarName _x] call fn_startsWith}) then
+	if (["GunStore", name _x] call fn_findString == 0) then
 	{
-		_npcPos = getPosATL _x;
+		_npcPos = getPos _x;
 
 		if (["A3W_showGunStoreStatus"] call isConfigOn) then
 		{
@@ -57,9 +54,9 @@ _col_mixed = "ColorOrange";
 		_markerName setMarkerTextLocal "GUN STORE";
 		// _markerName setMarkerAlphaLocal 0.5;
 
-		_status pushBack "EMPTY";
+		_status set [count _status, "EMPTY"];
 
-		_gunStores pushBack _x;
+		_gunStores set [count _gunStores, _x];
 	};
 } forEach entities "CAManBase";
 
@@ -110,14 +107,14 @@ if (["A3W_showGunStoreStatus"] call isConfigOn) then
 	while {showmarkers} do
 	{
 		{
-			_npc = _x;
+			_npcPos = getPos _x;
 			_friendlyCount = 0;
 			_enemyCount = 0;
 
 			{
-				if (isPlayer _x && alive _x && _x distance _npc < _radius) then
+				if (isPlayer _x && alive _x && {_x distance _npcPos < _radius}) then
 				{
-					if ((side group _x == playerSide && playerSide in [BLUFOR,OPFOR]) || group _x == group player) then
+					if ((playerSide in [BLUFOR,OPFOR] && {side _x == playerSide}) || {group _x == group player}) then
 					{
 						_friendlyCount = _friendlyCount + 1;
 					}
@@ -128,7 +125,7 @@ if (["A3W_showGunStoreStatus"] call isConfigOn) then
 				};
 			} forEach playableUnits;
 
-			if (player distance _npc < _radius) then
+			if (player distance _npcPos < _radius) then
 			{
 				if(_enemyCount > 0) then
 				{
@@ -172,7 +169,7 @@ if (["A3W_showGunStoreStatus"] call isConfigOn) then
 				};
 			};
 		} forEach _gunStores;
-
+		
 		sleep 1;
 	};
 };

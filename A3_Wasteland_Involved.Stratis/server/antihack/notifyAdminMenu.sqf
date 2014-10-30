@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: notifyAdminMenu.sqf
 //	@file Author: AgentRev
@@ -10,50 +7,37 @@
 
 if !([getPlayerUID player, 3] call isAdmin) exitWith {};
 
-private ["_action", "_value", "_cfg", "_displayStr", "_message"];
+private ["_value", "_displayStr", "_message"];
+_value = [_this, 0, "", ["",0]] call BIS_fnc_param;
 
-_action = [_this, 0, "", [""]] call BIS_fnc_param;
-_value = [_this, 1, "", [0,"",[]]] call BIS_fnc_param;
-
-switch (toLower _action) do
+if (typeName _value == "SCALAR" && {_value > 0}) then
 {
-	case "money":
+	_message = format ["[NOTICE] %1 used the admin menu to obtain $%2", name player, _value];
+}
+else
+{
+	if (isClass (configFile >> "CfgVehicles" >> _value)) then
 	{
-		if (_value > 0) then
-		{
-			_message = format ["[NOTICE] %1 used the admin menu to obtain $%2", name player, _value];
-		};
+		_displayStr = getText (configFile >> "CfgVehicles" >> _value >> "displayName");
 	};
-	case "teleport":
+
+	if (isClass (configFile >> "CfgWeapons" >> _value)) then
 	{
-		_value resize 2;
-		{ _value set [_forEachIndex, round _x] } forEach _value;
+		_displayStr = getText (configFile >> "CfgWeapons" >> _value >> "displayName");
 	};
-	case "vehicle":
+
+	if (isClass (configFile >> "CfgMagazines" >> _value)) then
 	{
-		_cfg = configFile >> "CfgVehicles" >> _value;
+		_displayStr = getText (configFile >> "CfgMagazines" >> _value >> "displayName");
 	};
-	case "weapon":
+	
+	if (!isNil "_displayStr") then
 	{
-		_cfg = configFile >> "CfgWeapons" >> _value;
-	};
-	case "ammo":
-	{
-		_cfg = configFile >> "CfgMagazines" >> _value;
+		_message = format ['[NOTICE] %1 used the admin menu to obtain a "%2"', name player, _displayStr];
 	};
 };
 
-if (!isNil "_cfg" && {isClass _cfg}) then
+if (!isNil "_message") then
 {
-	_displayStr = getText (_cfg >> "displayName");
-	if (_displayStr == "") then { _displayStr = _value } else { _value = _displayStr };
-
-	_message = format ['[NOTICE] %1 used the admin menu to obtain a "%2"', profileName, _displayStr];
+	[[_message, getPlayerUID player, _flagChecksum, true], "chatBroadcast", true, false] call TPG_fnc_MP;
 };
-
-if (!isNil "_message" && {_message != ""}) then
-{
-	[[_message, getPlayerUID player, _flagChecksum, true], "A3W_fnc_chatBroadcast", true] call A3W_fnc_MP;
-};
-
-[[profileName, getPlayerUID player, _action, _value, _flagChecksum], "A3W_fnc_adminMenuLog", false] call A3W_fnc_MP;

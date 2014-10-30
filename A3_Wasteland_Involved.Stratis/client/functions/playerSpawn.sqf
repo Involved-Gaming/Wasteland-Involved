@@ -1,56 +1,63 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: playerSpawn.sqf
 //	@file Author: [404] Deadbeat, AgentRev
 //	@file Created: 20/11/2012 05:19
 //	@file Args:
 
+private ["_kickTeamKiller", "_kickTeamSwitcher", "_side"];
+
 playerSpawning = true;
 
-//Teamkiller Kick
-if (!isNil "pvar_teamKillList") then
+_kickTeamKiller = false;
+_kickTeamSwitcher = false;
+
+if (playerSide != INDEPENDENT) then
 {
-	if ([pvar_teamKillList, getPlayerUID player, 0] call fn_getFromPairs >= 2) exitWith
+	if (!isNil "pvar_teamKillList") then
 	{
-		player allowDamage false;
-		[player, "AinjPpneMstpSnonWrflDnon"] call switchMoveGlobal;
-		9999 cutText ["", "BLACK", 0.01];
-		0 fadeSound 0;
+		{
+			if (_x select 0 == getPlayerUID player && {_x select 1 > 1}) exitWith
+			{
+				_kickTeamKiller = true;
+			};
+		} forEach pvar_teamKillList;
+	};
 
-		uiNamespace setVariable ["BIS_fnc_guiMessage_status", false];
-		_msgBox = [localize "STR_WL_Loading_Teamkiller"] spawn BIS_fnc_guiMessage;
-		_time = diag_tickTime;
-
-		waitUntil {scriptDone _msgBox || diag_tickTime - _time >= 20};
-		endMission "LOSER";
-		waitUntil {uiNamespace setVariable ["BIS_fnc_guiMessage_status", false]; closeDialog 0; false};
+	if (!isNil "pvar_teamSwitchList") then
+	{
+		{
+			if (_x select 0 == getPlayerUID player && {_x select 1 != playerSide}) exitWith
+			{
+				_side = _x select 1;
+				_kickTeamSwitcher = true;
+			};
+		} forEach pvar_teamSwitchList;
 	};
 };
-//Teamswitcher Kick
-if (!isNil "pvar_teamSwitchList" && playerSide in [BLUFOR,OPFOR]) then
+
+//Teamkiller Kick
+if (_kickTeamKiller) exitWith
 {
-	if ([pvar_teamSwitchList, getPlayerUID player, playerSide] call fn_getFromPairs != playerSide) exitWith
-	{
-		player allowDamage false;
-		[player, "AinjPpneMstpSnonWrflDnon"] call switchMoveGlobal;
-		9999 cutText ["", "BLACK", 0.01];
-		0 fadeSound 0;
+	localize "STR_WL_Loading_Teamkiller";
+	9999 cutText [_text, "BLACK"];
+	titleText [_text, "BLACK"];
+	[] spawn {sleep 20; endMission "LOSER"};
+};
 
-		uiNamespace setVariable ["BIS_fnc_guiMessage_status", false];
-		_msgBox = [localize "STR_WL_Loading_Teamswitched"] spawn BIS_fnc_guiMessage;
-		_time = diag_tickTime;
-
-		waitUntil {scriptDone _msgBox || diag_tickTime - _time >= 20};
-		endMission "LOSER";
-		waitUntil {uiNamespace setVariable ["BIS_fnc_guiMessage_status", false]; closeDialog 0; false};
-	};
+//Teamswitcher Kick
+if (_kickTeamSwitcher) exitWith
+{
+	_text = format [localize "STR_WL_Loading_Teamswitched", localize format ["STR_WL_Gen_Team%1_2", _side]];
+	9999 cutText [_text, "BLACK"];
+	titleText [_text, "BLACK"];
+	[] spawn {sleep 20; endMission "LOSER"};
 };
 
 // Only go through respawn dialog if no data from the player save system
-if (isNil "playerData_alive" || !isNil "playerData_resetPos") then
+if (isNil "playerData_alive") then
 {
+	//Send player to debug zone to stop fake spawn locations.
+	player setPosATL [3755.94,7945.76,0.00160313];
 	[player, "AmovPknlMstpSnonWnonDnon"] call switchMoveGlobal;
 
 	9999 cutText ["Loading...", "BLACK", 0.01];
@@ -65,12 +72,15 @@ if (isNil "playerData_alive" || !isNil "playerData_resetPos") then
 	{
 		[] spawn fn_savePlayerData;
 	};
+}
+else
+{
+	playerData_alive = nil;
 };
-
-playerData_alive = nil;
-playerData_resetPos = nil;
 
 9999 cutText ["", "BLACK IN"];
 
+[] spawn updateFatigue;
 playerSpawning = false;
-player setVariable ["playerSpawning", false, true];
+
+

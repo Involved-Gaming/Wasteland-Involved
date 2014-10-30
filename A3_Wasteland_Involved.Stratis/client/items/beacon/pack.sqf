@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //@file Version: 1.0
 //@file Name: pack.sqf
 //@file Author: MercyfulFate
@@ -26,25 +23,25 @@ _hasFailed = {
 	_text = "";
 	_failed = true;
 	switch (true) do {
-		case (!alive player): {}; // player dead, no error msg needed
-		case (vehicle player != player): {};
-		case (isNull _beacon): {_text = ERR_SOMEONE_ELSE_TAKEN};
-		case (player distance _beacon > 5): {_text = ERR_TOO_FAR_AWAY};
+		case not(alive player): {}; // player dead, no error msg needed
+		case not(vehicle player == player): {};
+        case (isNull _beacon): {_text = ERR_SOMEONE_ELSE_TAKEN};
+		case not(player distance _beacon < 5): {_text = ERR_TOO_FAR_AWAY};
 		case (doCancelAction): {doCancelAction = false; _text = ERR_CANCELLED};
 		default {
 			_text = format["Spawn Beacon is %1%2 Packed", round(_progress*100), "%"];
 			_failed = false;
-		};
-	};
-	[_failed, _text];
+        };
+    };
+    [_failed, _text];
 };
 
 _success =  [DURATION, ANIM, _hasFailed, [_beacon]] call a3w_actions_start;
-
+    
 if (_success) then {
-	pvar_spawn_beacons = pvar_spawn_beacons - [_beacon];
-	publicVariable "pvar_spawn_beacons";
-	deleteVehicle _beacon;
+    pvar_spawn_beacons = pvar_spawn_beacons - [_beacon];
+    publicVariable "pvar_spawn_beacons";
+    deleteVehicle _beacon;
 	[MF_ITEMS_SPAWN_BEACON, 1] call mf_inventory_add;
-	["You successfully packed the Spawn Beacon", 5] call mf_notify_client;
+    ["You successfully packed the Spawn Beacon", 5] call mf_notify_client;
 };

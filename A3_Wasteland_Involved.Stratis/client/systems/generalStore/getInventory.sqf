@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 
 //	@file Version: 1.0
 //	@file Name: getInventory.sqf
@@ -104,7 +101,7 @@ for [{_x=1},{_x<=_amount},{_x=_x+1}] do
 
 {
 	_class = _x;
-
+	
 	{
 		if (_class == _x select 1) exitWith
 		{

@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 #define modMenu_dialog 50004
 #define modMenu_option 50005
 
@@ -29,7 +26,7 @@ class ModMenu
 			idc = -1;
 			colorText[] = {1, 1, 1, 1};
 			colorBackground[] = {0,0,0,0};
-			text = "#(argb,8,8,3)color(0.25,0.51,0.96,0.8)";
+			text = "#(argb,8,8,3)color(0.824,0.404,0.157,1)";
 
 			x=0.28;
 			y=0.10;

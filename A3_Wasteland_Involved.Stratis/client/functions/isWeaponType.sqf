@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: isWeaponType.sqf
 //	@file Author: AgentRev
@@ -22,7 +19,7 @@ _typeBits = [];
 
 while {_typeHolder > 0} do
 {
-	_typeBits pushBack (_typeHolder % 2);
+	_typeBits set [count _typeBits, _typeHolder % 2];
 	_typeHolder = floor (_typeHolder / 2);
 };
 
@@ -31,7 +28,7 @@ _weaponTypeBits = [];
 
 while {_typeHolder > 0} do
 {
-	_weaponTypeBits pushBack (_typeHolder % 2);
+	_weaponTypeBits set [count _weaponTypeBits, _typeHolder % 2];
 	_typeHolder = floor (_typeHolder / 2);
 };
 

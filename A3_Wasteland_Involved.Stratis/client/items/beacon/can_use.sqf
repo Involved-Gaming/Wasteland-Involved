@@ -1,9 +1,6 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 _beacon = _this select 0;
 
-_side = _beacon getVariable ["side", sideUnknown];
+_side = _beacon getVariable ["side", ""];
 _isGroupOnly = _beacon getVariable ["groupOnly", false];
 _ownerUID = _beacon getVariable ["ownerUID", ""];
 
@@ -16,8 +13,8 @@ if (_side == playerSide) then {
 			};
 		} forEach (units group player);
 	} else {
-		_canUse = true;
-	};
+        _canUse = true;
+    };
 };
 
 _canUse;

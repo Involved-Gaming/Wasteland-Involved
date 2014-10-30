@@ -1,280 +1,123 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 #include "gunstoreDefines.sqf"
 
-#define GunStoreButton_textSize (0.04 * TEXT_SCALE)
+class gunshopd {
 
-class gunshopd
-{
 	idd = gunshop_DIALOG;
 	movingEnable = true;
 	enableSimulation = true;
 	onLoad = "[0] execVM 'client\systems\gunStore\populateGunStore.sqf'";
 
-	class ControlsBackground
-	{
-		#define GunStoreMainBG_W (0.7333 * SZ_SCALE)
-		#define GunStoreMainBG_H (0.65 * SZ_SCALE)
-		#define GunStoreMainBG_X CENTER(1, GunStoreMainBG_W)
-		#define GunStoreMainBG_Y CENTER(1, GunStoreMainBG_H)
-
-		class MainBackground: IGUIBack
+	class controlsBackground {
+	
+		class MainBackground: w_RscPicture
 		{
 			idc = -1;
-			colorBackground[] = {0, 0, 0, 0.6};
+			colorText[] = {1, 1, 1, 1};
+			colorBackground[] = {0,0,0,0};
+			text = "#(argb,8,8,3)color(0,0,0,0.6)";
 			moving = true;
-
-			x = GunStoreMainBG_X;
-			y = GunStoreMainBG_Y;
-			w = GunStoreMainBG_W;
-			h = GunStoreMainBG_H;
+			x = 0.1875 * safezoneW + safezoneX;
+			y = 0.15 * safezoneH + safezoneY;
+			w = 0.55 * safezoneW;
+			h = 0.65 * safezoneH;
 		};
 
-		class TopBar: IGUIBack
+		class TopBar: w_RscPicture
 		{
 			idc = -1;
-			colorBackground[] = {0.25, 0.51, 0.96, 0.8};
+			colorText[] = {1, 1, 1, 1};
+			colorBackground[] = {0,0,0,0};
+			text = "#(argb,8,8,3)color(0.969,0.431,0.027,1)";
 
-			#define GunStoreTopBar_H (0.05 * SZ_SCALE)
-
-			x = GunStoreMainBG_X;
-			y = GunStoreMainBG_Y;
-			w = GunStoreMainBG_W;
-			h = GunStoreTopBar_H;
+			x = 0.1875 * safezoneW + safezoneX;
+			y = 0.15 * safezoneH + safezoneY;
+			w = 0.55 * safezoneW;
+			h = 0.05 * safezoneH;
 		};
 
 		class ItemSelectedPrice: w_RscStructuredTextLeft
 		{
 			idc = gunshop_gun_TEXT;
-			size = 0.04 * TEXT_SCALE;
+			text = "";
 
-			x = GunStoreMainBG_X + (0.15 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.514 * SZ_SCALE);
-			w = 0.119 * SZ_SCALE;
-			h = 0.0689 * SZ_SCALE;
+			x = 0.299 * safezoneW + safezoneX;
+			y = 0.664 * safezoneH + safezoneY;
+			w = 0.0891667 * safezoneW;
+			h = 0.068889 * safezoneH;
 		};
-
+		
 		class AmmoSelectedPrice: w_RscStructuredTextLeft
 		{
 			idc = gunshop_ammo_TEXT;
-			size = 0.04 * TEXT_SCALE;
+			text = "";
 
-			x = GunStoreMainBG_X + (0.439 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.514 * SZ_SCALE);
-			w = 0.119 * SZ_SCALE;
-			h = 0.0689 * SZ_SCALE;
+			x = 0.517 * safezoneW + safezoneX;
+			y = 0.664 * safezoneH + safezoneY;
+			w = 0.0891667 * safezoneW;
+			h = 0.068889 * safezoneH;
 		};
 
-		class DialogTitleText: w_RscTextCenter
+		class DialogTitleText: w_RscText
 		{
 			idc = -1;
-			text = "Gun Store";
-			sizeEx = 0.06 * TEXT_SCALE;
-
-			x = GunStoreMainBG_X;
-			y = GunStoreMainBG_Y;
-			w = GunStoreMainBG_W;
-			h = GunStoreTopBar_H;
+			text = "Gun Store Menu";
+			font = "PuristaMedium";
+			sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.155 * safezoneH + safezoneY;
+			w = 0.0844792 * safezoneW;
+			h = 0.0448148 * safezoneH;
 		};
 
-		/*
 		class PlayerMoneyText: w_RscText
 		{
 			idc = gunshop_money;
 			text = "Cash:";
-			sizeEx = 0.04 * TEXT_SCALE;
-			x = GunStoreMainBG_X + (0.6033 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.005 * SZ_SCALE);
-			w = 0.1126 * SZ_SCALE;
-			h = 0.0448 * SZ_SCALE;
+			font = "PuristaMedium";
+			sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+			x = 0.640 * safezoneW + safezoneX;
+			y = 0.155 * safezoneH + safezoneY;
+			w = 0.0844792 * safezoneW;
+			h = 0.0448148 * safezoneH;
 		};
-		*/
 	};
-
-	class Controls
-	{
+	
+	class controls {
+		
 		class SelectionList: w_RscList
 		{
 			idc = gunshop_gun_list;
-			onLBSelChanged = "[] execVM 'client\systems\gunStore\weaponInfo.sqf'";
-			sizeEx = 0.04 * TEXT_SCALE;
-			rowHeight = 0.04 * TEXT_SCALE;
-
-			x = GunStoreMainBG_X + (0.1533 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.075 * SZ_SCALE);
-			w = 0.276 * SZ_SCALE;
-			h = 0.3382 * SZ_SCALE;
+			onLBSelChanged = "[] execvm 'client\systems\gunStore\weaponInfo.sqf'";
+			font = "PuristaMedium";
+			sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+			x = 0.3025 * safezoneW + safezoneX;
+			y = 0.225 * safezoneH + safezoneY;
+			w = 0.207 * safezoneW;
+			h = 0.338222 * safezoneH;
 		};
 
 		class GunDescription: w_RscStructuredTextLeft
 		{
 			idc = gunshop_gun_desc;
-			size = 0.04 * TEXT_SCALE;
-			colorBackground[] = {0, 0, 0, 0.3};
-
-			x = GunStoreMainBG_X + (0.1533 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.417 * SZ_SCALE);
-			w = 0.276 * SZ_SCALE;
-			h = 0.088 * SZ_SCALE;
+			text = "";
+			sizeEx = 0.02;
+			colorBackground[] = { 0, 0, 0, 0.1 };
+			x = 0.3025 * safezoneW + safezoneX;
+			y = 0.567 * safezoneH + safezoneY;
+			w = 0.207 * safezoneW;
+			h = 0.088 * safezoneH;
 		};
-
+		
 		class AmmoList: w_RscList
 		{
 			idc = gunshop_ammo_list;
-			onLBSelChanged = "[] execVM 'client\systems\gunStore\ammoInfo.sqf'";
-			sizeEx = 0.04 * TEXT_SCALE;
-			rowHeight = 0.04 * TEXT_SCALE;
-
-			x = GunStoreMainBG_X + (0.4433 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.075 * SZ_SCALE);
-			w = 0.276 * SZ_SCALE;
-			h = 0.4222 * SZ_SCALE;
-		};
-
-		class BuyGun: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[0] execVM 'client\systems\gunStore\buyGuns.sqf'";
-			text = "Buy";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.334 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.507 * SZ_SCALE);
-			w = 0.096 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-		};
-
-		class BuyAmmo: w_RscButton
-		{
-			idc = gunshop_but_butammo;
-			onButtonClick = "[0] execVM 'client\systems\gunStore\buyAmmo.sqf'";
-			text = "Buy";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.6233 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.507 * SZ_SCALE);
-			w = 0.096 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-		};
-
-		class StoreButton0: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[0] execVM 'client\systems\gunStore\populateGunStore.sqf'";
-			text = "Handguns";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.075 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-		};
-
-		class StoreButton1: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[1] execVM 'client\systems\gunStore\populateGunStore.sqf'";
-			text = "SMGs";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.125 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-		};
-
-		class StoreButton2: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[2] execVM 'client\systems\gunStore\populateGunStore.sqf'";
-			text = "Rifles";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.175 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-		};
-
-		class StoreButton3: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[3] execVM 'client\systems\gunStore\populateGunStore.sqf'";
-			text = "LMGs";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.225 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-		};
-
-		//when BI releases shotguns we can uncomment this line
-		/*class StoreButton4: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[4] execVM 'client\systems\gunStore\populateGunStore.sqf'";
-			text = "Shotguns";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.300 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-		};*/
-
-		class StoreButton5: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[5] execVM 'client\systems\gunStore\populateGunStore.sqf'";
-			text = "Launchers";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.275 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-		};
-
-		class StoreButton6: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[6] execVM 'client\systems\gunStore\populateGunStore.sqf'";
-			text = "Ordnance";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.325 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-		};
-
-		class StoreButton7: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[7] execVM 'client\systems\gunStore\populateGunStore.sqf'";
-			text = "Accessories";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.375 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
-
-		};
-
-		class StoreButton8: w_RscButton
-		{
-			idc = -1;
-			onButtonClick = "[8] execVM 'client\systems\gunStore\populateGunStore.sqf'";
-			text = "Armament";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.425 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
+			onLBSelChanged = "[] execvm 'client\systems\gunStore\ammoInfo.sqf'";
+			font = "PuristaMedium";
+			sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+			x = 0.520 * safezoneW + safezoneX;
+			y = 0.225 * safezoneH + safezoneY;
+			w = 0.207 * safezoneW;
+			h = 0.422222 * safezoneH;
 		};
 
 		class SellWeapon: w_RscButton
@@ -282,64 +125,180 @@ class gunshopd
 			idc = -1;
 			onButtonClick = "[] execVM 'client\systems\selling\sellWeapon.sqf'";
 			text = "Sell Weapon";
-			sizeEx = GunStoreButton_textSize;
 
-			x = GunStoreMainBG_X + (0.23 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.59 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
+			x = 0.360 * safezoneW + safezoneX;
+			y = 0.740 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
 		};
-
+		
 		class SellUniform: w_RscButton
 		{
 			idc = -1;
 			onButtonClick = "[] execVM 'client\systems\selling\sellUniform.sqf'";
 			text = "Sell Uniform";
-			sizeEx = GunStoreButton_textSize;
-
-			x = GunStoreMainBG_X + ((0.604 - 0.25) * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.59 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
+			x = 0.453 * safezoneW + safezoneX;
+			y = 0.740 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
 		};
 
-		class SellVest: w_RscButton
+        class SellVest: w_RscButton
 		{
 			idc = -1;
 			onButtonClick = "[] execVM 'client\systems\selling\sellVest.sqf'";
 			text = "Sell Vest";
-			sizeEx = GunStoreButton_textSize;
 
-			x = GunStoreMainBG_X + (0.478 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.59 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
+			x = 0.546 * safezoneW + safezoneX;
+			y = 0.740 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
 		};
-
+		
 		class SellBackpack: w_RscButton
 		{
 			idc = -1;
 			onButtonClick = "[] execVM 'client\systems\selling\sellBackpack.sqf'";
 			text = "Sell Backpack";
-			sizeEx = GunStoreButton_textSize;
 
-			x = GunStoreMainBG_X + (0.602 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.59 * SZ_SCALE);
-			w = 0.1173 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
+			x = 0.639 * safezoneW + safezoneX;
+			y = 0.740 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
 		};
 
-		class CancelButton: w_RscButton
+		class BuyGun: w_RscButton
 		{
 			idc = -1;
-			onButtonClick = "closeDialog 0";
-			text = "Cancel";
-			sizeEx = GunStoreButton_textSize;
+			onButtonClick = "[0] execVM 'client\systems\gunStore\buyGuns.sqf'";
+			text = "Buy";
 
-			x = GunStoreMainBG_X + (0.0167 * SZ_SCALE);
-			y = GunStoreMainBG_Y + (0.59 * SZ_SCALE);
-			w = 0.096 * SZ_SCALE;
-			h = 0.040 * SZ_SCALE;
+			x = 0.438 * safezoneW + safezoneX;
+			y = 0.657 * safezoneH + safezoneY;
+			w = 0.072 * safezoneW;
+			h = 0.040 * safezoneH;
+		};
+		
+		class BuyAmmo: w_RscButton
+		{
+			idc = gunshop_but_butammo;
+			onButtonClick = "[0] execVM 'client\systems\gunStore\buyAmmo.sqf'";
+			text = "Buy";
+
+			x = 0.655 * safezoneW + safezoneX;
+			y = 0.657 * safezoneH + safezoneY;
+			w = 0.072 * safezoneW;
+			h = 0.040 * safezoneH;
+		};
+
+		class StoreButton0: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[0] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "Handguns";
+
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.225 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;	
+		};
+		
+		class StoreButton1: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[1] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "SMGs";
+
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.275 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
+		};
+
+		class StoreButton2: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[2] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "Rifles";
+
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.325 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
+		};
+		
+		class StoreButton3: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[3] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "LMGs";
+
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.375 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
+		};
+		
+		//when BI releases shotguns we can uncomment this line
+		/*class StoreButton4: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[4] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "Shotguns";
+
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.425 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
+		};*/
+		
+		class StoreButton5: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[5] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "Launchers";
+
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.425 * safezoneH + safezoneY;//475
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
+		};
+		
+		class StoreButton6: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[6] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "Ordnance";
+
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.475 * safezoneH + safezoneY;//525
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
+		};
+
+		class StoreButton7: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[7] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "Accessories";
+
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.525 * safezoneH + safezoneY;//575
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
+
+		};
+		
+		class StoreButton8: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[8] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "Static Guns";
+
+			x = 0.20 * safezoneW + safezoneX;
+			y = 0.575 * safezoneH + safezoneY;//625
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
 		};
 	};
 };

@@ -1,4 +1,4 @@
-*Wasteland.Stratis* by Team Wasteland!
+*Wasteland.Stratis* by Team Wasteland + Involved !
 ===================
 
 ArmA 3 Wasteland is a harsh survival sandbox mission where 2 teams and independent players fight for survival.
@@ -6,8 +6,13 @@ ArmA 3 Wasteland is a harsh survival sandbox mission where 2 teams and independe
 
 The mission is not ready yet, so for now it's just a placeholder :)
 
+*Team Wasteland Involved * collaborators:
 
-*Team Wasteland* collaborators:
+		- S.Lambert
+		- Graincheux
+		- LA10
+
+*Team Wasteland * collaborators:
 
        GoT - JoSchaap
        TPG - AgentRev

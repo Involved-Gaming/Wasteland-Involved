@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Name: playerSetupGear.sqf
 //	@file Author: [GoT] JoSchaap, AgentRev
 
@@ -31,7 +28,7 @@ _player unlinkItem "ItemGPS";
 if (hmd _player != "") then { _player unlinkItem hmd _player };
 
 // Add NVG
-//_player linkItem "NVGoggles";
+_player linkItem "NVGoggles";
 
 _player addBackpack "B_AssaultPack_rgr";
 

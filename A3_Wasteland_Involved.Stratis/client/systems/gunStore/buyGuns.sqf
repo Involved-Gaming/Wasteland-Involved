@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: buyGuns.sqf
 //	@file Author: [404] Deadbeat, [404] Costlyy, [KoS] His_Shadow, AgentRev
@@ -39,7 +36,7 @@ storePurchaseHandle = _this spawn
 	_itemText = _gunsList lbText _itemIndex;
 	_itemData = _gunsList lbData _itemIndex;
 
-	_showInsufficientFundsError =
+	_showInsufficientFundsError = 
 	{
 		_itemText = _this select 0;
 		hint parseText format ["Not enough money for<br/>""%1""", _itemText];
@@ -47,15 +44,15 @@ storePurchaseHandle = _this spawn
 		_price = -1;
 	};
 
-	_showInsufficientSpaceError =
+	_showInsufficientSpaceError = 
 	{
 		_itemText = _this select 0;
 		hint parseText format ["Not enough space for<br/>""%1""", _itemText];
 		playSound "FD_CP_Not_Clear_F";
 		_price = -1;
 	};
-
-	_showItemSpawnTimeoutError =
+	
+	_showItemSpawnTimeoutError = 
 	{
 		_itemText = _this select 0;
 		hint parseText format ["<t color='#ffff00'>An unknown error occurred.</t><br/>The purchase of ""%1"" has been cancelled.", _itemText];
@@ -63,7 +60,7 @@ storePurchaseHandle = _this spawn
 		_price = -1;
 	};
 
-	_showItemSpawnedOutsideMessage =
+	_showItemSpawnedOutsideMessage = 
 	{
 		_itemText = _this select 0;
 		hint format ["""%1"" has been spawned outside, in front of the store.", _itemText];
@@ -71,7 +68,7 @@ storePurchaseHandle = _this spawn
 		_successHint = false;
 	};
 
-	_showAlreadyHaveTypeMessage =
+	_showAlreadyHaveTypeMessage = 
 	{
 		_itemText = _this select 0;
 		hint format ["Your inventory is full, or you already have a weapon of this type. Please unequip it before purchasing ""%1""", _itemText];
@@ -79,10 +76,10 @@ storePurchaseHandle = _this spawn
 		_price = -1;
 	};
 
-	switch (_switch) do
+	switch (_switch) do 
 	{
 		//Buy To Player
-		case 0:
+		case 0: 
 		{
 			if (isNil "_price") then
 			{
@@ -92,14 +89,14 @@ storePurchaseHandle = _this spawn
 						_class = _x select 1;
 						_price = _x select 2;
 						_weapon = configFile >> "CfgWeapons" >> _class;
-
+						
 						// Ensure the player has enough money
 						if (_price > _playerMoney) exitWith
 						{
 							[_itemText] call _showInsufficientFundsError;
 						};
-
-						if ((!([_class, 1] call isWeaponType) || primaryWeapon player == "") &&
+						
+						if ((!([_class, 1] call isWeaponType) || primaryWeapon player == "") && 
 							{!([_class, 2] call isWeaponType) || handgunWeapon player == ""} &&
 							{!([_class, 4] call isWeaponType) || secondaryWeapon player == ""}) then
 						{
@@ -115,7 +112,7 @@ storePurchaseHandle = _this spawn
 					};
 				} forEach (call allGunStoreFirearms);
 			};
-
+			
 			if (isNil "_price") then
 			{
 				{
@@ -123,13 +120,13 @@ storePurchaseHandle = _this spawn
 					{
 						_class = _x select 1;
 						_price = _x select 2;
-
+						
 						// Ensure the player has enough money
 						if (_price > _playerMoney) exitWith
 						{
 							[_itemText] call _showInsufficientFundsError;
 						};
-
+						
 						if ([player, _class] call fn_fitsInventory) then
 						{
 							if (isClass (configFile >> "CfgMagazines" >> _class)) then
@@ -156,13 +153,13 @@ storePurchaseHandle = _this spawn
 					{
 						_class = _x select 1;
 						_price = _x select 2;
-
+						
 						// Ensure the player has enough money
 						if (_price > _playerMoney) exitWith
 						{
 							[_itemText] call _showInsufficientFundsError;
 						};
-
+						
 						switch (_x select 3) do
 						{
 							case "item":
@@ -180,7 +177,7 @@ storePurchaseHandle = _this spawn
 					};
 				} forEach (call accessoriesArray);
 			};
-
+			
 			if (isNil "_price") then
 			{
 				{
@@ -188,13 +185,13 @@ storePurchaseHandle = _this spawn
 					{
 						_class = _x select 1;
 						_price = _x select 2;
-
+						
 						// Ensure the player has enough money
 						if (_price > _playerMoney) exitWith
 						{
 							[_itemText] call _showInsufficientFundsError;
 						};
-
+						
 						removeBackpack player;
 						player addBackpack _class;
 					};
@@ -209,14 +206,14 @@ storePurchaseHandle = _this spawn
 					{
 						_class = _x select 1;
 						_price = _x select 2;
-
+						
 						// Ensure the player has enough money
 						if (_price > _playerMoney) exitWith
 						{
 							[_itemText] call _showInsufficientFundsError;
 						};
-
-						_requestKey = call A3W_fnc_generateKey;
+						
+						_requestKey = call generateKey;
 						call requestStoreObject;
 					};
 				} forEach (call staticGunsArray);
@@ -227,7 +224,7 @@ storePurchaseHandle = _this spawn
 	if (!isNil "_price" && {_price > -1}) then
 	{
 		_playerMoney = player getVariable ["cmoney", 0];
-
+		
 		// Re-check for money after purchase
 		if (_price > _playerMoney) then
 		{
@@ -235,23 +232,23 @@ storePurchaseHandle = _this spawn
 			{
 				deleteVehicle objectFromNetId (missionNamespace getVariable _requestKey);
 			};
-
+			
 			[_itemText] call _showInsufficientFundsError;
 		}
 		else
 		{
 			player setVariable ["cmoney", _playerMoney - _price, true];
-			_playerMoneyText ctrlSetText format ["Cash: $%1", [player getVariable ["cmoney", 0]] call fn_numbersText];
+			_playerMoneyText ctrlSetText format ["Cash: $%1", player getVariable "cmoney"];
 			if (_successHint) then { hint "Purchase successful!" };
 			playSound "FD_Finish_F";
 		};
 	};
-
+	
 	if (!isNil "_requestKey" && {!isNil _requestKey}) then
 	{
 		missionNamespace setVariable [_requestKey, nil];
 	};
-
+	
 	sleep 0.25; // double-click protection
 };
 

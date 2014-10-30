@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: detachTowedObject.sqf
 //	@file Author: AgentRev
@@ -8,11 +5,11 @@
 
 private ["_object", "_tower", "_airdrop", "_pos", "_altitude", "_vel"];
 
-_object = [_this, 0, objNull, [objNull,""]] call BIS_fnc_param;
+if (typeName _this != "OBJECT") exitWith {};
 
-if (typeName _object == "STRING") then { _object = objectFromNetId _object };
+_object = _this;
 
-if (local _object) then
+if (!isNull _object && {local _object}) then
 {
 	_tower = attachedTo _object;
 	_airdrop = [_this, 1, false, [false]] call BIS_fnc_param;
@@ -20,22 +17,50 @@ if (local _object) then
 	_object enableSimulation true; // FPS fix safeguard
 	_tower enableSimulation true;
 
-	sleep 0.3;
-
-	if (_airdrop) then
+	if (_airdrop || ((getPos _object) select 2) > 30) then		//Si airdrop définit pour position de l'objet trop haute
 	{
 		_vel = velocity _object;
 		detach _object;
 		_object setVelocity _vel;
+		sleep 1;
+		_chute = createVehicle ["B_Parachute_02_F", _object modelToWorld [0,0,0], [], 0, "FLY"];
+		sleep 0.1;
+		_chute attachTo [_object,[0,0,0]];
+		sleep 0.1;
+		detach _chute;
+		sleep 0.1;
+		_object attachTo [_chute,[0,0,0]];
+
+		_smoke        = "SmokeshellBlue" createVehicle position _object;
+		_smoke attachto [_object,[0,0,0]];
+		_chem         = "Chemlight_blue" createVehicle position _object;
+		_chem attachto [_object,[0,0,0]];
+
+
+		_heigh = 0;
+		while {((getPosATL _chute) select 2) > 8} do {
+			sleep 1;
+			_heigh = (getPosATL _chute) select 2;
+		};
+		detach _object;
+
+		/*
+		_heigh = 0;
+		while {((getPosATL _chute) select 2) > 8} do {
+			sleep 1;
+			_heigh = (getPosATL _chute) select 2;
+		};
+		detach _dropped;
+		*/
 	}
 	else
 	{
-		_pos = getPos _object;
-		_altitude = (getPosATL _object) select 2;
+		//_pos = getPos _object;
+		//_altitude = (getPosATL _object) select 2;
 		detach _object;
-		if (_tower isKindOf "Helicopter") then { _object setVectorUp [0,0,1] };
-		_object setPosATL [_pos select 0, _pos select 1, (_altitude - (_pos select 2)) + 0.1];
-		_object setVelocity [0,0,0.01];
+		//if (_tower isKindOf "Helicopter") then { _object setVectorUp [0,0,1] };
+		//_object setPosATL [_pos select 0, _pos select 1, (_altitude - (_pos select 2)) + 0.01];
+		//_object setVelocity [0,0,0.01];
 	};
 
 	_object lockDriver false;

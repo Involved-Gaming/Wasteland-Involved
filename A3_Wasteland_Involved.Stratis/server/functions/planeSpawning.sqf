@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: planeSpawning.sqf
 //	@file Author: AgentRev
@@ -13,7 +10,7 @@ private "_counter";
 _counter = 0;
 
 {
-	if (["planeSpawn_", _x] call fn_startsWith) then
+	if (["planeSpawn_", _x] call fn_findString == 0) then
 	{
 		if (random 1 < 0.25) then // 25% chance spawning
 		{

@@ -1,6 +1,3 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
 //	@file Version: 1.0
 //	@file Name: broadcaster.sqf
 //	@file Author: [404] Deadbeat
@@ -9,9 +6,11 @@
 
 if (!isServer) exitWith {};
 
-while {true} do
-{
-	serverFPS = diag_fps;
+while {true} do {
+    //To broadcast clientRaderMarkers to clients from the server due to clients not being able to broadcast server wide variables with eventhandlers.	
+	publicVariable "currentInvites";
+    publicVariable "clientRadarMarkers";
+	serverFPS = str(diag_fpsmin);
 	publicVariable "serverFPS";
-	sleep 1;
+    sleep 1; 
 };

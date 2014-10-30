@@ -1,7 +1,4 @@
-// ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
-// ******************************************************************************************
-//	@file Name: server\admins.sqf
+//	@file Name: admins.sqf
 
 if (!isServer) exitWith {};
 
@@ -21,9 +18,7 @@ else
 		"1234876543211234", // Frylock
 		"1337133713371337"  // Carl
 
-	 Important: The player UID must always be placed between
-	            double quotes (") and all lines need to have
-	            a comma (,) except the last one.
+	 Important: Don't put a comma (,) at the end of the last one
 	********************************************************/
 
 	// Low Administrators: manage & spectate players, remove hacked vehicles
@@ -38,10 +33,12 @@ else
 		// Put player UIDs here
 	];
 
-	// Server Owners: access to everything, including god mode, money, guns, and vehicles
+	// Server Owners: access to everything
 	serverOwners = compileFinal str
 	[
 		// Put player UIDs here
+		"76561198001227638",
+		"76561198128561818"
 	];
 
 	/********************************************************/
