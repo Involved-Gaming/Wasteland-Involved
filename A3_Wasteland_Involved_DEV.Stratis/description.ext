@@ -90,3 +90,4 @@ class clavier
   {
     name = "statique2";
     sound[] = {"\sounds\statique2.ogg", 0.5, 1};
+  };
