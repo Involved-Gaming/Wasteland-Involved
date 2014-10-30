@@ -139,10 +139,10 @@ while {true} do
 	} else {
 		format ["%1 <img size='0.7' image='client\icons\running_man.paa'/>", 100 - ceil((getFatigue player) * 100)];
 	};
-	_str = _str + format ["<br/>%1 <img size='0.7' image='client\icons\money.paa'/>", [player getVariable ["cmoney", 0]] call fn_numbersText];
-	_str = _str + format ["<br/>%1 <img size='0.7' image='client\icons\water.paa'/>", ceil (thirstLevel max 0)];
-	_str = _str + format ["<br/>%1 <img size='0.7' image='client\icons\food.paa'/>", ceil (hungerLevel max 0)];
-	_str = _str + format ["<br/><t color='%1'>%2</t> <img size='0.7' image='client\icons\health.paa'/>", _healthTextColor, _health];
+	_str = _str + format ["<br/>%1 <img size='1' image='client\icons\money.paa'/>", [player getVariable ["cmoney", 0]] call fn_numbersText];
+	_str = _str + format ["<br/>%1 <img size='1' image='client\icons\water.paa'/>", ceil (thirstLevel max 0)];
+	_str = _str + format ["<br/>%1 <img size='1' image='client\icons\food.paa'/>", ceil (hungerLevel max 0)];
+	_str = _str + format ["<br/><t color='%1'>%2</t> <img size='1' image='client\icons\health.paa'/>", _healthTextColor, _health];
 
 	_vitals ctrlShow alive player;
 	_vitals ctrlSetStructuredText parseText _str;
