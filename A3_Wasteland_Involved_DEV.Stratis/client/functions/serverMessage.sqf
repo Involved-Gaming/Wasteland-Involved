@@ -9,3 +9,5 @@ diag_log format["Message %1",messageSystem];
 
 _hint = messageSystem;
 hint _hint;
+//Test playSounc
+playSound "clavier";

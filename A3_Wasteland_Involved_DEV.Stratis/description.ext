@@ -73,3 +73,11 @@ class CfgNotifications
 {
 	#include "client\CfgNotifications.hpp"
 };
+
+class clavier
+  {
+    name = "clavier";
+    sound[] = {"\sounds\clavier.ogg", 0.10, 1};
+    titles[] = {};
+  };
+};
