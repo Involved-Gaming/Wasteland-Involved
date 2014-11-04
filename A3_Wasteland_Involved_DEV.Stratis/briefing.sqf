@@ -32,36 +32,34 @@ player createDiaryRecord ["changelog",
 
 player createDiaryRecord ["changelog",
 [
-"Version : 0.9i Involved 04/08/2014",
+"0.9i 04/08/2014",
 "
 <br/>	[AJOUT]		Caisse de stuff under the dome
 <br/>	[FIX]		Bogue des conteneurs réarmement véhicule
-<br/>	[FIX]		Prix des TWS & Nightstalker plus élevé
+<br/>	[FIX]		Prix des TWS et Nightstalker plus élevé
 <br/>	[AJOUT]		Ajout de JVN à l'apparition
-<br/>	[AJOUT]		Ajout d'icone involved player menu
+<br/>	[AJOUT]		Ajout d'icone involved player menu et autres
 <br/>	[FIX]		Slot sapeur corriger
 <br/>	[FIX]		Slot civil supprimer
 <br/>	[FIX]		Bogue bureau vendeur d'arme
 <br/>	[FIX]		Correction de la fatigue
-<br/>
 <br/> [Added]  Marqueur d'escouade
 <br/> [Added]  Image d'intro
 <br/> [Added]  Droit modo/admin
 <br/> [Added]  Suppression Side et Global canal
 <br/> [Added]  Rez coéquipier
-<br/> [Changed]  Traduction
+<br/> [Changed]  Traduction message d'intro
 <br/> [Fixed]  Error messages in various menus
 <br/>[AJOUT]     Empecher la deconnexion si personnel à proximité
 <br/>[AJOUT]     Système de revive
-<br/>[AJOUT]     Ajouter la possibiliter d'achever les gens d'un balle dans la tête. [FAIT,à debuguer en multi?]
 <br/>[AJOUT]     Image de chargement
 <br/>[AJOUT]     Mapping base
 <br/>[AJOUT]     Mapping repar zone + refuel + reaload ammo
 <br/>[AJOUT]     Ajout de panneaux publicitaire involved-Gaming
 <br/>[FIX]       Bourse sur la droite -> traduction de l'ancien
 <br/>[FIX]       Side supp globale
-<br/>[FIX]       Supprimer le stuff lors de la deco quand au sol [A TESTER]
-<br/>[AJOUT]     Mettre son équipe en temps réel sur la carte ( quand la MAp s'ouvre )
+<br/>[FIX]       Supprimer le stuff lors de la deco quand au sol
+<br/>[AJOUT]     Mettre son équipe en temps réel sur la carte
 <br/>[FIX]       Droits admin
 <br/>[AJOUT]     Parachuter des véhicules depuis le drop hélico + fumigène
 <br/>[AJOUT]     Parachutes automatique
