@@ -200,8 +200,8 @@ class Mission
 	randomSeed=14957468;
 	class Intel
 	{
-		briefingName="A3Wasteland Stratis v1.0";
-		overviewText="Wasteland survival sandbox by Team Wasteland - visit A3Wasteland.com for more details";
+		briefingName="A3Wasteland Involved Stratis v1.0";
+		overviewText="Wasteland survival sandbox by Team Wasteland - visit involed-gaming.com for more details. Thanks to A3Wasteland team!";
 		resistanceWest=0;
 		startWeather=0.10000001;
 		startWind=0.30000001;
