@@ -29,7 +29,46 @@ player createDiaryRecord ["changelog",
 <br/> [Fixed] Other minor optimizations and fixes
 "
 ]];
+player createDiaryRecord ["changelog",
+[
+"Version : 0.9i Involved 04/08/2014",
+"
+<br/>	[AJOUT]		Caisse de stuff under the dome
+<br/>	[FIX]		Bogue des conteneurs réarmement véhicule
+<br/>	[FIX]		Prix des TWS & Nightstalker plus élevé
+<br/>	[AJOUT]		Ajout de JVN à l'apparition
+<br/>	[AJOUT]		Ajout d'icone involved player menu
+<br/>	[FIX]		Slot sapeur corriger
+<br/>	[FIX]		Slot civil supprimer
+<br/>	[FIX]		Bogue bureau vendeur d'arme
+<br/>	[FIX]		Correction de la fatigue
+<br/>
+<br/> [Added]  Marqueur d'escouade
+<br/> [Added]  Image d'intro
+<br/> [Added]  Droit modo/admin
+<br/> [Added]  Suppression Side et Global canal
+<br/> [Added]  Rez coéquipier
+<br/> [Changed]  Traduction
+<br/> [Fixed]  Error messages in various menus
+<br/>[AJOUT]     Empecher la deconnexion si personnel à proximité
+<br/>[AJOUT]     Système de revive
+<br/>[AJOUT]     Ajouter la possibiliter d'achever les gens d'un balle dans la tête. [FAIT,à debuguer en multi?]
+<br/>[AJOUT]     Image de chargement
+<br/>[AJOUT]     Mapping base
+<br/>[AJOUT]     Mapping repar zone + refuel + reaload ammo
+<br/>[AJOUT]     Ajout de panneaux publicitaire involved-Gaming
+<br/>[FIX]       Bourse sur la droite -> traduction de l'ancien
+<br/>[FIX]       Side supp globale
+<br/>[FIX]       Supprimer le stuff lors de la deco quand au sol [A TESTER]
+<br/>[AJOUT]     Mettre son équipe en temps réel sur la carte ( quand la MAp s'ouvre )
+<br/>[FIX]       Droits admin
+<br/>[AJOUT]     Parachuter des véhicules depuis le drop hélico + fumigène
+<br/>[AJOUT]     Parachutes automatique
+<br/>[FIX]       bogue blesser hélico
 
+
+"
+]];
 player createDiaryRecord ["changelog",
 [
 "0.9h",
@@ -249,12 +288,11 @@ player createDiaryRecord ["credits",
 "
 ]];
 
-
 player createDiaryRecord ["infos",
 [
 "Hints and Tips",
 "
-<br/><font size='18'>A3Wasteland</font>
+<br/><font size='18'>A3Wasteland Involved modified</font>
 <br/>
 <br/>* At the start of the game, spread out and find supplies before worrying about where to establish a meeting place or a base, supplies are important and very valuable.
 <br/>
@@ -274,29 +312,30 @@ player createDiaryRecord ["infos",
 [
 "About Wasteland",
 "
-<br/>Wasteland is a team versus team versus team sandbox survival experience. The objective of this mission is to rally your faction, scavenge supplies, weapons, and vehicles, and destroy the other factions. It is survival at its best! Keep in mind this is a work in progress, please direct your reports to http://forums.a3wasteland.com/
+<br/>Wasteland c'est tout l'inverse de Altis Life, no rules juste fun and no rp just RIP.
 <br/>
 <br/>FAQ:
 <br/>
-<br/>Q. What am I supposed to do here?
-<br/>A. See the above description
+<br/>Q. Que suis-je supposer faire ici ?
+<br/>R. See the above description
 <br/>
-<br/>Q. Where can I get a gun?
-<br/>A. Weapons are found in one of three places, first in ammo crates that come as rewards from missions, inside and outside buildings, and second, in the gear section of the vehicles, which also randomly spawn around the map. The last place to find a gun would be at the gunshops located throughout the map. You can also find them on dead players whose bodies have not yet been looted.
+<br/>Q. Ou je peux avoir une arme ?
+<br/>R. Dans votre environnement, autour de vous, dans les véhicules, sur vos ennemis, sur vos amis, bref ouvrez vos yeux !
 <br/>
-<br/>Q. What are the blue circles on the map?
-<br/>A. The circles represent town limits. If friendly soldiers are in a town, you can spawn there from the re-spawn menu; however if there is an enemy presence, you will not be able to spawn there.
+<br/>Q. Qu'est ce que ces ronds sur la carte ?
+<br/>R. Les ronds sont les zones à captures, les magasins d'armes, de véhicules, ... Et aussi les zones de spawn ! Mefiez vous donc, les ennemis peuvent être partout !
 <br/>
-<br/>Q. Why is it so dark, I cant see.
-<br/>A. The server has a day/night cycle just like in the real world, and as such, night time is a factor in your survival. It is recommended that you find sources of light or use your Nightvision Goggles as the darkness sets in.
+<br/>Q. Pourquoi fait-il si noir ?
+<br/>R. Car il faut allez récupérer des JVN (Lunette de vision nocture) dans votre magasin le plus proche.
 <br/>
-<br/>Q. Is it ok for me to shoot my team mates?
-<br/>A. If you are member of BLUFOR or OPFOR teams, then you are NOT allowed to shoot or steal items and vehicles from other players. If you play as Independent, you are free to engage anyone as well as team up with anyone you want.
+<br/>Q. Les tir fratricides sont-ils permit ?
+<br/>R. Non les teams BLUFOR et OPFOR teams ne peuvent pas se tirer dessus. Par contre si vous être indépendant vous être contre tous !
 <br/>
-<br/>Q. Whats with the canisters, baskets and big bags?
-<br/>A. This game has a food and water system that you must stay on top of if you hope to survive. You can collect food and water from food sacks and wells, or baskets and plastic canisters dropped by dead players. Food and water will also randomly spawn around the map.
+<br/>Q. Ou je trouve des grands sacs et un peu de nourriture ?
+<br/>R. Comme pour les armes, tout autour de vous, au alors si vous avez un peu de bifton dans le magasin le plus proche.
 <br/>
-<br/>Q. I saw someone breaking a rule, what do I do?
-<br/>A. Simply go into global chat and get the attention of one of the admins or visit our forums, and make a report if the offense is serious.
+<br/>Q. Si je vois quelqu'un enfriendre une règles je fais quoi ?
+<br/>R. Très simple vous appeler un administrateur ou modérateur, ou alors vous filmer et vous allez sur forum.involved-gaming.com
 "
 ]];
+
