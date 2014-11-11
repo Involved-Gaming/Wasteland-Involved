@@ -45,7 +45,7 @@ player createDiaryRecord ["changelog",
 <br/>	[FIX]		Correction de la fatigue
 <br/> [Added]  Marqueur d'escouade
 <br/> [Added]  Image d'intro
-<br/> [Added]  Droit modo/admin
+<br/> [Added]  Droit modoet admin
 <br/> [Added]  Suppression Side et Global canal
 <br/> [Added]  Rez coéquipier
 <br/> [Changed]  Traduction message d'intro
@@ -54,14 +54,14 @@ player createDiaryRecord ["changelog",
 <br/>[AJOUT]     Système de revive
 <br/>[AJOUT]     Image de chargement
 <br/>[AJOUT]     Mapping base
-<br/>[AJOUT]     Mapping repar zone + refuel + reaload ammo
+<br/>[AJOUT]     Mapping repar zone refuel reaload ammo
 <br/>[AJOUT]     Ajout de panneaux publicitaire involved-Gaming
 <br/>[FIX]       Bourse sur la droite -> traduction de l'ancien
 <br/>[FIX]       Side supp globale
 <br/>[FIX]       Supprimer le stuff lors de la deco quand au sol
 <br/>[AJOUT]     Mettre son équipe en temps réel sur la carte
 <br/>[FIX]       Droits admin
-<br/>[AJOUT]     Parachuter des véhicules depuis le drop hélico + fumigène
+<br/>[AJOUT]     Parachuter des véhicules depuis le drop hélico fumigène
 <br/>[AJOUT]     Parachutes automatique
 <br/>[FIX]       bogue blesser hélico
 
