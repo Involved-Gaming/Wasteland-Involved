@@ -34,22 +34,22 @@ player createDiaryRecord ["changelog",
 [
 "0.9i 04/08/2014",
 "
-<br/>	[AJOUT]		Caisse de stuff under the dome
-<br/>	[FIX]		Bogue des conteneurs réarmement véhicule
-<br/>	[FIX]		Prix des TWS et Nightstalker plus élevé
-<br/>	[AJOUT]		Ajout de JVN à l'apparition
-<br/>	[AJOUT]		Ajout d'icone involved player menu et autres
-<br/>	[FIX]		Slot sapeur corriger
-<br/>	[FIX]		Slot civil supprimer
-<br/>	[FIX]		Bogue bureau vendeur d'arme
-<br/>	[FIX]		Correction de la fatigue
-<br/> [Added]  Marqueur d'escouade
-<br/> [Added]  Image d'intro
-<br/> [Added]  Droit modoet admin
-<br/> [Added]  Suppression Side et Global canal
-<br/> [Added]  Rez coéquipier
-<br/> [Changed]  Traduction message d'intro
-<br/> [Fixed]  Error messages in various menus
+<br/>[AJOUT]		Caisse de stuff under the dome
+<br/>[FIX]		Bogue des conteneurs réarmement véhicule
+<br/>[FIX]		Prix des TWS et Nightstalker plus élevé
+<br/>[AJOUT]		Ajout de JVN à l'apparition
+<br/>[AJOUT]		Ajout d'icone involved player menu et autres
+<br/>[FIX]		Slot sapeur corriger
+<br/>[FIX]		Slot civil supprimer
+<br/>[FIX]		Bogue bureau vendeur d'arme
+<br/>[FIX]		Correction de la fatigue
+<br/>[Added]  Marqueur d'escouade
+<br/>[Added]  Image d'intro
+<br/>[Added]  Droit modoet admin
+<br/>[Added]  Suppression Side et Global canal
+<br/>[Added]  Rez coéquipier
+<br/>[Changed]  Traduction message d'intro
+<br/>[Fixed]  Error messages in various menus
 <br/>[AJOUT]     Empecher la deconnexion si personnel à proximité
 <br/>[AJOUT]     Système de revive
 <br/>[AJOUT]     Image de chargement
